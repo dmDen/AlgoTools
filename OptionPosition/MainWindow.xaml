@@ -1,0 +1,52 @@
+﻿<Window x:Class="OptionPosition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OptionPosition"
+        xmlns:xaml="http://schemas.stocksharp.com/xaml"        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="635.4" Width="954">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Настройки"/>
+                <MenuItem Header="Пордключится"/>
+                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Сохранить как"/>
+                <MenuItem Header="Загрузить"/>
+                <MenuItem Header="Выход"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Expander Header="Выбор Базового актива" >
+                <xaml:SecurityPicker Width="400" Height="500"/>
+            </Expander>
+            <TextBlock Margin="30 0 0 0" VerticalAlignment="Bottom">Экспирация:</TextBlock>
+            <ComboBox Margin="5 0 0 0" Width="80" Height="22" VerticalAlignment="Bottom" />
+            <TextBlock Margin="15 0 0 0" VerticalAlignment="Bottom">Кол-во страйков:</TextBlock>
+            <ComboBox Margin="5 0 0 0" Width="80" Height="22" VerticalAlignment="Bottom"/>
+        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="220"/>
+            </Grid.ColumnDefinitions>
+            <xaml:OptionDesk x:Name="Desk" Grid.Row="0" Grid.Column="0" />
+            <xaml:OptionPositionChart x:Name="PosChart" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+            <DataGrid Name="dataGridPosition" AutoGenerateColumns="False" Grid.Row="0" Grid.Column="1"
+                xmlns:local="clr-namespace:OptionPosition"
+                xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="Вкл/выкл" Binding="{Binding IsActive}"/>
+                    <DataGridTextColumn Header="Тикер" Binding="{Binding OptionCode}"/>
+                    <DataGridTextColumn Header="Объем" Binding="{Binding Volume}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</Window>
