@@ -46,6 +46,15 @@
                     <DataGridTextColumn Header="Тикер" Binding="{Binding OptionCode}"/>
                     <DataGridTextColumn Header="Объем" Binding="{Binding Volume}"/>
                 </DataGrid.Columns>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>
+                <local:SecurityPosition IsActive="False" OptionCode="Ri80000BA5" Volume="-10"/>                
             </DataGrid>
         </Grid>
     </DockPanel>
