@@ -9,82 +9,6 @@
             The logger that records the data to the console window.
             </summary>
         </member>
-        <member name="T:StockSharp.Logging.LogListener">
-            <summary>
-            The base class that monitors the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> and saves to some storage.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Logging.ILogListener">
-            <summary>
-            The class interface that monitors the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> and saves to some storage.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Logging.ILogListener.WriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
-            <summary>
-            To record messages.
-            </summary>
-            <param name="messages">Debug messages.</param>
-        </member>
-        <member name="M:StockSharp.Logging.LogListener.#ctor">
-            <summary>
-            Initialize <see cref="T:StockSharp.Logging.LogListener"/>.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Logging.LogListener.AllWarningFilter">
-            <summary>
-            The filter that only accepts messages of <see cref="F:StockSharp.Logging.LogLevels.Warning"/> type.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Logging.LogListener.AllErrorFilter">
-            <summary>
-            The filter that only accepts messages of <see cref="F:StockSharp.Logging.LogLevels.Error"/> type.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Logging.LogListener.WriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
-            <summary>
-            To record messages.
-            </summary>
-            <param name="messages">Debug messages.</param>
-        </member>
-        <member name="M:StockSharp.Logging.LogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
-            <summary>
-            To record messages.
-            </summary>
-            <param name="messages">Debug messages.</param>
-        </member>
-        <member name="M:StockSharp.Logging.LogListener.OnWriteMessage(StockSharp.Logging.LogMessage)">
-            <summary>
-            To record a message.
-            </summary>
-            <param name="message">A debug message.</param>
-        </member>
-        <member name="M:StockSharp.Logging.LogListener.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Logging.LogListener.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="P:StockSharp.Logging.LogListener.Filters">
-            <summary>
-            Messages filters that specify which messages should be handled.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.LogListener.DateFormat">
-            <summary>
-            Date format. By default yyyy/MM/dd.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.LogListener.TimeFormat">
-            <summary>
-            Time format. By default HH:mm:ss.fff.
-            </summary>
-        </member>
         <member name="M:StockSharp.Logging.ConsoleLogListener.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Logging.ConsoleLogListener"/>.
@@ -115,6 +39,16 @@
         <member name="M:StockSharp.Logging.EmailLogListener.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Logging.EmailLogListener"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.EmailLogListener.From">
+            <summary>
+            The address, on whose behalf the message will be sent.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.EmailLogListener.To">
+            <summary>
+            The address to which the message will be sent to.
             </summary>
         </member>
         <member name="M:StockSharp.Logging.EmailLogListener.CreateClient">
@@ -159,16 +93,6 @@
             Release resources.
             </summary>
         </member>
-        <member name="P:StockSharp.Logging.EmailLogListener.From">
-            <summary>
-            The address, on whose behalf the message will be sent.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.EmailLogListener.To">
-            <summary>
-            The address to which the message will be sent to.
-            </summary>
-        </member>
         <member name="T:StockSharp.Logging.ErrorLoggingAttribute">
             <summary>
             The attribute for the WCF server that automatically records all errors to <see cref="M:StockSharp.Logging.LoggingHelper.LogError(System.Exception,System.String)"/>.
@@ -185,16 +109,16 @@
             </summary>
             <param name="logger">External recipient of messages.</param>
         </member>
+        <member name="P:StockSharp.Logging.ExternalLogListener.Logger">
+            <summary>
+            External recipient of messages.
+            </summary>
+        </member>
         <member name="M:StockSharp.Logging.ExternalLogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
             <summary>
             To record messages.
             </summary>
             <param name="messages">Debug messages.</param>
-        </member>
-        <member name="P:StockSharp.Logging.ExternalLogListener.Logger">
-            <summary>
-            External recipient of messages.
-            </summary>
         </member>
         <member name="T:StockSharp.Logging.SeparateByDateModes">
             <summary>
@@ -228,39 +152,9 @@
         </member>
         <member name="M:StockSharp.Logging.FileLogListener.#ctor(System.String)">
             <summary>
-            To create <see cref="T:StockSharp.Logging.FileLogListener"/>. All messages from the <see cref="E:StockSharp.Logging.ILogSource.Log"/> will be recorded to the file <paramref name="fileName"/>.
+            To create <see cref="T:StockSharp.Logging.FileLogListener"/>. All messages from the <see cref="E:StockSharp.Logging.ILogSource.Log"/> will be recorded to the file <paramref name="fileName" />.
             </summary>
             <param name="fileName">The name of a text file to which messages from the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> will be recorded.</param>
-        </member>
-        <member name="M:StockSharp.Logging.FileLogListener.OnCreateWriter(System.String)">
-            <summary>
-            To create a text writer.
-            </summary>
-            <param name="fileName">The name of the text file to which messages from the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> will be recorded.</param>
-            <returns>A text writer.</returns>
-        </member>
-        <member name="M:StockSharp.Logging.FileLogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
-            <summary>
-            To record messages.
-            </summary>
-            <param name="messages">Debug messages.</param>
-        </member>
-        <member name="M:StockSharp.Logging.FileLogListener.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Logging.FileLogListener.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Logging.FileLogListener.DisposeManaged">
-            <summary>
-            Release resources.
-            </summary>
         </member>
         <member name="P:StockSharp.Logging.FileLogListener.FileName">
             <summary>
@@ -320,9 +214,66 @@
             The mode of log files splitting by date. The default mode is <see cref="F:StockSharp.Logging.SeparateByDateModes.None"/>.
             </summary>
         </member>
+        <member name="M:StockSharp.Logging.FileLogListener.OnCreateWriter(System.String)">
+            <summary>
+            To create a text writer.
+            </summary>
+            <param name="fileName">The name of the text file to which messages from the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> will be recorded.</param>
+            <returns>A text writer.</returns>
+        </member>
+        <member name="M:StockSharp.Logging.FileLogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
+            <summary>
+            To record messages.
+            </summary>
+            <param name="messages">Debug messages.</param>
+        </member>
+        <member name="M:StockSharp.Logging.FileLogListener.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Logging.FileLogListener.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Logging.FileLogListener.DisposeManaged">
+            <summary>
+            Release resources.
+            </summary>
+        </member>
+        <member name="T:StockSharp.Logging.ILogListener">
+            <summary>
+            The class interface that monitors the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> and saves to some storage.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.ILogListener.WriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
+            <summary>
+            To record messages.
+            </summary>
+            <param name="messages">Debug messages.</param>
+        </member>
         <member name="T:StockSharp.Logging.ILogReceiver">
             <summary>
             Logs recipient interface.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.ILogReceiver.AddLog(StockSharp.Logging.LogMessage)">
+            <summary>
+            To record a message to the log.
+            </summary>
+            <param name="message">A debug message.</param>
+        </member>
+        <member name="T:StockSharp.Logging.BaseLogReceiver">
+            <summary>
+            The base implementation <see cref="T:StockSharp.Logging.ILogReceiver"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.BaseLogReceiver.#ctor">
+            <summary>
+            Initialize <see cref="T:StockSharp.Logging.BaseLogReceiver"/>.
             </summary>
         </member>
         <member name="T:StockSharp.Logging.ILogSource">
@@ -357,23 +308,12 @@
         </member>
         <member name="P:StockSharp.Logging.ILogSource.IsRoot">
             <summary>
-            Whether the source is the root (even if <see cref="P:StockSharp.Logging.ILogSource.Parent"/> is not equal to <see langword="null"/>).
+            Whether the source is the root (even if <see cref="P:StockSharp.Logging.ILogSource.Parent"/> is not equal to <see langword="null" />).
             </summary>
         </member>
         <member name="E:StockSharp.Logging.ILogSource.Log">
             <summary>
             New debug message event.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Logging.ILogReceiver.AddLog(StockSharp.Logging.LogMessage)">
-            <summary>
-            To record a message to the log.
-            </summary>
-            <param name="message">A debug message.</param>
-        </member>
-        <member name="T:StockSharp.Logging.BaseLogReceiver">
-            <summary>
-            The base implementation <see cref="T:StockSharp.Logging.ILogReceiver"/>.
             </summary>
         </member>
         <member name="T:StockSharp.Logging.BaseLogSource">
@@ -385,30 +325,6 @@
             <summary>
             Initialize <see cref="T:StockSharp.Logging.BaseLogSource"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Logging.BaseLogSource.RaiseLog(StockSharp.Logging.LogMessage)">
-            <summary>
-            To call the event <see cref="E:StockSharp.Logging.ILogSource.Log"/>.
-            </summary>
-            <param name="message">A debug message.</param>
-        </member>
-        <member name="M:StockSharp.Logging.BaseLogSource.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:StockSharp.Logging.BaseLogSource.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Logging.BaseLogSource.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
         </member>
         <member name="P:StockSharp.Logging.BaseLogSource.Id">
             <summary>
@@ -437,7 +353,7 @@
         </member>
         <member name="P:StockSharp.Logging.BaseLogSource.IsRoot">
             <summary>
-            Whether the source is the root (even if <see cref="P:StockSharp.Logging.ILogSource.Parent"/> is not equal to <see langword="null"/>).
+            Whether the source is the root (even if <see cref="P:StockSharp.Logging.ILogSource.Parent"/> is not equal to <see langword="null" />).
             </summary>
         </member>
         <member name="E:StockSharp.Logging.BaseLogSource.Log">
@@ -445,10 +361,29 @@
             New debug message event.
             </summary>
         </member>
-        <member name="M:StockSharp.Logging.BaseLogReceiver.#ctor">
+        <member name="M:StockSharp.Logging.BaseLogSource.RaiseLog(StockSharp.Logging.LogMessage)">
             <summary>
-            Initialize <see cref="T:StockSharp.Logging.BaseLogReceiver"/>.
+            To call the event <see cref="E:StockSharp.Logging.ILogSource.Log"/>.
             </summary>
+            <param name="message">A debug message.</param>
+        </member>
+        <member name="M:StockSharp.Logging.BaseLogSource.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:StockSharp.Logging.BaseLogSource.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Logging.BaseLogSource.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
         </member>
         <member name="T:StockSharp.Logging.Log4NetLogger">
             <summary>
@@ -647,6 +582,71 @@
             Logs off.
             </summary>
         </member>
+        <member name="T:StockSharp.Logging.LogListener">
+            <summary>
+            The base class that monitors the event <see cref="E:StockSharp.Logging.ILogSource.Log"/> and saves to some storage.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.LogListener.#ctor">
+            <summary>
+            Initialize <see cref="T:StockSharp.Logging.LogListener"/>.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Logging.LogListener.AllWarningFilter">
+            <summary>
+            The filter that only accepts messages of <see cref="F:StockSharp.Logging.LogLevels.Warning"/> type.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Logging.LogListener.AllErrorFilter">
+            <summary>
+            The filter that only accepts messages of <see cref="F:StockSharp.Logging.LogLevels.Error"/> type.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.LogListener.Filters">
+            <summary>
+            Messages filters that specify which messages should be handled.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.LogListener.DateFormat">
+            <summary>
+            Date format. By default yyyy/MM/dd.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.LogListener.TimeFormat">
+            <summary>
+            Time format. By default HH:mm:ss.fff.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.LogListener.WriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
+            <summary>
+            To record messages.
+            </summary>
+            <param name="messages">Debug messages.</param>
+        </member>
+        <member name="M:StockSharp.Logging.LogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
+            <summary>
+            To record messages.
+            </summary>
+            <param name="messages">Debug messages.</param>
+        </member>
+        <member name="M:StockSharp.Logging.LogListener.OnWriteMessage(StockSharp.Logging.LogMessage)">
+            <summary>
+            To record a message.
+            </summary>
+            <param name="message">A debug message.</param>
+        </member>
+        <member name="M:StockSharp.Logging.LogListener.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Logging.LogListener.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
         <member name="T:StockSharp.Logging.LogManager">
             <summary>
             Messages logging manager that monitors the <see cref="E:StockSharp.Logging.ILogSource.Log"/> event and forwards messages to the <see cref="P:StockSharp.Logging.LogManager.Listeners"/>.
@@ -656,23 +656,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Logging.LogManager"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Logging.LogManager.DisposeManaged">
-            <summary>
-            Release resources.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Logging.LogManager.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Logging.LogManager.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
         </member>
         <member name="P:StockSharp.Logging.LogManager.Application">
             <summary>
@@ -693,6 +676,23 @@
             <summary>
             Sending interval of messages collected from <see cref="P:StockSharp.Logging.LogManager.Sources"/> to the <see cref="P:StockSharp.Logging.LogManager.Listeners"/>. The default is 500 ms.
             </summary>
+        </member>
+        <member name="M:StockSharp.Logging.LogManager.DisposeManaged">
+            <summary>
+            Release resources.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.LogManager.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Logging.LogManager.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
         </member>
         <member name="T:StockSharp.Logging.LogMessage">
             <summary>
@@ -718,12 +718,6 @@
             <param name="level">The level of the log message.</param>
             <param name="getMessage">The function returns the text for <see cref="P:StockSharp.Logging.LogMessage.Message"/>.</param>
         </member>
-        <member name="M:StockSharp.Logging.LogMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
         <member name="P:StockSharp.Logging.LogMessage.Source">
             <summary>
             The log source.
@@ -744,14 +738,35 @@
             Message.
             </summary>
         </member>
+        <member name="M:StockSharp.Logging.LogMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
         <member name="T:StockSharp.Logging.MemoryStatistics">
             <summary>
             The class for tracking objects taking in memory.
             </summary>
         </member>
+        <member name="P:StockSharp.Logging.MemoryStatistics.Instance">
+            <summary>
+            An object of class <see cref="T:StockSharp.Logging.MemoryStatistics"/>.
+            </summary>
+        </member>
         <member name="M:StockSharp.Logging.MemoryStatistics.DisposeManaged">
             <summary>
             Release resources.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatistics.Interval">
+            <summary>
+            Statistics logging interval. The default is 1 minute.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatistics.Values">
+            <summary>
+            Monitored objects.
             </summary>
         </member>
         <member name="M:StockSharp.Logging.MemoryStatistics.Save(Ecng.Serialization.SettingsStorage)">
@@ -778,41 +793,20 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:StockSharp.Logging.MemoryStatistics.AddOrRemove">
-            <summary>
-            To add or to remove the source <see cref="T:StockSharp.Logging.MemoryStatistics"/> from the registered <see cref="T:StockSharp.Logging.LogManager"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatistics.Instance">
-            <summary>
-            An object of class <see cref="T:StockSharp.Logging.MemoryStatistics"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatistics.Interval">
-            <summary>
-            Statistics logging interval. The default is 1 minute.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatistics.Values">
-            <summary>
-            Monitored objects.
-            </summary>
-        </member>
         <member name="P:StockSharp.Logging.MemoryStatistics.IsEnabled">
             <summary>
             Is the source on.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.MemoryStatistics.AddOrRemove">
+            <summary>
+            To add or to remove the source <see cref="T:StockSharp.Logging.MemoryStatistics"/> from the registered <see cref="T:StockSharp.Logging.LogManager"/>.
             </summary>
         </member>
         <member name="T:StockSharp.Logging.IMemoryStatisticsValue">
             <summary>
             The interface for tracking the number of active objects of the particular type.
             </summary>
-        </member>
-        <member name="M:StockSharp.Logging.IMemoryStatisticsValue.Clear(System.Boolean)">
-            <summary>
-            To clear active objects.
-            </summary>
-            <param name="resetCounter">Whether to clear the objects counter.</param>
         </member>
         <member name="P:StockSharp.Logging.IMemoryStatisticsValue.Name">
             <summary>
@@ -824,6 +818,12 @@
             The number of active objects.
             </summary>
         </member>
+        <member name="M:StockSharp.Logging.IMemoryStatisticsValue.Clear(System.Boolean)">
+            <summary>
+            To clear active objects.
+            </summary>
+            <param name="resetCounter">Whether to clear the objects counter.</param>
+        </member>
         <member name="T:StockSharp.Logging.MemoryStatisticsValue`1">
             <summary>
             The class for tracking the number of active objects of the particular type.
@@ -833,6 +833,36 @@
         <member name="M:StockSharp.Logging.MemoryStatisticsValue`1.#ctor(System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Logging.MemoryStatisticsValue`1"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.Objects">
+            <summary>
+            Active objects.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.Name">
+            <summary>
+            Name.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.ObjectCount">
+            <summary>
+            The number of active objects.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.ThrowOnRemoveDeleted">
+            <summary>
+            To check that they are going to delete a previously deleted object.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.IsTraceObjects">
+            <summary>
+            To log the objects creating and deletion. The default is off.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.IsObjectTracking">
+            <summary>
+            Whether the storage of objects available through <see cref="P:StockSharp.Logging.MemoryStatisticsValue`1.Objects"/> is on. The default is off.
             </summary>
         </member>
         <member name="M:StockSharp.Logging.MemoryStatisticsValue`1.Add(`0)">
@@ -883,36 +913,6 @@
             </summary>
             <param name="storage">Settings storage.</param>
         </member>
-        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.Objects">
-            <summary>
-            Active objects.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.Name">
-            <summary>
-            Name.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.ObjectCount">
-            <summary>
-            The number of active objects.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.ThrowOnRemoveDeleted">
-            <summary>
-            To check that they are going to delete a previously deleted object.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.IsTraceObjects">
-            <summary>
-            To log the objects creating and deletion. The default is off.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Logging.MemoryStatisticsValue`1.IsObjectTracking">
-            <summary>
-            Whether the storage of objects available through <see cref="P:StockSharp.Logging.MemoryStatisticsValue`1.Objects"/> is on. The default is off.
-            </summary>
-        </member>
         <member name="T:StockSharp.Logging.SoundLogListener">
             <summary>
             Logger playing the music when a message received.
@@ -921,6 +921,11 @@
         <member name="M:StockSharp.Logging.SoundLogListener.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Logging.SoundLogListener"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.SoundLogListener.FileName">
+            <summary>
+            The path to the file with the sound that will be played when a message received.
             </summary>
         </member>
         <member name="M:StockSharp.Logging.SoundLogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
@@ -941,11 +946,6 @@
             </summary>
             <param name="storage">Settings storage.</param>
         </member>
-        <member name="P:StockSharp.Logging.SoundLogListener.FileName">
-            <summary>
-            The path to the file with the sound that will be played when a message received.
-            </summary>
-        </member>
         <member name="T:StockSharp.Logging.SpeechLogListener">
             <summary>
             Logger speaking words when a message received.
@@ -954,6 +954,11 @@
         <member name="M:StockSharp.Logging.SpeechLogListener.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Logging.SpeechLogListener"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Logging.SpeechLogListener.Volume">
+            <summary>
+            The volume level.
             </summary>
         </member>
         <member name="M:StockSharp.Logging.SpeechLogListener.OnWriteMessages(System.Collections.Generic.IEnumerable{StockSharp.Logging.LogMessage})">
@@ -974,11 +979,6 @@
             </summary>
             <param name="storage">Settings storage.</param>
         </member>
-        <member name="P:StockSharp.Logging.SpeechLogListener.Volume">
-            <summary>
-            The volume level.
-            </summary>
-        </member>
         <member name="T:StockSharp.Logging.TraceSource">
             <summary>
             The logs source which receives information from <see cref="T:System.Diagnostics.Trace"/>.
@@ -989,14 +989,14 @@
             Initializes a new instance of the <see cref="T:StockSharp.Logging.TraceSource"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Logging.TraceSource.DisposeManaged">
-            <summary>
-            Release resources.
-            </summary>
-        </member>
         <member name="P:StockSharp.Logging.TraceSource.Name">
             <summary>
             Name.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.TraceSource.DisposeManaged">
+            <summary>
+            Release resources.
             </summary>
         </member>
         <member name="T:StockSharp.Logging.UnhandledExceptionSource">
@@ -1009,14 +1009,14 @@
             Initializes a new instance of the <see cref="T:StockSharp.Logging.UnhandledExceptionSource"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Logging.UnhandledExceptionSource.DisposeManaged">
-            <summary>
-            Release resources.
-            </summary>
-        </member>
         <member name="P:StockSharp.Logging.UnhandledExceptionSource.Name">
             <summary>
             Name.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Logging.UnhandledExceptionSource.DisposeManaged">
+            <summary>
+            Release resources.
             </summary>
         </member>
     </members>

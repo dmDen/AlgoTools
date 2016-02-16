@@ -28,7 +28,7 @@
             <summary>
             Create condition for order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, that supports the adapter.
             </summary>
-            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null"/>.</returns>
+            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null" />.</returns>
         </member>
         <member name="M:StockSharp.CQG.CQGMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
             <summary>

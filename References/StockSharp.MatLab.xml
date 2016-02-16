@@ -120,12 +120,7 @@
             Initializes a new instance of the <see cref="T:StockSharp.MatLab.MatLabConnector"/>.
             </summary>
             <param name="realConnector">The connection for market-data and transactions.</param>
-            <param name="ownTrader">Track the connection <paramref name="realConnector"/> lifetime.</param>
-        </member>
-        <member name="M:StockSharp.MatLab.MatLabConnector.DisposeManaged">
-            <summary>
-            Release resources.
-            </summary>
+            <param name="ownTrader">Track the connection <paramref name="realConnector" /> lifetime.</param>
         </member>
         <member name="P:StockSharp.MatLab.MatLabConnector.RealConnector">
             <summary>
@@ -189,7 +184,7 @@
         </member>
         <member name="E:StockSharp.MatLab.MatLabConnector.NewTrades">
             <summary>
-            Tick tades received.
+            Tick trades received.
             </summary>
         </member>
         <member name="E:StockSharp.MatLab.MatLabConnector.NewMyTrades">
@@ -250,6 +245,11 @@
         <member name="E:StockSharp.MatLab.MatLabConnector.NewOrderLogItems">
             <summary>
             Order log received.
+            </summary>
+        </member>
+        <member name="M:StockSharp.MatLab.MatLabConnector.DisposeManaged">
+            <summary>
+            Release resources.
             </summary>
         </member>
     </members>

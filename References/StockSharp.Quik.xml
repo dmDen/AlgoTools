@@ -15,6 +15,14 @@
             </summary>
             <param name="transactionIdGenerator">Генератор идентификаторов транзакций.</param>
         </member>
+        <member name="M:StockSharp.Quik.Lua.LuaFixMarketDataMessageAdapter.CreateDialect(System.IO.Stream,Ecng.Common.IncrementalIdGenerator)">
+            <summary>
+            Create FIX protocol dialect.
+            </summary>
+            <param name="stream">Stream.</param>
+            <param name="idGenerator">Sequence id generator.</param>
+            <returns>The dialect.</returns>
+        </member>
         <member name="T:StockSharp.Quik.Lua.LuaFixServer">
             <summary>
             FIX сервер, запускающийся LUA.
@@ -23,6 +31,53 @@
         <member name="M:StockSharp.Quik.Lua.LuaFixServer.#ctor">
             <summary>
             Создать <see cref="T:StockSharp.Quik.Lua.LuaFixServer"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.TransactionAddress">
+            <summary>
+            Адрес, на котором FIX сервер будет обрабатывать транзакции.
+            По-умолчанию равен 127.0.0.1:5001.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.MarketDataAddress">
+            <summary>
+            Адрес, на котором FIX сервер будет рассылать маркет-данные.
+            По-умолчанию равен 127.0.0.1:5001.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.Login">
+            <summary>
+            Логин.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.Password">
+            <summary>
+            Пароль.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.IncrementalDepthUpdates">
+            <summary>
+            Отправлять изменения по стакану. Если выключено, отправляется стакан целиком.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.SingleSlash">
+            <summary>
+            https://forum.quik.ru/forum10/topic1218/
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.LogFile">
+            <summary>
+            Название текстового файла, в который будут писаться логи.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.LogLevel">
+            <summary>
+            Уровень логирования для Lua.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Lua.LuaFixServer.LogReceiver">
+            <summary>
+            Получатель логов.
             </summary>
         </member>
         <member name="M:StockSharp.Quik.Lua.LuaFixServer.Start">
@@ -66,48 +121,6 @@
             </summary>
             <returns>Номер транзакции.</returns>
         </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.TransactionAddress">
-            <summary>
-            Адрес, на котором FIX сервер будет обрабатывать транзакции.
-            По-умолчанию равен 127.0.0.1:5001.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.MarketDataAddress">
-            <summary>
-            Адрес, на котором FIX сервер будет рассылать маркет-данные.
-            По-умолчанию равен 127.0.0.1:5001.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.Login">
-            <summary>
-            Логин.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.Password">
-            <summary>
-            Пароль.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.IncrementalDepthUpdates">
-            <summary>
-            Отправлять изменения по стакану. Если выключено, отправляется стакан целиком.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.LogFile">
-            <summary>
-            Название текстового файла, в который будут писаться логи.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.LogLevel">
-            <summary>
-            Уровень логирования для Lua.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Lua.LuaFixServer.LogReceiver">
-            <summary>
-            Получатель логов.
-            </summary>
-        </member>
         <member name="T:StockSharp.Quik.Lua.LuaFixTransactionMessageAdapter">
             <summary>
             Адаптер сообщений для Quik LUA FIX.
@@ -125,28 +138,13 @@
             </summary>
             <returns>Условие для заявки. Если подключение не поддерживает заявки типа <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, то будет возвращено <see langword="null"/>.</returns>
         </member>
-        <member name="M:StockSharp.Quik.Lua.LuaFixTransactionMessageAdapter.PostInitCondition(System.Char,StockSharp.Messages.OrderCondition)">
+        <member name="M:StockSharp.Quik.Lua.LuaFixTransactionMessageAdapter.CreateDialect(System.IO.Stream,Ecng.Common.IncrementalIdGenerator)">
             <summary>
-            Финальная инициализация условия заявки.
+            Create FIX protocol dialect.
             </summary>
-            <param name="ordType">Тип заявки.</param>
-            <param name="condition">Условие заявки.</param>
-        </member>
-        <member name="M:StockSharp.Quik.Lua.LuaFixTransactionMessageAdapter.WriteOrderCondition(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.OrderRegisterMessage)">
-            <summary>
-            Записать данные по условию заявки.
-            </summary>
-            <param name="writer">Писатель FIX данных.</param>
-            <param name="regMsg">Сообщение, содержащее информацию для регистрации заявки.</param>
-        </member>
-        <member name="M:StockSharp.Quik.Lua.LuaFixTransactionMessageAdapter.ReadOrderCondition(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.FixTags,System.Func{StockSharp.Messages.OrderCondition})">
-            <summary>
-            Прочитать условие регистрации заявки <see cref="P:StockSharp.Messages.OrderRegisterMessage.Condition"/>.
-            </summary>
-            <param name="reader">Читатель данных.</param>
-            <param name="tag">Тэг.</param>
-            <param name="getCondition">Функция, возвращающая условие заявки.</param>
-            <returns>Успешно ли обработаны данные.</returns>
+            <param name="stream">Stream.</param>
+            <param name="idGenerator">Sequence id generator.</param>
+            <returns>The dialect.</returns>
         </member>
         <member name="T:StockSharp.Quik.Lua.LuaRequest">
             <summary>
@@ -157,12 +155,6 @@
             <summary>
             Создать <see cref="T:StockSharp.Quik.Lua.LuaRequest"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Quik.Lua.LuaRequest.ToString">
-            <summary>
-            Получить строковое представление.
-            </summary>
-            <returns>Строковое представление.</returns>
         </member>
         <member name="P:StockSharp.Quik.Lua.LuaRequest.MessageType">
             <summary>
@@ -198,6 +190,36 @@
             <summary>
             Тип маркет-данных.
             </summary>
+        </member>
+        <member name="M:StockSharp.Quik.Lua.LuaRequest.ToString">
+            <summary>
+            Получить строковое представление.
+            </summary>
+            <returns>Строковое представление.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.Lua.QuikLuaDialect.OnWrite(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.Message)">
+            <summary>
+            Write the specified message into FIX protocol.
+            </summary>
+            <param name="writer">The recorder of data in the FIX protocol format.</param>
+            <param name="message">The message.</param>
+            <returns><see cref="T:StockSharp.Fix.Native.FixMessages"/> value.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.Lua.QuikLuaDialect.WriteOrderCondition(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.OrderRegisterMessage)">
+            <summary>
+            Записать данные по условию заявки.
+            </summary>
+            <param name="writer">Писатель FIX данных.</param>
+            <param name="regMsg">Сообщение, содержащее информацию для регистрации заявки.</param>
+        </member>
+        <member name="M:StockSharp.Quik.Lua.QuikLuaDialect.ReadOrderCondition(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.FixTags,System.Func{StockSharp.Messages.OrderCondition})">
+            <summary>
+            Прочитать условие регистрации заявки <see cref="P:StockSharp.Messages.OrderRegisterMessage.Condition"/>.
+            </summary>
+            <param name="reader">Читатель данных.</param>
+            <param name="tag">Тэг.</param>
+            <param name="getCondition">Функция, возвращающая условие заявки.</param>
+            <returns>Успешно ли обработаны данные.</returns>
         </member>
         <member name="T:StockSharp.Quik.Native.Codes">
             <summary>
@@ -1991,31 +2013,6 @@
             <remarks>Дополнительно, через свойство <see cref="P:StockSharp.Quik.DdeTable.Columns"/> можно задать произвольный порядок колонок таблицы.</remarks>
             </summary>
         </member>
-        <member name="M:StockSharp.Quik.DdeTable.Clone">
-            <summary>
-             Создать копию <see cref="T:StockSharp.Quik.DdeTable"/>.
-            </summary>
-            <returns>Копия.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTable.OnEquals(StockSharp.Quik.DdeTable)">
-            <summary>
-            Сравнить <see cref="T:StockSharp.Quik.DdeTable"/> на эквивалентность.
-            </summary>
-            <param name="other">Другое значение, с которым необходимо сравнивать.</param>
-            <returns><see langword="true"/>, если другое значение равно текущему, иначе, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTable.GetHashCode">
-            <summary>
-            Рассчитать хеш-код объекта <see cref="T:StockSharp.Quik.DdeTable"/>.
-            </summary>
-            <returns>Хеш-код.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTable.ToString">
-            <summary>
-            Получить строковое представление.
-            </summary>
-            <returns>Строковое представление.</returns>
-        </member>
         <member name="P:StockSharp.Quik.DdeTable.Caption">
             <summary>
             Заголовок таблицы в Quik-e.
@@ -2037,6 +2034,31 @@
             _trader.TradesTable.Columns[4] = DdeTradeColumns.Time;</code></example>
             </remarks>
         </member>
+        <member name="M:StockSharp.Quik.DdeTable.Clone">
+            <summary>
+             Создать копию <see cref="T:StockSharp.Quik.DdeTable" />.
+            </summary>
+            <returns>Копия.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.DdeTable.OnEquals(StockSharp.Quik.DdeTable)">
+            <summary>
+            Сравнить <see cref="T:StockSharp.Quik.DdeTable" /> на эквивалентность.
+            </summary>
+            <param name="other">Другое значение, с которым необходимо сравнивать.</param>
+            <returns><see langword="true"/>, если другое значение равно текущему, иначе, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.DdeTable.GetHashCode">
+            <summary>
+            Рассчитать хеш-код объекта <see cref="T:StockSharp.Quik.DdeTable"/>.
+            </summary>
+            <returns>Хеш-код.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.DdeTable.ToString">
+            <summary>
+            Получить строковое представление.
+            </summary>
+            <returns>Строковое представление.</returns>
+        </member>
         <member name="T:StockSharp.Quik.DdeTableColumn">
             <summary>
             Метаинформация колонки таблицы, передаваемой под DDE.
@@ -2048,31 +2070,6 @@
             </summary>
             <param name="name">Имя колонки.</param>
             <param name="dataType">Тип данных в колонке.</param>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTableColumn.Clone">
-            <summary>
-             Создать копию <see cref="T:StockSharp.Quik.DdeTableColumn"/>.
-            </summary>
-            <returns>Копия.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTableColumn.OnEquals(StockSharp.Quik.DdeTableColumn)">
-            <summary>
-            Сравнить <see cref="T:StockSharp.Quik.DdeTableColumn"/> на эквивалентность.
-            </summary>
-            <param name="other">Другое значение, с которым необходимо сравнивать.</param>
-            <returns><see langword="true"/>, если другое значение равно текущему, иначе, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTableColumn.GetHashCode">
-            <summary>
-            Рассчитать хеш-код объекта <see cref="T:StockSharp.Quik.DdeTableColumn"/>.
-            </summary>
-            <returns>Хеш-код.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.DdeTableColumn.ToString">
-            <summary>
-            Получить строковое представление.
-            </summary>
-            <returns>Строковое представление.</returns>
         </member>
         <member name="P:StockSharp.Quik.DdeTableColumn.Name">
             <summary>
@@ -2089,10 +2086,42 @@
             Является ли колонка обязательной.
             </summary>
         </member>
+        <member name="M:StockSharp.Quik.DdeTableColumn.Clone">
+            <summary>
+             Создать копию <see cref="T:StockSharp.Quik.DdeTableColumn" />.
+            </summary>
+            <returns>Копия.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.DdeTableColumn.OnEquals(StockSharp.Quik.DdeTableColumn)">
+            <summary>
+            Сравнить <see cref="T:StockSharp.Quik.DdeTableColumn" /> на эквивалентность.
+            </summary>
+            <param name="other">Другое значение, с которым необходимо сравнивать.</param>
+            <returns><see langword="true"/>, если другое значение равно текущему, иначе, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.DdeTableColumn.GetHashCode">
+            <summary>
+            Рассчитать хеш-код объекта <see cref="T:StockSharp.Quik.DdeTableColumn" />.
+            </summary>
+            <returns>Хеш-код.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.DdeTableColumn.ToString">
+            <summary>
+            Получить строковое представление.
+            </summary>
+            <returns>Строковое представление.</returns>
+        </member>
         <member name="T:StockSharp.Quik.DdeTableColumnList">
             <summary>
             Коллекция метаданных о колонках таблиц, экспортируемых через DDE.
             </summary>
+        </member>
+        <member name="P:StockSharp.Quik.DdeTableColumnList.Item(System.String)">
+            <summary>
+            Найти колонку по текстовому названию.
+            </summary>
+            <param name="name">Название колонки.</param>
+            <returns>Найденная колонка. Если колонка не найдена, то будет возвращено значение <see langword="null"/>.</returns>
         </member>
         <member name="M:StockSharp.Quik.DdeTableColumnList.OnAdding(StockSharp.Quik.DdeTableColumn)">
             <summary>
@@ -2127,13 +2156,6 @@
             Удаление всех колонок.
             </summary>
             <returns><see langword="true"/>, если можно удалить все колонки. Иначе, <see langword="false"/>.</returns>
-        </member>
-        <member name="P:StockSharp.Quik.DdeTableColumnList.Item(System.String)">
-            <summary>
-            Найти колонку по текстовому названию.
-            </summary>
-            <param name="name">Название колонки.</param>
-            <returns>Найденная колонка. Если колонка не найдена, то будет возвращено значение <see langword="null"/>.</returns>
         </member>
         <member name="T:StockSharp.Quik.DdeTradeColumns">
             <summary>
@@ -2241,6 +2263,11 @@
             Окно DDE экспорта.
             </summary>
         </member>
+        <member name="P:StockSharp.Quik.DdeWindow.Window">
+            <summary>
+            Описание окна DDE.
+            </summary>
+        </member>
         <member name="M:StockSharp.Quik.DdeWindow.OnEquals(StockSharp.Quik.DdeWindow)">
             <summary>
             Проверить на эквивалентность с другим окном.
@@ -2253,11 +2280,6 @@
             Получить хеш-код.
             </summary>
             <returns>Хеш-код</returns>
-        </member>
-        <member name="P:StockSharp.Quik.DdeWindow.Window">
-            <summary>
-            Описание окна DDE.
-            </summary>
         </member>
         <member name="T:StockSharp.Quik.ExtensionInfoConverter">
             <summary>
@@ -2335,57 +2357,6 @@
             Маркет-дата адаптер сообщений для Quik, работающий через протокол DDE.
             </summary>
         </member>
-        <member name="F:StockSharp.Quik.QuikDdeAdapter.RtsStandardDerivativesToSecurities">
-            <summary>
-            Соответствия кодов инструмента РТС-Стандарт из таблицы "Позиции по деривативам" кодам из таблицы "Инструменты".
-            </summary>
-            <remarks>
-            Код из таблицы "Позиции по деривативам" указывается без последних двух цифр.
-            </remarks>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.#ctor(Ecng.Common.IdGenerator)">
-            <summary>
-            Создать <see cref="T:StockSharp.Quik.QuikDdeAdapter"/>.
-            </summary>
-            <param name="transactionIdGenerator">Генератор идентификаторов транзакций.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.IsConnectionAlive">
-            <summary>
-            Проверить, установлено ли еще соединение. Проверяется только в том случае, если было успешно установлено подключение.
-            </summary>
-            <returns><see langword="true"/>, если соединение еще установлено, <see langword="false"/>, если торговая система разорвала подключение.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.OnSendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Отправить сообщение.
-            </summary>
-            <param name="message">Сообщение.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.GetSecurityCode(System.String,System.Boolean@)">
-            <summary>
-            Получить соответствие кода инструмента РТС-стандарт из таблицы "Позиции по деривативам" коду из таблицы "Инструменты".
-            </summary>
-            <param name="derivativeCode">Имя инструмента из таблицы "Позиции по деривативам".</param>
-            <param name="isRtsStandard">Является ли инструмент известным инструментом с рынка РТС-Стандарт.</param>
-            <returns>Код инструмента из таблицы "Инструменты".</returns>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Сохранить настройки.
-            </summary>
-            <param name="storage">Хранилище настроек.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Загрузить настройки.
-            </summary>
-            <param name="storage">Хранилище настроек.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikDdeAdapter.DisposeManaged">
-            <summary>
-            Освободить занятые ресурсы.
-            </summary>
-        </member>
         <member name="P:StockSharp.Quik.QuikDdeAdapter.CustomTables">
             <summary>
             Список произвольных таблиц.
@@ -2415,6 +2386,26 @@
             <summary>
             Обработать изменения строчек таблицы, зарегистрированной через <see cref="P:StockSharp.Quik.QuikDdeAdapter.CustomTables"/>.
             </summary>
+        </member>
+        <member name="F:StockSharp.Quik.QuikDdeAdapter.RtsStandardDerivativesToSecurities">
+            <summary>
+            Соответствия кодов инструмента РТС-Стандарт из таблицы "Позиции по деривативам" кодам из таблицы "Инструменты".
+            </summary>
+            <remarks>
+            Код из таблицы "Позиции по деривативам" указывается без последних двух цифр.
+            </remarks>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.#ctor(Ecng.Common.IdGenerator)">
+            <summary>
+            Создать <see cref="T:StockSharp.Quik.QuikDdeAdapter"/>.
+            </summary>
+            <param name="transactionIdGenerator">Генератор идентификаторов транзакций.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.IsConnectionAlive">
+            <summary>
+            Проверить, установлено ли еще соединение. Проверяется только в том случае, если было успешно установлено подключение.
+            </summary>
+            <returns><see langword="true"/>, если соединение еще установлено, <see langword="false"/>, если торговая система разорвала подключение.</returns>
         </member>
         <member name="P:StockSharp.Quik.QuikDdeAdapter.UseCurrencyPortfolios">
             <summary>
@@ -2507,6 +2498,37 @@
         <member name="P:StockSharp.Quik.QuikDdeAdapter.Tables">
             <summary>
             Таблицы, для которых будет запущен экспорт данных.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.OnSendInMessage(StockSharp.Messages.Message)">
+            <summary>
+            Отправить сообщение.
+            </summary>
+            <param name="message">Сообщение.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.GetSecurityCode(System.String,System.Boolean@)">
+            <summary>
+            Получить соответствие кода инструмента РТС-стандарт из таблицы "Позиции по деривативам" коду из таблицы "Инструменты".
+            </summary>
+            <param name="derivativeCode">Имя инструмента из таблицы "Позиции по деривативам".</param>
+            <param name="isRtsStandard">Является ли инструмент известным инструментом с рынка РТС-Стандарт.</param>
+            <returns>Код инструмента из таблицы "Инструменты".</returns>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Сохранить настройки.
+            </summary>
+            <param name="storage">Хранилище настроек.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Загрузить настройки.
+            </summary>
+            <param name="storage">Хранилище настроек.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikDdeAdapter.DisposeManaged">
+            <summary>
+            Освободить занятые ресурсы.
             </summary>
         </member>
         <member name="T:StockSharp.Quik.QuikStopPriceConditions">
@@ -2617,12 +2639,6 @@
             Создать <see cref="T:StockSharp.Quik.QuikOrderCondition"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Quik.QuikOrderCondition.Clone">
-            <summary>
-            Создать копию <see cref="T:StockSharp.Quik.QuikOrderCondition"/>.
-            </summary>
-            <returns>Копия.</returns>
-        </member>
         <member name="P:StockSharp.Quik.QuikOrderCondition.Type">
             <summary>
             Тип стоп-заявки.
@@ -2715,6 +2731,12 @@
             Признак исполнения заявки «Тэйк-профит» по рыночной цене.
             </summary>
         </member>
+        <member name="M:StockSharp.Quik.QuikOrderCondition.Clone">
+            <summary>
+            Создать копию <see cref="T:StockSharp.Quik.QuikOrderCondition"/>.
+            </summary>
+            <returns>Копия.</returns>
+        </member>
         <member name="T:StockSharp.Quik.QuikTrader">
             <summary>
             Реализация интерфейса <see cref="T:StockSharp.BusinessEntities.IConnector"/>, предоставляющая подключение к терминалу Quik.
@@ -2735,73 +2757,6 @@
             Создать <see cref="T:StockSharp.Quik.QuikTrader"/>.
             </summary>
             <param name="path">Путь к директории, где установлен Quik (или путь к файлу info.exe).</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.OnProcessMessage(StockSharp.Messages.Message)">
-            <summary>
-            Обработать сообщение.
-            </summary>
-            <param name="message">Сообщение.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.OnReRegisterOrder(StockSharp.BusinessEntities.Order,StockSharp.BusinessEntities.Order)">
-            <summary>
-            Перерегистрировать заявку на бирже.
-            </summary>
-            <param name="oldOrder">Заявка, которую нужно снять.</param>
-            <param name="newOrder">Новая заявка, которую нужно зарегистрировать.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.OnCancelOrders(System.Int64,System.Nullable{System.Boolean},StockSharp.BusinessEntities.Portfolio,System.Nullable{StockSharp.Messages.Sides},StockSharp.BusinessEntities.ExchangeBoard,StockSharp.BusinessEntities.Security)">
-            <summary>
-            Отменить группу заявок на бирже по фильтру.
-            </summary>
-            <param name="transactionId">Идентификатор транзакции отмены.</param>
-            <param name="isStopOrder"><see langword="true"/>, если нужно отменить только стоп-заявки, <see langword="false"/> - если только обычный и <see langword="null"/> - если оба типа.</param>
-            <param name="portfolio">Портфель. Если значение равно <see langword="null"/>, то портфель не попадает в фильтр снятия заявок.</param>
-            <param name="direction">Направление заявки. Если значение равно <see langword="null"/>, то направление не попадает в фильтр снятия заявок.</param>
-            <param name="board">Торговая площадка. Если значение равно <see langword="null"/>, то площадка не попадает в фильтр снятия заявок.</param>
-            <param name="security">Инструмент. Если значение равно <see langword="null"/>, то инструмент не попадает в фильтр снятия заявок.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.StartExport(StockSharp.Quik.DdeCustomTable)">
-            <summary>
-            Запустить экспорт данных из торговой системы в программу для произвольной таблицы, зарегистрированной в <see cref="P:StockSharp.Quik.QuikTrader.CustomTables"/>.
-            </summary>
-            <param name="customTable">Описание DDE экспорта произвольной таблицы.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.StopExport(StockSharp.Quik.DdeCustomTable)">
-            <summary>
-            Остановить экспорт данных из торговой системы в программу для произвольной таблицы, зарегистрированной в <see cref="P:StockSharp.Quik.QuikTrader.CustomTables"/>.
-            </summary>
-            <param name="customTable">Описание DDE экспорта произвольной таблицы.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.StartExport(System.String)">
-            <summary>
-            Запустить экспорт данных таблицы из торговой системы в программу.
-            </summary>
-            <param name="caption">Название таблицы, для которой нужно запустить экспорт.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.StopExport(System.String)">
-            <summary>
-            Остановить экспорт данных таблицы из торговой системы в программу.
-            </summary>
-            <param name="caption">Название таблицы, для которой нужно запустить экспорт.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.GetTransaction(System.Int64)">
-            <summary>
-            Получить транзакцию по идентификатору.
-            </summary>
-            <param name="id">Идентификатор транзакции.</param>
-            <returns>Транзакция.</returns>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Сохранить настройки.
-            </summary>
-            <param name="storage">Хранилище настроек.</param>
-        </member>
-        <member name="M:StockSharp.Quik.QuikTrader.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Загрузить настройки.
-            </summary>
-            <param name="storage">Хранилище настроек.</param>
         </member>
         <member name="P:StockSharp.Quik.QuikTrader.IsDde">
             <summary>
@@ -2979,21 +2934,122 @@
             Перезаписать файл библиотеки из ресурсов. По-умолчанию файл будет перезаписан.
             </summary>
         </member>
+        <member name="M:StockSharp.Quik.QuikTrader.OnProcessMessage(StockSharp.Messages.Message)">
+            <summary>
+            Обработать сообщение.
+            </summary>
+            <param name="message">Сообщение.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.OnReRegisterOrder(StockSharp.BusinessEntities.Order,StockSharp.BusinessEntities.Order)">
+            <summary>
+            Перерегистрировать заявку на бирже.
+            </summary>
+            <param name="oldOrder">Заявка, которую нужно снять.</param>
+            <param name="newOrder">Новая заявка, которую нужно зарегистрировать.</param>
+        </member>
         <member name="P:StockSharp.Quik.QuikTrader.DdeTables">
             <summary>
             Таблицы, для которых будет запущен экспорт данных по DDE.
             </summary>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.OnCancelOrders(System.Int64,System.Nullable{System.Boolean},StockSharp.BusinessEntities.Portfolio,System.Nullable{StockSharp.Messages.Sides},StockSharp.BusinessEntities.ExchangeBoard,StockSharp.BusinessEntities.Security)">
+            <summary>
+            Отменить группу заявок на бирже по фильтру.
+            </summary>
+            <param name="transactionId">Идентификатор транзакции отмены.</param>
+            <param name="isStopOrder"><see langword="true"/>, если нужно отменить только стоп-заявки, <see langword="false"/> - если только обычный и <see langword="null"/> - если оба типа.</param>
+            <param name="portfolio">Портфель. Если значение равно <see langword="null"/>, то портфель не попадает в фильтр снятия заявок.</param>
+            <param name="direction">Направление заявки. Если значение равно <see langword="null"/>, то направление не попадает в фильтр снятия заявок.</param>
+            <param name="board">Торговая площадка. Если значение равно <see langword="null"/>, то площадка не попадает в фильтр снятия заявок.</param>
+            <param name="security">Инструмент. Если значение равно <see langword="null"/>, то инструмент не попадает в фильтр снятия заявок.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.StartExport(StockSharp.Quik.DdeCustomTable)">
+            <summary>
+            Запустить экспорт данных из торговой системы в программу для произвольной таблицы, зарегистрированной в <see cref="P:StockSharp.Quik.QuikTrader.CustomTables"/>.
+            </summary>
+            <param name="customTable">Описание DDE экспорта произвольной таблицы.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.StopExport(StockSharp.Quik.DdeCustomTable)">
+            <summary>
+            Остановить экспорт данных из торговой системы в программу для произвольной таблицы, зарегистрированной в <see cref="P:StockSharp.Quik.QuikTrader.CustomTables"/>.
+            </summary>
+            <param name="customTable">Описание DDE экспорта произвольной таблицы.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.StartExport(System.String)">
+            <summary>
+            Запустить экспорт данных таблицы из торговой системы в программу.
+            </summary>
+            <param name="caption">Название таблицы, для которой нужно запустить экспорт.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.StopExport(System.String)">
+            <summary>
+            Остановить экспорт данных таблицы из торговой системы в программу.
+            </summary>
+            <param name="caption">Название таблицы, для которой нужно запустить экспорт.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.GetTransaction(System.Int64)">
+            <summary>
+            Получить транзакцию по идентификатору.
+            </summary>
+            <param name="id">Идентификатор транзакции.</param>
+            <returns>Транзакция.</returns>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Сохранить настройки.
+            </summary>
+            <param name="storage">Хранилище настроек.</param>
+        </member>
+        <member name="M:StockSharp.Quik.QuikTrader.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Загрузить настройки.
+            </summary>
+            <param name="storage">Хранилище настроек.</param>
         </member>
         <member name="T:StockSharp.Quik.QuikTerminal">
             <summary>
             Вспомогательный класс для управления окнами Quik терминала.
             </summary>
         </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.DirectoryName">
+            <summary>
+            Полный путь к директории, где установлен Quik.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.FileName">
+            <summary>
+            Полный путь к исполняемому файлу Quik.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.Version">
+            <summary>
+            Версия терминала.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.IsLaunched">
+            <summary>
+            Запущен ли терминал.
+            </summary>
+            <remarks>
+            Если терминал не запущен, то <see cref="T:StockSharp.Quik.QuikTerminal"/> был создан лишь по информации об установленной директории.
+            </remarks>
+        </member>
         <member name="M:StockSharp.Quik.QuikTerminal.GetDefaultPath">
             <summary>
             Получить физическое расположение на диске к терминалу <see cref="P:StockSharp.Quik.QuikTerminal.DefaultTerminal"/>.
             </summary>
             <returns>Физическое расположение на диске.</returns>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.DefaultTerminal">
+            <summary>
+            Информация о первом терминале из <see cref="M:StockSharp.Quik.QuikTerminal.GetTerminals(System.Boolean)"/>.
+            Если ни одного терминала не запущено, то будет возвращено значение <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.Addresses">
+            <summary>
+            Получить список всех доступных адресов серверов Quik.
+            </summary>
         </member>
         <member name="M:StockSharp.Quik.QuikTerminal.GetTerminals(System.Boolean)">
             <summary>
@@ -3042,6 +3098,57 @@
         <member name="M:StockSharp.Quik.QuikTerminal.Exit">
             <summary>
             Выключить Quik.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.SystemProcess">
+            <summary>
+            Системная информация о процессе Quik.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.MainWindow">
+            <summary>
+            Системная информация о главном окне Quik.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.IsConnected">
+            <summary>
+            Подключен ли терминал к торгам.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.IsDde">
+            <summary>
+            Использовать для старое подключение DDE + Trans2Quik. По-умолчанию выключено.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.SecurityIdGenerator">
+            <summary>
+            Генератор идентификаторов инструментов <see cref="P:StockSharp.BusinessEntities.Security.Id"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.ServerTime">
+            <summary>
+            Получить время биржи из Quik окна.
+            Свойство возвращает <see langword="null"/>, если соединение с биржей потеряно.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.DdeWindowCaption">
+            <summary>
+            Заголовок окна экспорта через DDE в Quik-е. В русской версии окно имеет заголовок "Вывод через DDE сервер", что является значением по-умолчанию.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.EditWindowCaption">
+            <summary>
+            Заголовок окна редактирования таблицы в Quik-е. В русской версии окно имеет заголовок "Редактирование таблицы", что является значение по-умолчанию.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.AccountWindowCaption">
+            <summary>
+            Заголовок окна редактирования таблицы в Quik-е. В русской версии окно имеет заголовок "Выбор активных счетов и задание их очередности", что является значение по-умолчанию.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTerminal.EnableFiltering">
+            <summary>
+            Включить возможность настраивать в Quik фильтр таблицы Все Сделки через методы <see cref="M:StockSharp.Quik.QuikTerminal.RegisterTrades(System.String)"/> и <see cref="M:StockSharp.Quik.QuikTerminal.UnRegisterTrades(System.String)"/>.
             </summary>
         </member>
         <member name="M:StockSharp.Quik.QuikTerminal.GetAccounts">
@@ -3205,91 +3312,6 @@
             </remarks>
             <param name="securityName">Название инструмента, по которому необходимо прекратить получать тиковые сделки.</param>
         </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.DirectoryName">
-            <summary>
-            Полный путь к директории, где установлен Quik.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.FileName">
-            <summary>
-            Полный путь к исполняемому файлу Quik.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.Version">
-            <summary>
-            Версия терминала.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.IsLaunched">
-            <summary>
-            Запущен ли терминал.
-            </summary>
-            <remarks>
-            Если терминал не запущен, то <see cref="T:StockSharp.Quik.QuikTerminal"/> был создан лишь по информации об установленной директории.
-            </remarks>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.DefaultTerminal">
-            <summary>
-            Информация о первом терминале из <see cref="M:StockSharp.Quik.QuikTerminal.GetTerminals(System.Boolean)"/>.
-            Если ни одного терминала не запущено, то будет возвращено значение <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.Addresses">
-            <summary>
-            Получить список всех доступных адресов серверов Quik.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.SystemProcess">
-            <summary>
-            Системная информация о процессе Quik.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.MainWindow">
-            <summary>
-            Системная информация о главном окне Quik.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.IsConnected">
-            <summary>
-            Подключен ли терминал к торгам.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.IsDde">
-            <summary>
-            Использовать для старое подключение DDE + Trans2Quik. По-умолчанию выключено.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.SecurityIdGenerator">
-            <summary>
-            Генератор идентификаторов инструментов <see cref="P:StockSharp.BusinessEntities.Security.Id"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.ServerTime">
-            <summary>
-            Получить время биржи из Quik окна.
-            Свойство возвращает <see langword="null"/>, если соединение с биржей потеряно.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.DdeWindowCaption">
-            <summary>
-            Заголовок окна экспорта через DDE в Quik-е. В русской версии окно имеет заголовок "Вывод через DDE сервер", что является значением по-умолчанию.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.EditWindowCaption">
-            <summary>
-            Заголовок окна редактирования таблицы в Quik-е. В русской версии окно имеет заголовок "Редактирование таблицы", что является значение по-умолчанию.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.AccountWindowCaption">
-            <summary>
-            Заголовок окна редактирования таблицы в Quik-е. В русской версии окно имеет заголовок "Выбор активных счетов и задание их очередности", что является значение по-умолчанию.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTerminal.EnableFiltering">
-            <summary>
-            Включить возможность настраивать в Quik фильтр таблицы Все Сделки через методы <see cref="M:StockSharp.Quik.QuikTerminal.RegisterTrades(System.String)"/> и <see cref="M:StockSharp.Quik.QuikTerminal.UnRegisterTrades(System.String)"/>.
-            </summary>
-        </member>
         <member name="T:StockSharp.Quik.QuikTrans2QuikAdapter">
             <summary>
             Транзакционный адаптер сообщений для Quik, работающий через библиотеку Trans2Quik.dll.
@@ -3301,11 +3323,45 @@
             </summary>
             <returns><see langword="true"/>, если соединение еще установлено, <see langword="false"/>, если торговая система разорвала подключение.</returns>
         </member>
+        <member name="E:StockSharp.Quik.QuikTrans2QuikAdapter.FormatTransaction">
+            <summary>
+            Отформатировать транзакцию (добавить, удалить или заменить параметры) перед тем, как она будет отправлена в Quik.
+            </summary>
+        </member>
         <member name="M:StockSharp.Quik.QuikTrans2QuikAdapter.#ctor(Ecng.Common.IdGenerator)">
             <summary>
             Создать <see cref="T:StockSharp.Quik.QuikTrans2QuikAdapter"/>.
             </summary>
             <param name="transactionIdGenerator">Генератор идентификаторов транзакций.</param>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.DllName">
+            <summary>
+            Имя dll-файла, содержащее Quik API. По-умолчанию равно TRANS2QUIK.DLL.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.IsAsyncMode">
+            <summary>
+            Асинхронный режим. Если <see langword="true"/>, то все транзакции, такие как <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>
+            или <see cref="T:StockSharp.Messages.OrderCancelMessage"/> будут отправляться в асинхронном режиме.
+            </summary>
+            <remarks>
+            По-умолчанию используется асинхронный режим.
+            </remarks>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.OverrideDll">
+            <summary>
+            Перезаписать файл библиотеки из ресурсов. По-умолчанию файл будет перезаписан.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.SingleSlash">
+            <summary>
+            https://forum.quik.ru/forum10/topic1218/
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.IsValid">
+            <summary>
+            Проверить введенные параметры на валидность.
+            </summary>
         </member>
         <member name="M:StockSharp.Quik.QuikTrans2QuikAdapter.CreateOrderCondition">
             <summary>
@@ -3347,35 +3403,6 @@
         <member name="M:StockSharp.Quik.QuikTrans2QuikAdapter.DisposeManaged">
             <summary>
             Освободить занятые ресурсы.
-            </summary>
-        </member>
-        <member name="E:StockSharp.Quik.QuikTrans2QuikAdapter.FormatTransaction">
-            <summary>
-            Отформатировать транзакцию (добавить, удалить или заменить параметры) перед тем, как она будет отправлена в Quik.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.DllName">
-            <summary>
-            Имя dll-файла, содержащее Quik API. По-умолчанию равно TRANS2QUIK.DLL.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.IsAsyncMode">
-            <summary>
-            Асинхронный режим. Если <see langword="true"/>, то все транзакции, такие как <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>
-            или <see cref="T:StockSharp.Messages.OrderCancelMessage"/> будут отправляться в асинхронном режиме.
-            </summary>
-            <remarks>
-            По-умолчанию используется асинхронный режим.
-            </remarks>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.OverrideDll">
-            <summary>
-            Перезаписать файл библиотеки из ресурсов. По-умолчанию файл будет перезаписан.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.QuikTrans2QuikAdapter.IsValid">
-            <summary>
-            Проверить введенные параметры на валидность.
             </summary>
         </member>
         <member name="T:StockSharp.Quik.TransactionTypes">
@@ -3541,6 +3568,23 @@
         <member name="T:StockSharp.Quik.Transaction">
             <summary>
             Специальный класс для создания строк транзакций Quik-a.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Quik.Transaction.#ctor(StockSharp.Quik.TransactionTypes,StockSharp.Messages.OrderMessage)">
+            <summary>
+            Создать <see cref="T:StockSharp.Quik.Transaction"/>.
+            </summary>
+            <param name="transactionType">Тип транзакции.</param>
+            <param name="message">Сообщение, ассоциированное с данной транзакцией.</param>
+        </member>
+        <member name="P:StockSharp.Quik.Transaction.TransactionType">
+            <summary>
+            Тип транзакции.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Transaction.Message">
+            <summary>
+            Сообщение, ассоциированное с данной транзакцией.
             </summary>
         </member>
         <member name="F:StockSharp.Quik.Transaction.ClassCode">
@@ -3843,12 +3887,10 @@
             Лицо, от имени которого и за чей счет регистрируется сделка (параметр внебиржевой сделки).
             </summary>
         </member>
-        <member name="M:StockSharp.Quik.Transaction.#ctor(StockSharp.Quik.TransactionTypes,StockSharp.Messages.OrderMessage)">
+        <member name="P:StockSharp.Quik.Transaction.Names">
             <summary>
-            Создать <see cref="T:StockSharp.Quik.Transaction"/>.
+            Все названия инструкций, добавленные в данный момент.
             </summary>
-            <param name="transactionType">Тип транзакции.</param>
-            <param name="message">Сообщение, ассоциированное с данной транзакцией.</param>
         </member>
         <member name="M:StockSharp.Quik.Transaction.GetInstruction(System.String)">
             <summary>
@@ -4273,21 +4315,6 @@
             <param name="value">Значение.</param>
             <returns>Транзакция.</returns>
         </member>
-        <member name="P:StockSharp.Quik.Transaction.TransactionType">
-            <summary>
-            Тип транзакции.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Transaction.Message">
-            <summary>
-            Сообщение, ассоциированное с данной транзакцией.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Transaction.Names">
-            <summary>
-            Все названия инструкций, добавленные в данный момент.
-            </summary>
-        </member>
         <member name="T:StockSharp.Quik.Xaml.DdeSecurityChangesColumnsEditor">
             <summary>
             Визуальный редактор для выбора набора столбцов таблицы Инструменты(изменения).
@@ -4299,6 +4326,11 @@
         <member name="F:StockSharp.Quik.Xaml.DdeSecurityChangesColumnsEditor.SelectedColumnsProperty">
             <summary>
             DependencyProperty для <see cref="P:StockSharp.Quik.Xaml.DdeSecurityChangesColumnsEditor.SelectedColumns"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Xaml.DdeSecurityChangesColumnsEditor.SelectedColumns">
+            <summary>
+            Список выбранных столбцов.
             </summary>
         </member>
         <member name="M:StockSharp.Quik.Xaml.DdeSecurityChangesColumnsEditor.#ctor">
@@ -4318,11 +4350,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="P:StockSharp.Quik.Xaml.DdeSecurityChangesColumnsEditor.SelectedColumns">
-            <summary>
-            Список выбранных столбцов.
-            </summary>
-        </member>
         <member name="T:StockSharp.Quik.Xaml.DdeSecurityColumnsEditor">
             <summary>
             Визуальный редактор для выбора набора столбцов таблицы Инструменты.
@@ -4334,6 +4361,11 @@
         <member name="F:StockSharp.Quik.Xaml.DdeSecurityColumnsEditor.SelectedColumnsProperty">
             <summary>
             DependencyProperty для <see cref="P:StockSharp.Quik.Xaml.DdeSecurityColumnsEditor.SelectedColumns"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Xaml.DdeSecurityColumnsEditor.SelectedColumns">
+            <summary>
+            Список выбранных столбцов.
             </summary>
         </member>
         <member name="M:StockSharp.Quik.Xaml.DdeSecurityColumnsEditor.#ctor">
@@ -4353,11 +4385,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="P:StockSharp.Quik.Xaml.DdeSecurityColumnsEditor.SelectedColumns">
-            <summary>
-            Список выбранных столбцов.
-            </summary>
-        </member>
         <member name="T:StockSharp.Quik.Xaml.DdeTableColumnsEditor">
             <summary>
             Визуальный редактор для выбора набора столбцов DDE таблицы.
@@ -4371,6 +4398,11 @@
             DependencyProperty для <see cref="P:StockSharp.Quik.Xaml.DdeTableColumnsEditor.SelectedColumns"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Quik.Xaml.DdeTableColumnsEditor.SelectedColumns">
+            <summary>
+            Список выбранных столбцов.
+            </summary>
+        </member>
         <member name="M:StockSharp.Quik.Xaml.DdeTableColumnsEditor.#ctor">
             <summary>
             Создать <see cref="T:StockSharp.Quik.Xaml.DdeTableColumnsEditor"/>.
@@ -4379,11 +4411,6 @@
         <member name="M:StockSharp.Quik.Xaml.DdeTableColumnsEditor.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Xaml.DdeTableColumnsEditor.SelectedColumns">
-            <summary>
-            Список выбранных столбцов.
             </summary>
         </member>
         <member name="T:StockSharp.Quik.Xaml.DdeTableColumnsPicker">
@@ -4406,24 +4433,14 @@
             <summary>
             </summary>
         </member>
-        <member name="F:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumnsProperty">
-            <summary>
-            DependencyProperty для <see cref="P:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumns"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Quik.Xaml.DdeTableColumnsPicker.#ctor">
-            <summary>
-            Создать <see cref="T:StockSharp.Quik.Xaml.DdeTableColumnsPicker"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Quik.Xaml.DdeTableColumnsPicker.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="E:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumnsCountChange">
             <summary>
             Событие изменения количества <see cref="P:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumns"/>.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumnsProperty">
+            <summary>
+            DependencyProperty для <see cref="P:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumns"/>.
             </summary>
         </member>
         <member name="P:StockSharp.Quik.Xaml.DdeTableColumnsPicker.SelectedColumns">
@@ -4434,6 +4451,16 @@
         <member name="P:StockSharp.Quik.Xaml.DdeTableColumnsPicker.DdeColumns">
             <summary>
             Тип таблицы для редактирования списка столбцов.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Quik.Xaml.DdeTableColumnsPicker.#ctor">
+            <summary>
+            Создать <see cref="T:StockSharp.Quik.Xaml.DdeTableColumnsPicker"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Quik.Xaml.DdeTableColumnsPicker.InitializeComponent">
+            <summary>
+            InitializeComponent
             </summary>
         </member>
         <member name="T:StockSharp.Quik.Xaml.Extensions">
@@ -4461,9 +4488,29 @@
             <summary>
             </summary>
         </member>
+        <member name="E:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumnsCountChange">
+            <summary>
+            Событие изменения количества <see cref="P:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumns"/>.
+            </summary>
+        </member>
         <member name="F:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumnsProperty">
             <summary>
             DependencyProperty для <see cref="P:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumns"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumns">
+            <summary>
+            Список выбранных столбцов.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Xaml.DdeColumnsPicker.ExcludeColumns">
+            <summary>
+            Столбцы, исключенные из списка выбора.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Quik.Xaml.DdeColumnsPicker.DdeColumns">
+            <summary>
+            Тип таблицы для редактирования списка столбцов.
             </summary>
         </member>
         <member name="M:StockSharp.Quik.Xaml.DdeColumnsPicker.#ctor">
@@ -4480,26 +4527,6 @@
         <member name="M:StockSharp.Quik.Xaml.DdeColumnsPicker.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="E:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumnsCountChange">
-            <summary>
-            Событие изменения количества <see cref="P:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumns"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Xaml.DdeColumnsPicker.SelectedColumns">
-            <summary>
-            Список выбранных столбцов.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Xaml.DdeColumnsPicker.ExcludeColumns">
-            <summary>
-            Столбцы, исключенные из списка выбора.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Quik.Xaml.DdeColumnsPicker.DdeColumns">
-            <summary>
-            Тип таблицы для редактирования списка столбцов.
             </summary>
         </member>
         <member name="T:StockSharp.Quik.Xaml.DdeSecurityColumnsPicker">

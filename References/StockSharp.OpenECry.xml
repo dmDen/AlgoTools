@@ -8,15 +8,6 @@
             <summary>
             The messages adapter for OpenECry.
             </summary>
-            <summary>
-            The messages adapter for OpenECry.
-            </summary>
-            <summary>
-            The messages adapter for OpenECry.
-            </summary>
-            <summary>
-            The messages adapter for OpenECry.
-            </summary>
         </member>
         <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.#ctor(Ecng.Common.IdGenerator)">
             <summary>
@@ -24,29 +15,16 @@
             </summary>
             <param name="transactionIdGenerator">Transaction id generator.</param>
         </member>
+        <member name="F:StockSharp.OpenECry.OpenECryMessageAdapter.DefaultUuid">
+            <summary>
+            Default unique software ID.
+            </summary>
+        </member>
         <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.CreateOrderCondition">
             <summary>
             Create condition for order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, that supports the adapter.
             </summary>
-            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null"/>.</returns>
-        </member>
-        <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Send message.
-            </summary>
-            <param name="message">Message.</param>
-        </member>
-        <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
+            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null" />.</returns>
         </member>
         <member name="P:StockSharp.OpenECry.OpenECryMessageAdapter.SecurityLookupRequired">
             <summary>
@@ -62,6 +40,12 @@
             <summary>
             Gets a value indicating whether the connector supports security lookup.
             </summary>
+        </member>
+        <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
+            <summary>
+            Send message.
+            </summary>
+            <param name="message">Message.</param>
         </member>
         <member name="P:StockSharp.OpenECry.OpenECryMessageAdapter.Address">
             <summary>
@@ -103,6 +87,18 @@
             Available time frames.
             </summary>
         </member>
+        <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.OpenECry.OpenECryMessageAdapter.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
         <member name="T:StockSharp.OpenECry.OpenECryRemoting">
             <summary>
             Connection to the terminal modes. Description of functionality http://www.openecry.com/api/OECAPIRemoting.pdf.
@@ -131,6 +127,11 @@
         <member name="M:StockSharp.OpenECry.Xaml.OpenECryAddressComboBox.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.OpenECry.Xaml.OpenECryAddressComboBox"/>.
+            </summary>
+        </member>
+        <member name="T:StockSharp.OpenECry.Xaml.OpenECryEndPointEditor">
+            <summary>
+            The drop-down list to select the OpenECry server address.
             </summary>
         </member>
         <member name="T:StockSharp.OpenECry.OpenECryAddresses">
@@ -205,7 +206,7 @@
         </member>
         <member name="P:StockSharp.OpenECry.OpenECryOrderCondition.IsPercentDelta">
             <summary>
-            <see langword="true"/>, if <see cref="P:StockSharp.OpenECry.OpenECryOrderCondition.Delta"/> expressed in percentage.
+            <see langword="true" />, if <see cref="P:StockSharp.OpenECry.OpenECryOrderCondition.Delta"/> expressed in percentage.
             </summary>
         </member>
         <member name="P:StockSharp.OpenECry.OpenECryOrderCondition.TriggerType">
@@ -232,7 +233,7 @@
         </member>
         <member name="M:StockSharp.OpenECry.Extensions.GetSecurityState(OEC.API.Contract)">
             <summary>
-            To get <see cref="T:StockSharp.Messages.SecurityStates"/> for the instrument according to the <paramref name="contract"/> contract.
+            To get <see cref="T:StockSharp.Messages.SecurityStates"/> for the instrument according to the <paramref name="contract" /> contract.
             </summary>
             <param name="contract">The OEC contract.</param>
             <returns>The instrument condition <see cref="T:StockSharp.Messages.SecurityStates"/>.</returns>
@@ -253,33 +254,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.OpenECry.OECTrader"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.OpenECry.OECTrader.SendMessage(System.String,System.String)">
-            <summary>
-            To send a message to another user.
-            </summary>
-            <param name="userName">The recipient name.</param>
-            <param name="text">Message text.</param>
-        </member>
-        <member name="M:StockSharp.OpenECry.OECTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)">
-            <summary>
-            Subscribe to receive new candles.
-            </summary>
-            <param name="series">Candles series.</param>
-            <param name="from">The initial date from which you need to get data.</param>
-            <param name="to">The final date by which you need to get data.</param>
-        </member>
-        <member name="M:StockSharp.OpenECry.OECTrader.UnSubscribeCandles(StockSharp.Algo.Candles.CandleSeries)">
-            <summary>
-            To stop the candles receiving subscription, previously created by <see cref="M:StockSharp.OpenECry.OECTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)"/>.
-            </summary>
-            <param name="series">Candles series.</param>
-        </member>
-        <member name="M:StockSharp.OpenECry.OECTrader.OnProcessMessage(StockSharp.Messages.Message)">
-            <summary>
-            Process message.
-            </summary>
-            <param name="message">Message.</param>
         </member>
         <member name="P:StockSharp.OpenECry.OECTrader.Uuid">
             <summary>
@@ -316,6 +290,13 @@
             To use the OEC library logging.
             </summary>
         </member>
+        <member name="M:StockSharp.OpenECry.OECTrader.SendMessage(System.String,System.String)">
+            <summary>
+            To send a message to another user.
+            </summary>
+            <param name="userName">The recipient name.</param>
+            <param name="text">Message text.</param>
+        </member>
         <member name="E:StockSharp.OpenECry.OECTrader.NewCandles">
             <summary>
             Event of new candles occurring, that are received after the subscription by <see cref="M:StockSharp.OpenECry.OECTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)"/>.
@@ -325,6 +306,26 @@
             <summary>
             The series processing end event.
             </summary>
+        </member>
+        <member name="M:StockSharp.OpenECry.OECTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)">
+            <summary>
+            Subscribe to receive new candles.
+            </summary>
+            <param name="series">Candles series.</param>
+            <param name="from">The initial date from which you need to get data.</param>
+            <param name="to">The final date by which you need to get data.</param>
+        </member>
+        <member name="M:StockSharp.OpenECry.OECTrader.UnSubscribeCandles(StockSharp.Algo.Candles.CandleSeries)">
+            <summary>
+            To stop the candles receiving subscription, previously created by <see cref="M:StockSharp.OpenECry.OECTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)"/>.
+            </summary>
+            <param name="series">Candles series.</param>
+        </member>
+        <member name="M:StockSharp.OpenECry.OECTrader.OnProcessMessage(StockSharp.Messages.Message)">
+            <summary>
+            Process message.
+            </summary>
+            <param name="message">Message.</param>
         </member>
     </members>
 </doc>

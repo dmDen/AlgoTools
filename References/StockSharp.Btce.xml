@@ -24,11 +24,36 @@
             </summary>
             <param name="transactionIdGenerator">Transaction id generator.</param>
         </member>
+        <member name="P:StockSharp.Btce.BtceMessageAdapter.IsSupportNativeSecurityLookup">
+            <summary>
+            Gets a value indicating whether the connector supports security lookup.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Btce.BtceMessageAdapter.IsSupportNativePortfolioLookup">
+            <summary>
+            Gets a value indicating whether the connector supports position lookup.
+            </summary>
+        </member>
         <member name="M:StockSharp.Btce.BtceMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
             <summary>
             Send message.
             </summary>
             <param name="message">Message.</param>
+        </member>
+        <member name="P:StockSharp.Btce.BtceMessageAdapter.Key">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Btce.BtceMessageAdapter.Secret">
+            <summary>
+            Secret.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Btce.BtceMessageAdapter.IsValid">
+            <summary>
+            The parameters validity check.
+            </summary>
         </member>
         <member name="M:StockSharp.Btce.BtceMessageAdapter.Save(Ecng.Serialization.SettingsStorage)">
             <summary>
@@ -47,31 +72,6 @@
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="P:StockSharp.Btce.BtceMessageAdapter.IsSupportNativeSecurityLookup">
-            <summary>
-            Gets a value indicating whether the connector supports security lookup.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Btce.BtceMessageAdapter.IsSupportNativePortfolioLookup">
-            <summary>
-            Gets a value indicating whether the connector supports position lookup.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Btce.BtceMessageAdapter.Key">
-            <summary>
-            Key.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Btce.BtceMessageAdapter.Secret">
-            <summary>
-            Secret.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Btce.BtceMessageAdapter.IsValid">
-            <summary>
-            The parameters validity check.
-            </summary>
         </member>
         <member name="T:StockSharp.Btce.BtceTrader">
             <summary>

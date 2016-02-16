@@ -9,6 +9,90 @@
             The client for access to the StockSharp authentication service.
             </summary>
         </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Community.AuthenticationClient"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Community.AuthenticationClient"/>.
+            </summary>
+            <param name="address">Service address.</param>
+        </member>
+        <member name="P:StockSharp.Community.AuthenticationClient.Instance">
+            <summary>
+            The common authorization client for the whole application.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.AuthenticationClient.Credentials">
+            <summary>
+            Information about the login and password for access to the StockSharp.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.AuthenticationClient.IsLoggedIn">
+            <summary>
+            Has the client successfully authenticated.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.AuthenticationClient.SessionId">
+            <summary>
+            Session ID.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.Login">
+            <summary>
+            To log in.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.Login(System.String,System.String)">
+            <summary>
+            To log in.
+            </summary>
+            <param name="login">Login.</param>
+            <param name="password">Password.</param>
+        </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.Logout">
+            <summary>
+            Logout.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.GetId(System.Guid)">
+            <summary>
+            Get a user id.
+            </summary>
+            <param name="sessionId">Session ID.</param>
+            <returns>User id.</returns>
+        </member>
+        <member name="M:StockSharp.Community.AuthenticationClient.DisposeManaged">
+            <summary>
+            Release resources.
+            </summary>
+        </member>
+        <member name="T:StockSharp.Community.BaseCommunityClient`1">
+            <summary>
+            The base client for access to the StockSharp services.
+            </summary>
+            <typeparam name="TService">WCF service type.</typeparam>
+        </member>
+        <member name="M:StockSharp.Community.BaseCommunityClient`1.#ctor(System.Uri,System.String,System.Boolean)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Community.BaseCommunityClient`1"/>.
+            </summary>
+            <param name="address">Server address.</param>
+            <param name="endpointName">The access point name in the configuration file.</param>
+            <param name="hasCallbacks">Whether the <typeparamref name="TService" /> has events.</param>
+        </member>
+        <member name="P:StockSharp.Community.BaseCommunityClient`1.SessionId">
+            <summary>
+            The session identifier received from <see cref="M:StockSharp.Community.IAuthenticationService.Login(System.String,System.String)"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.BaseCommunityClient`1.UserId">
+            <summary>
+            The user identifier for <see cref="P:StockSharp.Community.BaseCommunityClient`1.SessionId"/>.
+            </summary>
+        </member>
         <member name="T:StockSharp.Community.BaseServiceClient`1">
             <summary>
             The base client for access to the WCF services.
@@ -21,7 +105,17 @@
             </summary>
             <param name="address">Server address.</param>
             <param name="endpointName">The access point name in the configuration file.</param>
-            <param name="hasCallbacks">Whether the <typeparamref name="TService"/> has events.</param>
+            <param name="hasCallbacks">Whether the <typeparamref name="TService" /> has events.</param>
+        </member>
+        <member name="P:StockSharp.Community.BaseServiceClient`1.Address">
+            <summary>
+            Server address.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.BaseServiceClient`1.IsConnected">
+            <summary>
+            Whether the connection has been established.
+            </summary>
         </member>
         <member name="M:StockSharp.Community.BaseServiceClient`1.CreateChannel">
             <summary>
@@ -56,100 +150,6 @@
         <member name="M:StockSharp.Community.BaseServiceClient`1.DisposeManaged">
             <summary>
             Release resources.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.BaseServiceClient`1.Address">
-            <summary>
-            Server address.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.BaseServiceClient`1.IsConnected">
-            <summary>
-            Whether the connection has been established.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Community.AuthenticationClient"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.#ctor(System.Uri)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Community.AuthenticationClient"/>.
-            </summary>
-            <param name="address">Service address.</param>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.Login">
-            <summary>
-            To log in.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.Login(System.String,System.String)">
-            <summary>
-            To log in.
-            </summary>
-            <param name="login">Login.</param>
-            <param name="password">Password.</param>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.Logout">
-            <summary>
-            Logout.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.GetId(System.Guid)">
-            <summary>
-            Get a user id.
-            </summary>
-            <param name="sessionId">Session ID.</param>
-            <returns>User id.</returns>
-        </member>
-        <member name="M:StockSharp.Community.AuthenticationClient.DisposeManaged">
-            <summary>
-            Release resources.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.AuthenticationClient.Instance">
-            <summary>
-            The common authorization client for the whole application.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.AuthenticationClient.Credentials">
-            <summary>
-            Information about the login and password for access to the StockSharp.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.AuthenticationClient.IsLoggedIn">
-            <summary>
-            Has the client successfully authenticated.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.AuthenticationClient.SessionId">
-            <summary>
-            Session ID.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Community.BaseCommunityClient`1">
-            <summary>
-            The base client for access to the StockSharp services.
-            </summary>
-            <typeparam name="TService">WCF service type.</typeparam>
-        </member>
-        <member name="M:StockSharp.Community.BaseCommunityClient`1.#ctor(System.Uri,System.String,System.Boolean)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Community.BaseCommunityClient`1"/>.
-            </summary>
-            <param name="address">Server address.</param>
-            <param name="endpointName">The access point name in the configuration file.</param>
-            <param name="hasCallbacks">Whether the <typeparamref name="TService"/> has events.</param>
-        </member>
-        <member name="P:StockSharp.Community.BaseCommunityClient`1.SessionId">
-            <summary>
-            The session identifier received from <see cref="M:StockSharp.Community.IAuthenticationService.Login(System.String,System.String)"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.BaseCommunityClient`1.UserId">
-            <summary>
-            The user identifier for <see cref="P:StockSharp.Community.BaseCommunityClient`1.SessionId"/>.
             </summary>
         </member>
         <member name="T:StockSharp.Community.CommunityNews">
@@ -509,7 +509,12 @@
         </member>
         <member name="P:StockSharp.Community.Profile.IsSubscription">
             <summary>
-            Is the mailout enabled.
+            Is the mail-out enabled.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.Profile.Language">
+            <summary>
+            Language.
             </summary>
         </member>
         <member name="T:StockSharp.Community.IProfileService">
@@ -714,6 +719,16 @@
             </summary>
             <param name="address">Service address.</param>
         </member>
+        <member name="P:StockSharp.Community.NotificationClient.SmsCount">
+            <summary>
+            The available number of SMS-messages.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Community.NotificationClient.EmailCount">
+            <summary>
+            The available number of email messages.
+            </summary>
+        </member>
         <member name="M:StockSharp.Community.NotificationClient.SendSms(System.String)">
             <summary>
             To send a SMS message.
@@ -726,6 +741,11 @@
             </summary>
             <param name="caption">The message title.</param>
             <param name="message">Message body.</param>
+        </member>
+        <member name="E:StockSharp.Community.NotificationClient.NewsReceived">
+            <summary>
+            News received.
+            </summary>
         </member>
         <member name="M:StockSharp.Community.NotificationClient.SubscribeNews">
             <summary>
@@ -740,21 +760,6 @@
         <member name="M:StockSharp.Community.NotificationClient.DisposeManaged">
             <summary>
             Release resources.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.NotificationClient.SmsCount">
-            <summary>
-            The available number of SMS-messages.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Community.NotificationClient.EmailCount">
-            <summary>
-            The available number of email messages.
-            </summary>
-        </member>
-        <member name="E:StockSharp.Community.NotificationClient.NewsReceived">
-            <summary>
-            News received.
             </summary>
         </member>
         <member name="T:StockSharp.Community.ProfileClient">
@@ -845,18 +850,6 @@
             Initializes a new instance of the <see cref="T:StockSharp.Community.ServerCredentials"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Community.ServerCredentials.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Community.ServerCredentials.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
         <member name="P:StockSharp.Community.ServerCredentials.Login">
             <summary>
             Login.
@@ -871,6 +864,18 @@
             <summary>
             Auto login.
             </summary>
+        </member>
+        <member name="M:StockSharp.Community.ServerCredentials.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Community.ServerCredentials.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
         </member>
         <member name="T:StockSharp.Community.StrategyClient">
             <summary>
@@ -887,6 +892,11 @@
             Initializes a new instance of the <see cref="T:StockSharp.Community.StrategyClient"/>.
             </summary>
             <param name="address">Server address.</param>
+        </member>
+        <member name="P:StockSharp.Community.StrategyClient.SubscribedStrategies">
+            <summary>
+            Strategies signed by <see cref="M:StockSharp.Community.StrategyClient.Subscribe(StockSharp.Community.StrategyData)"/>.
+            </summary>
         </member>
         <member name="M:StockSharp.Community.StrategyClient.Connect">
             <summary>
@@ -928,11 +938,6 @@
             To unsubscribe from the strategy.
             </summary>
             <param name="strategy">The strategy data.</param>
-        </member>
-        <member name="P:StockSharp.Community.StrategyClient.SubscribedStrategies">
-            <summary>
-            Strategies signed by <see cref="M:StockSharp.Community.StrategyClient.Subscribe(StockSharp.Community.StrategyData)"/>.
-            </summary>
         </member>
         <member name="T:StockSharp.Community.StrategyData">
             <summary>

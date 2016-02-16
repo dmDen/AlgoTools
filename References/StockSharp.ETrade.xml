@@ -124,6 +124,46 @@
             limits response.
             </summary>
         </member>
+        <member name="T:StockSharp.ETrade.Native.OAuthToken">
+            <summary>
+            Token. Uses in OAuth 1.0a.
+            </summary>
+        </member>
+        <member name="M:StockSharp.ETrade.Native.OAuthToken.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.ETrade.Native.OAuthToken"/> class.
+            </summary>
+            <param name="consumerKey">Consumer key.</param>
+            <param name="token">Token.</param>
+            <param name="secret">Secret.</param>
+        </member>
+        <member name="P:StockSharp.ETrade.Native.OAuthToken.ConsumerKey">
+            <summary>
+            Consumer key.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.Native.OAuthToken.Token">
+            <summary>
+            Token.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.Native.OAuthToken.Secret">
+            <summary>
+            Secret.
+            </summary>
+        </member>
+        <member name="M:StockSharp.ETrade.Native.OAuthToken.Serialize">
+            <summary>
+            Token serialization.
+            </summary>
+            <returns>Serialized as string the token.</returns>
+        </member>
+        <member name="M:StockSharp.ETrade.Native.OAuthToken.Deserialize(System.String)">
+            <summary>
+            Toke deserialization.
+            </summary>
+            <returns>Token.</returns>
+        </member>
         <member name="T:StockSharp.ETrade.ETradeMessageAdapter">
             <summary>
             The messages adapter for ETrade.
@@ -138,6 +178,11 @@
             The messages adapter for ETrade.
             </summary>
         </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.IsSupportNativeSecurityLookup">
+            <summary>
+            Gets a value indicating whether the connector supports security lookup.
+            </summary>
+        </member>
         <member name="M:StockSharp.ETrade.ETradeMessageAdapter.ClientOnProductLookupResult(System.Int64,System.Collections.Generic.IEnumerable{StockSharp.ETrade.Native.ProductInfo},System.Exception)">
             <summary>Коллбэк результата поиска инструментов.</summary>
             <param name="lookupTransId">Номер транзакции операции Lookup.</param>
@@ -150,11 +195,16 @@
             </summary>
             <param name="transactionIdGenerator">Transaction id generator.</param>
         </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.SecurityLookupRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
+            </summary>
+        </member>
         <member name="M:StockSharp.ETrade.ETradeMessageAdapter.CreateOrderCondition">
             <summary>
             Create condition for order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, that supports the adapter.
             </summary>
-            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null"/>.</returns>
+            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null" />.</returns>
         </member>
         <member name="M:StockSharp.ETrade.ETradeMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
             <summary>
@@ -178,6 +228,36 @@
             Set own authorization mode (the default is browser uses).
             </summary>
             <param name="method">ETrade authorization method.</param>
+        </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.ConsumerKey">
+            <summary>
+            Key.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.ConsumerSecret">
+            <summary>
+            Secret.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.Sandbox">
+            <summary>
+            Demo mode.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.AccessToken">
+            <summary>
+            OAuth access token. Required to restore connection. Saved AccessToken can be valid until EST midnight.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.VerificationCode">
+            <summary>
+            Verification code, received by user in browser, after confirming program's permission to work.
+            </summary>
+        </member>
+        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.IsValid">
+            <summary>
+            The parameters validity check.
+            </summary>
         </member>
         <member name="M:StockSharp.ETrade.ETradeMessageAdapter.Load(Ecng.Serialization.SettingsStorage)">
             <summary>
@@ -233,46 +313,6 @@
             <param name="data">Результат запроса списка позиций.</param>
             <param name="ex">Ошибка запроса списка позиций.</param>
         </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.IsSupportNativeSecurityLookup">
-            <summary>
-            Gets a value indicating whether the connector supports security lookup.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.SecurityLookupRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.ConsumerKey">
-            <summary>
-            Key.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.ConsumerSecret">
-            <summary>
-            Secret.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.Sandbox">
-            <summary>
-            Demo mode.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.AccessToken">
-            <summary>
-            OAuth access token. Required to restore connection. Saved AccessToken can be valid until EST midnight.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.VerificationCode">
-            <summary>
-            Verification code, received by user in browser, after confirming program's permission to work.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.ETradeMessageAdapter.IsValid">
-            <summary>
-            The parameters validity check.
-            </summary>
-        </member>
         <member name="T:StockSharp.ETrade.ETradeStopTypes">
             <summary>
             ETrade condition order type.
@@ -313,17 +353,6 @@
             The interface <see cref="T:StockSharp.BusinessEntities.IConnector"/> implementation which provides a connection to the ETrade.
             </summary>
         </member>
-        <member name="M:StockSharp.ETrade.ETradeTrader.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.ETrade.ETradeTrader"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.ETrade.ETradeTrader.SetCustomAuthorizationMethod(System.Action{System.String})">
-            <summary>
-            Set own authorization mode (the default is browser uses).
-            </summary>
-            <param name="method">ETrade authorization method.</param>
-        </member>
         <member name="P:StockSharp.ETrade.ETradeTrader.ConsumerKey">
             <summary>
             Key.
@@ -349,45 +378,16 @@
             Sandbox mode.
             </summary>
         </member>
-        <member name="T:StockSharp.ETrade.Native.OAuthToken">
+        <member name="M:StockSharp.ETrade.ETradeTrader.#ctor">
             <summary>
-            Token. Uses in OAuth 1.0a.
+            Initializes a new instance of the <see cref="T:StockSharp.ETrade.ETradeTrader"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.ETrade.Native.OAuthToken.#ctor(System.String,System.String,System.String)">
+        <member name="M:StockSharp.ETrade.ETradeTrader.SetCustomAuthorizationMethod(System.Action{System.String})">
             <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.ETrade.Native.OAuthToken"/> class.
+            Set own authorization mode (the default is browser uses).
             </summary>
-            <param name="consumerKey">Consumer key.</param>
-            <param name="token">Token.</param>
-            <param name="secret">Secret.</param>
-        </member>
-        <member name="M:StockSharp.ETrade.Native.OAuthToken.Serialize">
-            <summary>
-            Token serialization.
-            </summary>
-            <returns>Serialized as string the token.</returns>
-        </member>
-        <member name="M:StockSharp.ETrade.Native.OAuthToken.Deserialize(System.String)">
-            <summary>
-            Toke deserialization.
-            </summary>
-            <returns>Token.</returns>
-        </member>
-        <member name="P:StockSharp.ETrade.Native.OAuthToken.ConsumerKey">
-            <summary>
-            Consumer key.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.Native.OAuthToken.Token">
-            <summary>
-            Token.
-            </summary>
-        </member>
-        <member name="P:StockSharp.ETrade.Native.OAuthToken.Secret">
-            <summary>
-            Secret.
-            </summary>
+            <param name="method">ETrade authorization method.</param>
         </member>
         <member name="T:StockSharp.ETrade.Xaml.AuthDialog">
             <summary>
@@ -407,14 +407,14 @@
             Initializes a new instance of the <see cref="T:StockSharp.ETrade.Xaml.AuthDialog"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.ETrade.Xaml.AuthDialog.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="P:StockSharp.ETrade.Xaml.AuthDialog.VerificationCode">
             <summary>
             E*TRADE verification code to continue authorization.
+            </summary>
+        </member>
+        <member name="M:StockSharp.ETrade.Xaml.AuthDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
             </summary>
         </member>
     </members>

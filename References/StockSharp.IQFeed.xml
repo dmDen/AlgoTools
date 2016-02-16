@@ -15,36 +15,6 @@
             The messages adapter for IQFeed.
             </summary>
         </member>
-        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.#ctor(Ecng.Common.IdGenerator)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter"/>.
-            </summary>
-            <param name="transactionIdGenerator">Transaction id generator.</param>
-        </member>
-        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Send message.
-            </summary>
-            <param name="message">Message.</param>
-        </member>
         <member name="P:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.Level1Address">
             <summary>
             Address for obtaining data on Level1.
@@ -105,6 +75,30 @@
             Available time frames.
             </summary>
         </member>
+        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.#ctor(Ecng.Common.IdGenerator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter"/>.
+            </summary>
+            <param name="transactionIdGenerator">Transaction id generator.</param>
+        </member>
         <member name="P:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.IsSupportNativeSecurityLookup">
             <summary>
             Gets a value indicating whether the connector supports security lookup.
@@ -114,6 +108,12 @@
             <summary>
             <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
             </summary>
+        </member>
+        <member name="M:StockSharp.IQFeed.IQFeedMarketDataMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
+            <summary>
+            Send message.
+            </summary>
+            <param name="message">Message.</param>
         </member>
         <member name="T:StockSharp.IQFeed.IQFeedAddresses">
             <summary>
@@ -150,12 +150,6 @@
             The column describing the Level1 data flow.
             </summary>
         </member>
-        <member name="M:StockSharp.IQFeed.IQFeedLevel1Column.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
         <member name="P:StockSharp.IQFeed.IQFeedLevel1Column.Name">
             <summary>
             Column name.
@@ -171,10 +165,23 @@
             The data format (if <see cref="P:StockSharp.IQFeed.IQFeedLevel1Column.Type"/> equals to <see cref="T:System.DateTime"/> or <see cref="T:System.TimeSpan"/>).
             </summary>
         </member>
+        <member name="M:StockSharp.IQFeed.IQFeedLevel1Column.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
         <member name="T:StockSharp.IQFeed.IQFeedLevel1ColumnRegistry">
             <summary>
             The list of all available <see cref="T:StockSharp.IQFeed.IQFeedLevel1Column"/>.
             </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedLevel1ColumnRegistry.Item(System.String)">
+            <summary>
+            To get the column by name <see cref="P:StockSharp.IQFeed.IQFeedLevel1Column.Name"/>.
+            </summary>
+            <param name="name">Column name.</param>
+            <returns>Found column. If the column does not exist then <see langword="null" /> is returned.</returns>
         </member>
         <member name="F:StockSharp.IQFeed.IQFeedLevel1ColumnRegistry.Symbol">
             <summary>
@@ -446,13 +453,6 @@
             The most frequent trade date.
             </summary>
         </member>
-        <member name="P:StockSharp.IQFeed.IQFeedLevel1ColumnRegistry.Item(System.String)">
-            <summary>
-            To get the column by name <see cref="P:StockSharp.IQFeed.IQFeedLevel1Column.Name"/>.
-            </summary>
-            <param name="name">Column name.</param>
-            <returns>Found column. If the column does not exist then <see langword="null"/> is returned.</returns>
-        </member>
         <member name="T:StockSharp.IQFeed.IQFeedTrader">
             <summary>
             The interface <see cref="T:StockSharp.BusinessEntities.IConnector"/> implementation for the interaction with DTN IQFeed for download of historical and real-time market data (level 1, level 2).
@@ -461,6 +461,46 @@
         <member name="M:StockSharp.IQFeed.IQFeedTrader.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.IQFeed.IQFeedTrader"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level1ColumnRegistry">
+            <summary>
+            The list of all available <see cref="T:StockSharp.IQFeed.IQFeedLevel1Column"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level1Address">
+            <summary>
+            Address for obtaining data on Level1.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level2Address">
+            <summary>
+            Address for obtaining data on Level2.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.LookupAddress">
+            <summary>
+            Address for obtaining history data.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.AdminAddress">
+            <summary>
+            Address for obtaining service data.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.IsDownloadSecurityFromSite">
+            <summary>
+            Whether to load instruments from the archive of the IQFeed site. The default is off.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.SecurityTypesFilter">
+            <summary>
+            Instruments types that will be downloaded from the site when the option <see cref="P:StockSharp.IQFeed.IQFeedTrader.IsDownloadSecurityFromSite"/> enabled.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level1Columns">
+            <summary>
+            All <see cref="T:StockSharp.IQFeed.IQFeedLevel1Column"/> to be transmit.
             </summary>
         </member>
         <member name="M:StockSharp.IQFeed.IQFeedTrader.RequestNews(System.DateTimeOffset)">
@@ -528,6 +568,16 @@
             <param name="series">Candles series.</param>
             <returns>Time ranges.</returns>
         </member>
+        <member name="E:StockSharp.IQFeed.IQFeedTrader.NewCandles">
+            <summary>
+            Event of new candles occurring, that are received after the subscription by <see cref="M:StockSharp.IQFeed.IQFeedTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)"/>.
+            </summary>
+        </member>
+        <member name="E:StockSharp.IQFeed.IQFeedTrader.Stopped">
+            <summary>
+            The series processing end event.
+            </summary>
+        </member>
         <member name="M:StockSharp.IQFeed.IQFeedTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)">
             <summary>
             Subscribe to receive new candles.
@@ -548,59 +598,29 @@
             </summary>
             <param name="message">Message.</param>
         </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level1ColumnRegistry">
-            <summary>
-            The list of all available <see cref="T:StockSharp.IQFeed.IQFeedLevel1Column"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level1Address">
-            <summary>
-            Address for obtaining data on Level1.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level2Address">
-            <summary>
-            Address for obtaining data on Level2.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.LookupAddress">
-            <summary>
-            Address for obtaining history data.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.AdminAddress">
-            <summary>
-            Address for obtaining service data.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.IsDownloadSecurityFromSite">
-            <summary>
-            Whether to load instruments from the archive of the IQFeed site. The default is off.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.SecurityTypesFilter">
-            <summary>
-            Instruments types that will be downloaded from the site when the option <see cref="P:StockSharp.IQFeed.IQFeedTrader.IsDownloadSecurityFromSite"/> enabled.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedTrader.Level1Columns">
-            <summary>
-            All <see cref="T:StockSharp.IQFeed.IQFeedLevel1Column"/> to be transmit.
-            </summary>
-        </member>
-        <member name="E:StockSharp.IQFeed.IQFeedTrader.NewCandles">
-            <summary>
-            Event of new candles occurring, that are received after the subscription by <see cref="M:StockSharp.IQFeed.IQFeedTrader.SubscribeCandles(StockSharp.Algo.Candles.CandleSeries,System.DateTimeOffset,System.DateTimeOffset)"/>.
-            </summary>
-        </member>
-        <member name="E:StockSharp.IQFeed.IQFeedTrader.Stopped">
-            <summary>
-            The series processing end event.
-            </summary>
-        </member>
         <member name="T:StockSharp.IQFeed.IQFeedWrapper">
             <summary>
             The wrapper to work with the IQFeed using the TCP/IP protocol.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedWrapper.Address">
+            <summary>
+            Server address.
+            </summary>
+        </member>
+        <member name="P:StockSharp.IQFeed.IQFeedWrapper.IsExportStarted">
+            <summary>
+            Whether export is started. The export starts when the IQFeed command sending.
+            </summary>
+        </member>
+        <member name="E:StockSharp.IQFeed.IQFeedWrapper.ConnectionError">
+            <summary>
+            The connection error event (for example, the connection was aborted).
+            </summary>
+        </member>
+        <member name="E:StockSharp.IQFeed.IQFeedWrapper.ProcessReply">
+            <summary>
+            New data occurring event.
             </summary>
         </member>
         <member name="M:StockSharp.IQFeed.IQFeedWrapper.Connect">
@@ -729,26 +749,6 @@
             To specify the set of fields for data by the Level1.
             </summary>
             <param name="fields">Field names.</param>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedWrapper.Address">
-            <summary>
-            Server address.
-            </summary>
-        </member>
-        <member name="P:StockSharp.IQFeed.IQFeedWrapper.IsExportStarted">
-            <summary>
-            Whether export is started. The export starts when the IQFeed command sending.
-            </summary>
-        </member>
-        <member name="E:StockSharp.IQFeed.IQFeedWrapper.ConnectionError">
-            <summary>
-            The connection error event (for example, the connection was aborted).
-            </summary>
-        </member>
-        <member name="E:StockSharp.IQFeed.IQFeedWrapper.ProcessReply">
-            <summary>
-            New data occurring event.
-            </summary>
         </member>
     </members>
 </doc>

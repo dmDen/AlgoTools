@@ -9,75 +9,16 @@
             Base connect/disconnect message.
             </summary>
         </member>
-        <member name="T:StockSharp.Messages.Message">
-            <summary>
-            A message containing market data or command.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.IExtendableEntity">
-            <summary>
-            The interface for all trading types that have the property <see cref="P:StockSharp.Messages.IExtendableEntity.ExtensionInfo"/> for keeping extended information.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IExtendableEntity.ExtensionInfo">
-            <summary>
-            Extended information.
-            </summary>
-            <remarks>
-            Required when extra information is stored in the program.
-            </remarks>
-        </member>
-        <member name="M:StockSharp.Messages.Message.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.Message"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="M:StockSharp.Messages.Message.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.Message.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.Message"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.Message.LocalTime">
-            <summary>
-            Local time label when a message was received/created.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.Message.Type">
-            <summary>
-            Message type.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.Message.ExtensionInfo">
-            <summary>
-            Extended information.
-            </summary>
-            <remarks>
-            Necessary to keep additional information associated with the message.
-            </remarks>
-        </member>
-        <member name="P:StockSharp.Messages.Message.IsBack">
-            <summary>
-            Is loopback message.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.Message.Adapter">
-            <summary>
-            Source adapter. Can be <see langword="null" />.
-            </summary>
-        </member>
         <member name="M:StockSharp.Messages.BaseConnectionMessage.#ctor(StockSharp.Messages.MessageTypes)">
             <summary>
             Initialize <see cref="T:StockSharp.Messages.BaseConnectionMessage"/>.
             </summary>
             <param name="type">Message type.</param>
+        </member>
+        <member name="P:StockSharp.Messages.BaseConnectionMessage.Error">
+            <summary>
+            Information about the error connection or disconnection.
+            </summary>
         </member>
         <member name="M:StockSharp.Messages.BaseConnectionMessage.ToString">
             <summary>
@@ -85,32 +26,10 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.BaseConnectionMessage.Error">
-            <summary>
-            Information about the error connection or disconnection.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.BoardMessage">
             <summary>
             The message contains information about the electronic board.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.BoardMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.BoardMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.BoardMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.BoardMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.BoardMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="P:StockSharp.Messages.BoardMessage.ExchangeCode">
             <summary>
@@ -142,10 +61,27 @@
             Board working hours.
             </summary>
         </member>
-        <member name="P:StockSharp.Messages.BoardMessage.TimeZoneInfo">
+        <member name="P:StockSharp.Messages.BoardMessage.TimeZone">
             <summary>
             Information about the time zone where the exchange is located.
             </summary>
+        </member>
+        <member name="M:StockSharp.Messages.BoardMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.BoardMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.BoardMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.BoardMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.BoardMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="T:StockSharp.Messages.CandleStates">
             <summary>
@@ -171,25 +107,6 @@
             <summary>
             The message contains information about the candle.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.CandleMessage.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.CandleMessage"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="M:StockSharp.Messages.CandleMessage.CopyTo(StockSharp.Messages.CandleMessage)">
-            <summary>
-            Copy parameters.
-            </summary>
-            <param name="copy">Copy.</param>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.CandleMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="P:StockSharp.Messages.CandleMessage.SecurityId">
             <summary>
@@ -301,10 +218,34 @@
             It is the last message in the requested batch of candles.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.CandleMessage.PriceLevels">
+            <summary>
+            Price levels.
+            </summary>
+        </member>
         <member name="P:StockSharp.Messages.CandleMessage.Arg">
             <summary>
             Candle arg.
             </summary>
+        </member>
+        <member name="M:StockSharp.Messages.CandleMessage.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.CandleMessage"/>.
+            </summary>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:StockSharp.Messages.CandleMessage.CopyTo(StockSharp.Messages.CandleMessage)">
+            <summary>
+            Copy parameters.
+            </summary>
+            <param name="copy">Copy.</param>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.CandleMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="T:StockSharp.Messages.TimeFrameCandleMessage">
             <summary>
@@ -316,16 +257,16 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.TimeFrameCandleMessage"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.TimeFrameCandleMessage.TimeFrame">
+            <summary>
+            Time-frame.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.TimeFrameCandleMessage.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.TimeFrameCandleMessage"/>.
             </summary>
             <returns>Copy.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.TimeFrameCandleMessage.TimeFrame">
-            <summary>
-            Time-frame.
-            </summary>
         </member>
         <member name="P:StockSharp.Messages.TimeFrameCandleMessage.Arg">
             <summary>
@@ -342,16 +283,16 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.TickCandleMessage"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.TickCandleMessage.MaxTradeCount">
+            <summary>
+            Maximum tick count.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.TickCandleMessage.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.TickCandleMessage"/>.
             </summary>
             <returns>Copy.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.TickCandleMessage.MaxTradeCount">
-            <summary>
-            Maximum tick count.
-            </summary>
         </member>
         <member name="P:StockSharp.Messages.TickCandleMessage.Arg">
             <summary>
@@ -368,16 +309,16 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.VolumeCandleMessage"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.VolumeCandleMessage.Volume">
+            <summary>
+            Maximum volume.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.VolumeCandleMessage.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.VolumeCandleMessage"/>.
             </summary>
             <returns>Copy.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.VolumeCandleMessage.Volume">
-            <summary>
-            Maximum volume.
-            </summary>
         </member>
         <member name="P:StockSharp.Messages.VolumeCandleMessage.Arg">
             <summary>
@@ -394,16 +335,16 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.RangeCandleMessage"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.RangeCandleMessage.PriceRange">
+            <summary>
+            Range of price.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.RangeCandleMessage.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.RangeCandleMessage"/>.
             </summary>
             <returns>Copy.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.RangeCandleMessage.PriceRange">
-            <summary>
-            Range of price.
-            </summary>
         </member>
         <member name="P:StockSharp.Messages.RangeCandleMessage.Arg">
             <summary>
@@ -430,6 +371,16 @@
             Point in fugure (X0) candle arg.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.PnFArg.BoxSize">
+            <summary>
+            Range of price above which create a new <see cref="F:StockSharp.Messages.PnFTypes.X"/> or <see cref="F:StockSharp.Messages.PnFTypes.O"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.PnFArg.ReversalAmount">
+            <summary>
+            The number of boxes (an <see cref="F:StockSharp.Messages.PnFTypes.X"/> or an <see cref="F:StockSharp.Messages.PnFTypes.O"/>) required to cause a reversal.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.PnFArg.ToString">
             <summary>
             Returns a string that represents the current object.
@@ -447,23 +398,13 @@
             Compare <see cref="T:StockSharp.Messages.PnFArg"/> on the equivalence.
             </summary>
             <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
         </member>
         <member name="M:StockSharp.Messages.PnFArg.GetHashCode">
             <summary>
             Get the hash code of the object <see cref="T:StockSharp.Messages.PnFArg"/>.
             </summary>
             <returns>A hash code.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.PnFArg.BoxSize">
-            <summary>
-            Range of price above which create a new <see cref="F:StockSharp.Messages.PnFTypes.X"/> or <see cref="F:StockSharp.Messages.PnFTypes.O"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.PnFArg.ReversalAmount">
-            <summary>
-            The number of boxes (an <see cref="F:StockSharp.Messages.PnFTypes.X"/> or an <see cref="F:StockSharp.Messages.PnFTypes.O"/>) required to cause a reversal.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.PnFCandleMessage">
             <summary>
@@ -475,12 +416,6 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.PnFCandleMessage"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.PnFCandleMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.PnFCandleMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
         <member name="P:StockSharp.Messages.PnFCandleMessage.PnFArg">
             <summary>
             Value of arguments.
@@ -490,6 +425,12 @@
             <summary>
             Type of symbols.
             </summary>
+        </member>
+        <member name="M:StockSharp.Messages.PnFCandleMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.PnFCandleMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.PnFCandleMessage.Arg">
             <summary>
@@ -506,21 +447,67 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.RenkoCandleMessage"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.RenkoCandleMessage.BoxSize">
+            <summary>
+            Possible price change range.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.RenkoCandleMessage.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.RenkoCandleMessage"/>.
             </summary>
             <returns>Copy.</returns>
         </member>
-        <member name="P:StockSharp.Messages.RenkoCandleMessage.BoxSize">
-            <summary>
-            Possible price change range.
-            </summary>
-        </member>
         <member name="P:StockSharp.Messages.RenkoCandleMessage.Arg">
             <summary>
             Candle arg.
             </summary>
+        </member>
+        <member name="T:StockSharp.Messages.CandlePriceLevel">
+            <summary>
+            The price level.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.Price">
+            <summary>
+            Price.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.BuyVolume">
+            <summary>
+            The volume of bids.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.SellVolume">
+            <summary>
+            The volume of asks.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.BuyCount">
+            <summary>
+            The number of bids.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.SellCount">
+            <summary>
+            The number of asks.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.BuyVolumes">
+            <summary>
+            The volumes collection of bids.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.CandlePriceLevel.SellVolumes">
+            <summary>
+            The volumes collection of asks.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.CandlePriceLevel.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.CandlePriceLevel"/>.
+            </summary>
+            <returns>Copy.</returns>
         </member>
         <member name="T:StockSharp.Messages.ChangePasswordMessage">
             <summary>
@@ -531,12 +518,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.ChangePasswordMessage"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.ChangePasswordMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.ChangePasswordMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.ChangePasswordMessage.TransactionId">
             <summary>
@@ -558,156 +539,15 @@
             Change password error info.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.ChangePasswordMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.ChangePasswordMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:StockSharp.Messages.ChannelMessageAdapter">
             <summary>
             Message adapter, forward messages through a transport channel <see cref="T:StockSharp.Messages.IMessageChannel"/>.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.MessageAdapterWrapper">
-            <summary>
-            Base implementation of <see cref="T:StockSharp.Messages.IMessageAdapterWrapper"/>.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.IMessageAdapterWrapper">
-            <summary>
-            Wrapping based adapter.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.IMessageAdapter">
-            <summary>
-            Base message adapter interface which convert messages <see cref="T:StockSharp.Messages.Message"/> to native commands and back.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.IMessageChannel">
-            <summary>
-            Message channel base interface.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.IMessageChannel.Open">
-            <summary>
-            Open channel.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.IMessageChannel.Close">
-            <summary>
-            Close channel.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.IMessageChannel.SendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Send message.
-            </summary>
-            <param name="message">Message.</param>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageChannel.IsOpened">
-            <summary>
-            Is channel opened.
-            </summary>
-        </member>
-        <member name="E:StockSharp.Messages.IMessageChannel.NewOutMessage">
-            <summary>
-            New message event.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.IMessageAdapter.CreateOrderCondition">
-            <summary>
-            Create condition for order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, that supports the adapter.
-            </summary>
-            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null"/>.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.IMessageAdapter.IsConnectionAlive">
-            <summary>
-            Check the connection is alive. Uses only for connected states.
-            </summary>
-            <returns><see langword="true" />, is the connection still alive, <see langword="false" />, if the connection was rejected.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.IMessageAdapter.CreateOrderLogMarketDepthBuilder(StockSharp.Messages.SecurityId)">
-            <summary>
-            Create market depth builder.
-            </summary>
-            <param name="securityId">Security ID.</param>
-            <returns>Order log to market depth builder.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.TransactionIdGenerator">
-            <summary>
-            Transaction id generator.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.SupportedMessages">
-            <summary>
-            Supported by adapter message types.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.IsValid">
-            <summary>
-            The parameters validity check.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.SecurityClassInfo">
-            <summary>
-            Description of the class of securities, depending on which will be marked in the <see cref="P:StockSharp.Messages.SecurityMessage.SecurityType"/> and <see cref="P:StockSharp.Messages.SecurityId.BoardCode"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.ReConnectionSettings">
-            <summary>
-            Connection tracking settings <see cref="T:StockSharp.Messages.IMessageAdapter"/> with a server.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.HeartbeatInterval">
-            <summary>
-            Lifetime ping interval.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.PortfolioLookupRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/> required to get portfolios and positions.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.SecurityLookupRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.OrderStatusRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.OrderStatusMessage"/> required to get orders and ow trades.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapter.AssociatedBoardCode">
-            <summary>
-            Board code for combined security.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.IMessageAdapterWrapper.InnerAdapter">
-            <summary>
-            Underlying adapter.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.MessageAdapterWrapper.#ctor(StockSharp.Messages.IMessageAdapter)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.MessageAdapterWrapper"/>.
-            </summary>
-            <param name="innerAdapter">Underlying adapter.</param>
-        </member>
-        <member name="M:StockSharp.Messages.MessageAdapterWrapper.SendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Send message.
-            </summary>
-            <param name="message">Message.</param>
-        </member>
-        <member name="M:StockSharp.Messages.MessageAdapterWrapper.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapterWrapper.InnerAdapter">
-            <summary>
-            Underlying adapter.
-            </summary>
-        </member>
-        <member name="E:StockSharp.Messages.MessageAdapterWrapper.NewOutMessage">
-            <summary>
-            New message event.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.ChannelMessageAdapter.#ctor(StockSharp.Messages.IMessageAdapter,StockSharp.Messages.IMessageChannel,StockSharp.Messages.IMessageChannel)">
@@ -717,23 +557,6 @@
             <param name="innerAdapter">Underlying adapter.</param>
             <param name="inputChannel">Incomming messages channgel.</param>
             <param name="outputChannel">Outgoing message channel.</param>
-        </member>
-        <member name="M:StockSharp.Messages.ChannelMessageAdapter.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.ChannelMessageAdapter.SendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Send message.
-            </summary>
-            <param name="message">Message.</param>
-        </member>
-        <member name="M:StockSharp.Messages.ChannelMessageAdapter.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.ChannelMessageAdapter"/>.
-            </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.ChannelMessageAdapter.InputChannel">
             <summary>
@@ -755,35 +578,28 @@
             Control the lifetime of the outgoing messages channel.
             </summary>
         </member>
-        <member name="E:StockSharp.Messages.ChannelMessageAdapter.NewOutMessage">
+        <member name="M:StockSharp.Messages.ChannelMessageAdapter.OnInnerAdapterNewOutMessage(StockSharp.Messages.Message)">
             <summary>
-            New message event.
+            Process <see cref="P:StockSharp.Messages.MessageAdapterWrapper.InnerAdapter"/> output message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:StockSharp.Messages.ChannelMessageAdapter.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
         </member>
-        <member name="T:StockSharp.Messages.ClearQueueMessage">
+        <member name="M:StockSharp.Messages.ChannelMessageAdapter.SendInMessage(StockSharp.Messages.Message)">
             <summary>
-            Clear message queue message.
+            Send message.
             </summary>
+            <param name="message">Message.</param>
         </member>
-        <member name="M:StockSharp.Messages.ClearQueueMessage.#ctor">
+        <member name="M:StockSharp.Messages.ChannelMessageAdapter.Clone">
             <summary>
-            Initialize <see cref="T:StockSharp.Messages.ClearQueueMessage"/>.
+            Create a copy of <see cref="T:StockSharp.Messages.ChannelMessageAdapter"/>.
             </summary>
-        </member>
-        <member name="P:StockSharp.Messages.ClearQueueMessage.ClearMessageType">
-            <summary>
-            Type of messages that should be deleted. If the value is <see langword="null" />, all messages will be deleted.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.ClearQueueMessage.SecurityId">
-            <summary>
-            Security id. If the value is <see langword="null" />, all messages for the security will be deleted.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.ClearQueueMessage.Arg">
-            <summary>
-            An additional argument for the market data filter.
-            </summary>
+            <returns>Copy.</returns>
         </member>
         <member name="T:StockSharp.Messages.ConnectionStates">
             <summary>
@@ -841,6 +657,16 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.Currency"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.Currency.Type">
+            <summary>
+            Currency type. The default is <see cref="F:StockSharp.Messages.CurrencyTypes.RUB"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.Currency.Value">
+            <summary>
+            Absolute value in <see cref="T:StockSharp.Messages.CurrencyTypes"/>.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.Currency.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.Currency"/>.
@@ -852,7 +678,7 @@
             Compare <see cref="T:StockSharp.Messages.Currency"/> on the equivalence.
             </summary>
             <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
         </member>
         <member name="M:StockSharp.Messages.Currency.GetHashCode">
             <summary>
@@ -914,16 +740,6 @@
             <param name="c1">First object <see cref="T:StockSharp.Messages.Currency"/>.</param>
             <param name="c2">Second object <see cref="T:StockSharp.Messages.Currency"/>.</param>
             <returns>The result of the division.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.Currency.Type">
-            <summary>
-            Currency type. The default is <see cref="F:StockSharp.Messages.CurrencyTypes.RUB"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.Currency.Value">
-            <summary>
-            Absolute value in <see cref="T:StockSharp.Messages.CurrencyTypes"/>.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.CurrencyHelper">
             <summary>
@@ -1797,14 +1613,14 @@
             Tick trade.
             </summary>
         </member>
-        <member name="F:StockSharp.Messages.ExecutionTypes.Order">
+        <member name="F:StockSharp.Messages.ExecutionTypes.Transaction">
             <summary>
-            Order log.
+            Transaction.
             </summary>
         </member>
-        <member name="F:StockSharp.Messages.ExecutionTypes.Trade">
+        <member name="F:StockSharp.Messages.ExecutionTypes.Obsolete">
             <summary>
-            Own trade.
+            Obsolete.
             </summary>
         </member>
         <member name="F:StockSharp.Messages.ExecutionTypes.OrderLog">
@@ -1816,23 +1632,6 @@
             <summary>
             The message contains information about the execution.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.ExecutionMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.ExecutionMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.ExecutionMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.ExecutionMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.ExecutionMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.SecurityId">
             <summary>
@@ -1847,6 +1646,11 @@
         <member name="P:StockSharp.Messages.ExecutionMessage.ClientCode">
             <summary>
             Client code assigned by the broker.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ExecutionMessage.BrokerCode">
+            <summary>
+            Broker firm code.
             </summary>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.DepoName">
@@ -1904,14 +1708,29 @@
             Derived order ID (e.g., conditional order generated a real exchange order).
             </summary>
         </member>
-        <member name="P:StockSharp.Messages.ExecutionMessage.Price">
+        <member name="P:StockSharp.Messages.ExecutionMessage.HasOrderInfo">
+            <summary>
+            Is the message contains order info.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ExecutionMessage.HasTradeInfo">
+            <summary>
+            Is the message contains trade info.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ExecutionMessage.OrderPrice">
             <summary>
             Order price.
             </summary>
         </member>
-        <member name="P:StockSharp.Messages.ExecutionMessage.Volume">
+        <member name="P:StockSharp.Messages.ExecutionMessage.OrderVolume">
             <summary>
             Number of contracts in an order.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ExecutionMessage.TradeVolume">
+            <summary>
+            Number of contracts in an trade.
             </summary>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.VisibleVolume">
@@ -1961,10 +1780,10 @@
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.ExpiryDate">
             <summary>
-            Order expiry time. The default is <see langword="null"/>, which mean (GTC).
+            Order expiry time. The default is <see langword="null" />, which mean (GTC).
             </summary>
             <remarks>
-            If the value is equal <see langword="null"/> or <see cref="F:System.DateTimeOffset.MaxValue"/>, order will be GTC (good til cancel). Or uses exact date.
+            If the value is equal <see langword="null" /> or <see cref="F:System.DateTimeOffset.MaxValue"/>, order will be GTC (good til cancel). Or uses exact date.
             </remarks>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.TimeInForce">
@@ -2019,28 +1838,55 @@
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.Commission">
             <summary>
-            Commission (broker, exchange etc.).  Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Order"/> or <see cref="F:StockSharp.Messages.ExecutionTypes.Trade"/>.
+            Commission (broker, exchange etc.).  Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Transaction"/>.
             </summary>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.Latency">
             <summary>
-            Network latency. Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Order"/>.
+            Network latency. Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Transaction"/>.
             </summary>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.Slippage">
             <summary>
-            Slippage in trade price. Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Trade"/>.
+            Slippage in trade price. Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Transaction"/>.
             </summary>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.UserOrderId">
             <summary>
-            User order id. Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Order"/>.
+            User order id. Uses when <see cref="P:StockSharp.Messages.ExecutionMessage.ExecutionType"/> set to <see cref="F:StockSharp.Messages.ExecutionTypes.Transaction"/>.
             </summary>
         </member>
         <member name="P:StockSharp.Messages.ExecutionMessage.Currency">
             <summary>
             Trading security currency.
             </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ExecutionMessage.PnL">
+            <summary>
+            The profit, realized by trade.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ExecutionMessage.Position">
+            <summary>
+            The position, generated by order or trade.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.ExecutionMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.ExecutionMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.ExecutionMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.ExecutionMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.ExecutionMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
         </member>
         <member name="T:StockSharp.Messages.Extensions">
             <summary>
@@ -2180,6 +2026,47 @@
             <param name="type">Message type.</param>
             <returns><see langword="true"/> if the specified message type is supported, otherwise, <see langword="false"/>.</returns>
         </member>
+        <member name="M:StockSharp.Messages.Extensions.IsCandleMessage(System.Type)">
+            <summary>
+            Determines whether the specified message type is derived from <see cref="T:StockSharp.Messages.CandleMessage"/>.
+            </summary>
+            <param name="messageType">The message type.</param>
+            <returns><see langword="true"/> if the specified message type is derived from <see cref="T:StockSharp.Messages.CandleMessage"/>, otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.Extensions.HasOrderInfo(StockSharp.Messages.ExecutionMessage)">
+            <summary>
+            Determines whether the specified message contains order information.
+            </summary>
+            <param name="message">The message.</param>
+            <returns><see langword="true"/> if the specified message contains order information, otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.Extensions.HasTradeInfo(StockSharp.Messages.ExecutionMessage)">
+            <summary>
+            Determines whether the specified message contains trade information.
+            </summary>
+            <param name="message">The message.</param>
+            <returns><see langword="true"/> if the specified message contains trade information, otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.Extensions.ToErrorMessage(System.String)">
+            <summary>
+            Convert error test message to <see cref="T:StockSharp.Messages.ErrorMessage"/> instance.
+            </summary>
+            <param name="description">Error test message.</param>
+            <returns><see cref="T:StockSharp.Messages.ErrorMessage"/> instance.</returns>
+        </member>
+        <member name="T:StockSharp.Messages.IExtendableEntity">
+            <summary>
+            The interface for all trading types that have the property <see cref="P:StockSharp.Messages.IExtendableEntity.ExtensionInfo"/> for keeping extended information.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IExtendableEntity.ExtensionInfo">
+            <summary>
+            Extended information.
+            </summary>
+            <remarks>
+            Required when extra information is stored in the program.
+            </remarks>
+        </member>
         <member name="T:StockSharp.Messages.ExtandableEntityHelper">
             <summary>
             Extension class for <see cref="P:StockSharp.Messages.IExtendableEntity.ExtensionInfo"/>.
@@ -2202,6 +2089,134 @@
             <param name="key">Key.</param>
             <returns>Value.</returns>
         </member>
+        <member name="T:StockSharp.Messages.IMessageAdapter">
+            <summary>
+            Base message adapter interface which convert messages <see cref="T:StockSharp.Messages.Message"/> to native commands and back.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.TransactionIdGenerator">
+            <summary>
+            Transaction id generator.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.SupportedMessages">
+            <summary>
+            Supported by adapter message types.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.IsValid">
+            <summary>
+            The parameters validity check.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.SecurityClassInfo">
+            <summary>
+            Description of the class of securities, depending on which will be marked in the <see cref="P:StockSharp.Messages.SecurityMessage.SecurityType"/> and <see cref="P:StockSharp.Messages.SecurityId.BoardCode"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.ReConnectionSettings">
+            <summary>
+            Connection tracking settings <see cref="T:StockSharp.Messages.IMessageAdapter"/> with a server.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.HeartbeatInterval">
+            <summary>
+            Lifetime ping interval.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.PortfolioLookupRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/> required to get portfolios and positions.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.SecurityLookupRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.OrderStatusRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.OrderStatusMessage"/> required to get orders and ow trades.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapter.AssociatedBoardCode">
+            <summary>
+            Board code for combined security.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.IMessageAdapter.CreateOrderCondition">
+            <summary>
+            Create condition for order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, that supports the adapter.
+            </summary>
+            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null" />.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.IMessageAdapter.IsConnectionAlive">
+            <summary>
+            Check the connection is alive. Uses only for connected states.
+            </summary>
+            <returns><see langword="true" />, is the connection still alive, <see langword="false" />, if the connection was rejected.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.IMessageAdapter.CreateOrderLogMarketDepthBuilder(StockSharp.Messages.SecurityId)">
+            <summary>
+            Create market depth builder.
+            </summary>
+            <param name="securityId">Security ID.</param>
+            <returns>Order log to market depth builder.</returns>
+        </member>
+        <member name="T:StockSharp.Messages.IMessageAdapterWrapper">
+            <summary>
+            Wrapping based adapter.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageAdapterWrapper.InnerAdapter">
+            <summary>
+            Underlying adapter.
+            </summary>
+        </member>
+        <member name="T:StockSharp.Messages.MessageAdapterWrapper">
+            <summary>
+            Base implementation of <see cref="T:StockSharp.Messages.IMessageAdapterWrapper"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.MessageAdapterWrapper.#ctor(StockSharp.Messages.IMessageAdapter)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.MessageAdapterWrapper"/>.
+            </summary>
+            <param name="innerAdapter">Underlying adapter.</param>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapterWrapper.InnerAdapter">
+            <summary>
+            Underlying adapter.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.MessageAdapterWrapper.OnInnerAdapterNewOutMessage(StockSharp.Messages.Message)">
+            <summary>
+            Process <see cref="P:StockSharp.Messages.MessageAdapterWrapper.InnerAdapter"/> output message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:StockSharp.Messages.MessageAdapterWrapper.RaiseNewOutMessage(StockSharp.Messages.Message)">
+            <summary>
+            To call the event <see cref="E:StockSharp.Messages.MessageAdapterWrapper.NewOutMessage"/>.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:StockSharp.Messages.MessageAdapterWrapper.SendInMessage(StockSharp.Messages.Message)">
+            <summary>
+            Send message.
+            </summary>
+            <param name="message">Message.</param>
+        </member>
+        <member name="E:StockSharp.Messages.MessageAdapterWrapper.NewOutMessage">
+            <summary>
+            New message event.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.MessageAdapterWrapper.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
         <member name="T:StockSharp.Messages.InMemoryMessageChannel">
             <summary>
             Message channel, based on the queue and operate within a single process.
@@ -2213,28 +2228,6 @@
             </summary>
             <param name="name">Channel name.</param>
             <param name="errorHandler">Error handler.</param>
-        </member>
-        <member name="M:StockSharp.Messages.InMemoryMessageChannel.Open">
-            <summary>
-            Open channel.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.InMemoryMessageChannel.Close">
-            <summary>
-            Close channel.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.InMemoryMessageChannel.SendInMessage(StockSharp.Messages.Message)">
-            <summary>
-            Send message.
-            </summary>
-            <param name="message">Message.</param>
-        </member>
-        <member name="M:StockSharp.Messages.InMemoryMessageChannel.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.InMemoryMessageChannel"/>.
-            </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.InMemoryMessageChannel.Name">
             <summary>
@@ -2264,14 +2257,41 @@
             Is channel opened.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.InMemoryMessageChannel.Open">
+            <summary>
+            Open channel.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.InMemoryMessageChannel.Close">
+            <summary>
+            Close channel.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.InMemoryMessageChannel.SendInMessage(StockSharp.Messages.Message)">
+            <summary>
+            Send message.
+            </summary>
+            <param name="message">Message.</param>
+        </member>
         <member name="E:StockSharp.Messages.InMemoryMessageChannel.NewOutMessage">
             <summary>
             New message event.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.InMemoryMessageChannel.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.InMemoryMessageChannel"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:StockSharp.Messages.IOrderLogMarketDepthBuilder">
             <summary>
             Base interface for order book builder.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IOrderLogMarketDepthBuilder.Depth">
+            <summary>
+            Market depth.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.IOrderLogMarketDepthBuilder.Update(StockSharp.Messages.ExecutionMessage)">
@@ -2280,11 +2300,6 @@
             </summary>
             <param name="item">Order log item.</param>
             <returns>Order book was changed.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.IOrderLogMarketDepthBuilder.Depth">
-            <summary>
-            Market depth.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.ReConnectionSettings">
             <summary>
@@ -2295,18 +2310,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.ReConnectionSettings"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.ReConnectionSettings.Load(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Load settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
-        </member>
-        <member name="M:StockSharp.Messages.ReConnectionSettings.Save(Ecng.Serialization.SettingsStorage)">
-            <summary>
-            Save settings.
-            </summary>
-            <param name="storage">Settings storage.</param>
         </member>
         <member name="P:StockSharp.Messages.ReConnectionSettings.Interval">
             <summary>
@@ -2333,6 +2336,18 @@
             Schedule, during which it is necessary to make the connection. For example, there is no need to track connection when trading on the exchange finished.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.ReConnectionSettings.Load(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Load settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
+        <member name="M:StockSharp.Messages.ReConnectionSettings.Save(Ecng.Serialization.SettingsStorage)">
+            <summary>
+            Save settings.
+            </summary>
+            <param name="storage">Settings storage.</param>
+        </member>
         <member name="T:StockSharp.Messages.ResetMessage">
             <summary>
             Reset state message.
@@ -2348,13 +2363,6 @@
             Features.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.TargetPlatformAttribute.#ctor(Ecng.Localization.Languages,Ecng.Interop.Platforms)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.TargetPlatformAttribute"/>.
-            </summary>
-            <param name="preferLanguage">The target audience.</param>
-            <param name="platform">Platform.</param>
-        </member>
         <member name="P:StockSharp.Messages.TargetPlatformAttribute.PreferLanguage">
             <summary>
             The target audience.
@@ -2363,6 +2371,44 @@
         <member name="P:StockSharp.Messages.TargetPlatformAttribute.Platform">
             <summary>
             Platform.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.TargetPlatformAttribute.#ctor(Ecng.Localization.Languages,Ecng.Interop.Platforms)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.TargetPlatformAttribute"/>.
+            </summary>
+            <param name="preferLanguage">The target audience.</param>
+            <param name="platform">Platform.</param>
+        </member>
+        <member name="T:StockSharp.Messages.IMessageChannel">
+            <summary>
+            Message channel base interface.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.IMessageChannel.IsOpened">
+            <summary>
+            Is channel opened.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.IMessageChannel.Open">
+            <summary>
+            Open channel.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.IMessageChannel.Close">
+            <summary>
+            Close channel.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.IMessageChannel.SendInMessage(StockSharp.Messages.Message)">
+            <summary>
+            Send message.
+            </summary>
+            <param name="message">Message.</param>
+        </member>
+        <member name="E:StockSharp.Messages.IMessageChannel.NewOutMessage">
+            <summary>
+            New message event.
             </summary>
         </member>
         <member name="T:StockSharp.Messages.PassThroughMessageChannel">
@@ -2387,6 +2433,16 @@
             </summary>
             <typeparam name="TField">Changes type.</typeparam>
         </member>
+        <member name="P:StockSharp.Messages.BaseChangeMessage`1.ServerTime">
+            <summary>
+            Change server time.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.BaseChangeMessage`1.Changes">
+            <summary>
+            Changes.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.BaseChangeMessage`1.#ctor(StockSharp.Messages.MessageTypes)">
             <summary>
             Initialize <see cref="T:StockSharp.Messages.BaseChangeMessage`1"/>.
@@ -2399,16 +2455,6 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.BaseChangeMessage`1.ServerTime">
-            <summary>
-            Change server time.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.BaseChangeMessage`1.Changes">
-            <summary>
-            Changes.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.ErrorMessage">
             <summary>
             Error message.
@@ -2417,6 +2463,11 @@
         <member name="M:StockSharp.Messages.ErrorMessage.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.ErrorMessage"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.ErrorMessage.Error">
+            <summary>
+            Error info.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.ErrorMessage.ToString">
@@ -2431,11 +2482,6 @@
             </summary>
             <returns>Copy.</returns>
         </member>
-        <member name="P:StockSharp.Messages.ErrorMessage.Error">
-            <summary>
-            Error info.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.MessageAdapter">
             <summary>
             The base adapter converts messages <see cref="T:StockSharp.Messages.Message"/> to the command of the trading system and back.
@@ -2447,11 +2493,89 @@
             </summary>
             <param name="transactionIdGenerator">Transaction id generator.</param>
         </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.SupportedMessages">
+            <summary>
+            Supported by adapter message types.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.IsValid">
+            <summary>
+            The parameters validity check.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.SecurityClassInfo">
+            <summary>
+            Description of the class of securities, depending on which will be marked in the <see cref="P:StockSharp.Messages.SecurityMessage.SecurityType"/> and <see cref="P:StockSharp.Messages.SecurityId.BoardCode"/>.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.HeartbeatInterval">
+            <summary>
+            Server check interval for track the connection alive. The value is <see cref="F:System.TimeSpan.Zero"/> turned off tracking.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.SecurityLookupRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.PortfolioLookupRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/> required to get portfolios and positions.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.OrderStatusRequired">
+            <summary>
+            <see cref="T:StockSharp.Messages.OrderStatusMessage"/> required to get orders and ow trades.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.IsSupportNativeSecurityLookup">
+            <summary>
+            Gets a value indicating whether the connector supports security lookup.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.IsSupportNativePortfolioLookup">
+            <summary>
+            Gets a value indicating whether the connector supports position lookup.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.Platform">
+            <summary>
+            Bit process, which can run the adapter. By default is <see cref="F:Ecng.Interop.Platforms.AnyCPU"/>.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.MessageAdapter.CreateOrderCondition">
             <summary>
             Create condition for order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, that supports the adapter.
             </summary>
-            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null"/>.</returns>
+            <returns>Order condition. If the connection does not support the order type <see cref="F:StockSharp.Messages.OrderTypes.Conditional"/>, it will be returned <see langword="null" />.</returns>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.ReConnectionSettings">
+            <summary>
+            Connection tracking settings <see cref="T:StockSharp.Messages.IMessageAdapter"/> with a server.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.TransactionIdGenerator">
+            <summary>
+            Transaction id generator.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.LookupTimeOut">
+            <summary>
+            Securities and portfolios lookup timeout.
+            </summary>
+            <remarks>
+            By defaut is 10 seconds.
+            </remarks>
+        </member>
+        <member name="P:StockSharp.Messages.MessageAdapter.AssociatedBoardCode">
+            <summary>
+            Associated board code. The default is ALL.
+            </summary>
+        </member>
+        <member name="E:StockSharp.Messages.MessageAdapter.NewOutMessage">
+            <summary>
+            Outgoing message event.
+            </summary>
         </member>
         <member name="M:StockSharp.Messages.MessageAdapter.SendInMessage(StockSharp.Messages.Message)">
             <summary>
@@ -2531,84 +2655,6 @@
             Create a copy of <see cref="T:StockSharp.Messages.MessageAdapter"/>.
             </summary>
             <returns>Copy.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.SupportedMessages">
-            <summary>
-            Supported by adapter message types.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.IsValid">
-            <summary>
-            The parameters validity check.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.SecurityClassInfo">
-            <summary>
-            Description of the class of securities, depending on which will be marked in the <see cref="P:StockSharp.Messages.SecurityMessage.SecurityType"/> and <see cref="P:StockSharp.Messages.SecurityId.BoardCode"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.HeartbeatInterval">
-            <summary>
-            Server check interval for track the connection alive. The value is <see cref="F:System.TimeSpan.Zero"/> turned off tracking.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.SecurityLookupRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.SecurityLookupMessage"/> required to get securities.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.PortfolioLookupRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/> required to get portfolios and positions.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.OrderStatusRequired">
-            <summary>
-            <see cref="T:StockSharp.Messages.OrderStatusMessage"/> required to get orders and ow trades.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.IsSupportNativeSecurityLookup">
-            <summary>
-            Gets a value indicating whether the connector supports security lookup.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.IsSupportNativePortfolioLookup">
-            <summary>
-            Gets a value indicating whether the connector supports position lookup.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.Platform">
-            <summary>
-            Bit process, which can run the adapter. By default is <see cref="F:Ecng.Interop.Platforms.AnyCPU"/>.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.ReConnectionSettings">
-            <summary>
-            Connection tracking settings <see cref="T:StockSharp.Messages.IMessageAdapter"/> with a server.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.TransactionIdGenerator">
-            <summary>
-            Transaction id generator.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.LookupTimeOut">
-            <summary>
-            Securities and portfolios lookup timeout.
-            </summary>
-            <remarks>
-            By defaut is 10 seconds.
-            </remarks>
-        </member>
-        <member name="P:StockSharp.Messages.MessageAdapter.AssociatedBoardCode">
-            <summary>
-            Associated board code. The default is ALL.
-            </summary>
-        </member>
-        <member name="E:StockSharp.Messages.MessageAdapter.NewOutMessage">
-            <summary>
-            Outgoing message event.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.PassThroughMessageAdapter">
             <summary>
@@ -2817,27 +2863,61 @@
             Reset state.
             </summary>
         </member>
-        <member name="T:StockSharp.Messages.NewsMessage">
+        <member name="T:StockSharp.Messages.Message">
             <summary>
-            The message contains information about the news.
+            A message containing market data or command.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.NewsMessage.#ctor">
+        <member name="P:StockSharp.Messages.Message.LocalTime">
             <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.NewsMessage"/>.
+            Local time label when a message was received/created.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.NewsMessage.ToString">
+        <member name="P:StockSharp.Messages.Message.Type">
+            <summary>
+            Message type.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.Message.ExtensionInfo">
+            <summary>
+            Extended information.
+            </summary>
+            <remarks>
+            Necessary to keep additional information associated with the message.
+            </remarks>
+        </member>
+        <member name="P:StockSharp.Messages.Message.IsBack">
+            <summary>
+            Is loopback message.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.Message.Adapter">
+            <summary>
+            Source adapter. Can be <see langword="null" />.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.Message.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.Message"/>.
+            </summary>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:StockSharp.Messages.Message.ToString">
             <summary>
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:StockSharp.Messages.NewsMessage.Clone">
+        <member name="M:StockSharp.Messages.Message.Clone">
             <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.NewsMessage"/>.
+            Create a copy of <see cref="T:StockSharp.Messages.Message"/>.
             </summary>
             <returns>Copy.</returns>
+        </member>
+        <member name="T:StockSharp.Messages.NewsMessage">
+            <summary>
+            The message contains information about the news.
+            </summary>
         </member>
         <member name="P:StockSharp.Messages.NewsMessage.Id">
             <summary>
@@ -2879,6 +2959,23 @@
             News link in the internet.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.NewsMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.NewsMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.NewsMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.NewsMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.NewsMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:StockSharp.Messages.OptionTypes">
             <summary>
             Option types.
@@ -2898,178 +2995,6 @@
             <summary>
             A message containing the data for the cancellation of the order.
             </summary>
-        </member>
-        <member name="T:StockSharp.Messages.OrderMessage">
-            <summary>
-            A message containing info about the order.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.SecurityMessage">
-            <summary>
-            A message containing info about the security.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.SecurityMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityMessage.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.SecurityMessage"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.SecurityMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityMessage.CopyTo(StockSharp.Messages.SecurityMessage)">
-            <summary>
-            Copy the message into the <paramref name="destination" />.
-            </summary>
-            <param name="destination">The object, which copied information.</param>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.SecurityId">
-            <summary>
-            Security ID.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.Name">
-            <summary>
-            Security name.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.ShortName">
-            <summary>
-            Short security name.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.VolumeStep">
-            <summary>
-            Minimum volume step.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.Multiplier">
-            <summary>
-            Lot multiplier.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.Decimals">
-            <summary>
-            Number of digits in price after coma.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.PriceStep">
-            <summary>
-            Minimum price step.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.SecurityType">
-            <summary>
-            Security type.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.ExpiryDate">
-            <summary>
-            Security expiration date (for derivatives - expiration, for bonds — redemption).
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.SettlementDate">
-            <summary>
-            Settlement date for security (for derivatives and bonds).
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.UnderlyingSecurityCode">
-            <summary>
-            Underlying asset code, on which the current security is based.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.Strike">
-            <summary>
-            Option strike price.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.OptionType">
-            <summary>
-            Option type.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.BinaryOptionType">
-            <summary>
-            Type of binary option.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.Currency">
-            <summary>
-            Trading security currency.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.OriginalTransactionId">
-            <summary>
-            ID of the original message <see cref="P:StockSharp.Messages.SecurityLookupMessage.TransactionId"/> for which this message is a response.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityMessage.Class">
-            <summary>
-            Security class.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.OrderMessage.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.OrderMessage"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="P:StockSharp.Messages.OrderMessage.PortfolioName">
-            <summary>
-            Portfolio name, for which an order must be placed/cancelled.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderMessage.OrderType">
-            <summary>
-            Order type.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderMessage.UserOrderId">
-            <summary>
-            User's order ID.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderMessage.BrokerCode">
-            <summary>
-            Broker firm code.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderMessage.ClientCode">
-            <summary>
-            Client code assigned by the broker.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.OrderCancelMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.OrderCancelMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.OrderCancelMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.OrderCancelMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.OrderCancelMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="P:StockSharp.Messages.OrderCancelMessage.OrderId">
             <summary>
@@ -3101,6 +3026,29 @@
             Order side.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.OrderCancelMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.OrderCancelMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.OrderCancelMessage.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.OrderCancelMessage"/>.
+            </summary>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:StockSharp.Messages.OrderCancelMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.OrderCancelMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.OrderCancelMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
         <member name="T:StockSharp.Messages.OrderCondition">
             <summary>
             Base order condition (for example, for stop order algo orders).
@@ -3111,20 +3059,35 @@
             Initialize <see cref="T:StockSharp.Messages.OrderCondition"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.OrderCondition.Parameters">
+            <summary>
+            Condition parameters.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.OrderCondition.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.OrderCondition"/>.
             </summary>
             <returns>Copy.</returns>
         </member>
-        <member name="P:StockSharp.Messages.OrderCondition.Parameters">
-            <summary>
-            Condition parameters.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.OrderGroupCancelMessage">
             <summary>
             The message containing the order group cancel filter.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderGroupCancelMessage.TransactionId">
+            <summary>
+            Order cancellation transaction id.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderGroupCancelMessage.IsStop">
+            <summary>
+            <see langword="true" />, if cancel only a stop orders, <see langword="false" /> - if regular orders, <see langword="null" /> - both.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderGroupCancelMessage.Side">
+            <summary>
+            Order side. If the value is <see langword="null" />, the direction does not use.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.OrderGroupCancelMessage.#ctor">
@@ -3144,24 +3107,55 @@
             </summary>
             <returns>Copy.</returns>
         </member>
-        <member name="P:StockSharp.Messages.OrderGroupCancelMessage.TransactionId">
+        <member name="T:StockSharp.Messages.OrderMessage">
             <summary>
-            Order cancellation transaction id.
+            A message containing info about the order.
             </summary>
         </member>
-        <member name="P:StockSharp.Messages.OrderGroupCancelMessage.IsStop">
+        <member name="P:StockSharp.Messages.OrderMessage.PortfolioName">
             <summary>
-            <see langword="true" />, if cancel only a stop orders, <see langword="false" /> - if regular orders, <see langword="null" /> - both.
+            Portfolio name, for which an order must be placed/cancelled.
             </summary>
         </member>
-        <member name="P:StockSharp.Messages.OrderGroupCancelMessage.Side">
+        <member name="P:StockSharp.Messages.OrderMessage.OrderType">
             <summary>
-            Order side. If the value is <see langword="null" />, the direction does not use.
+            Order type.
             </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderMessage.UserOrderId">
+            <summary>
+            User's order ID.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderMessage.BrokerCode">
+            <summary>
+            Broker firm code.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderMessage.ClientCode">
+            <summary>
+            Client code assigned by the broker.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.OrderMessage.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.OrderMessage"/>.
+            </summary>
+            <param name="type">Message type.</param>
         </member>
         <member name="T:StockSharp.Messages.OrderPairReplaceMessage">
             <summary>
             The message containing the information for modify order's pair.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderPairReplaceMessage.Message1">
+            <summary>
+            The message containing the information for modify the first order.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderPairReplaceMessage.Message2">
+            <summary>
+            The message containing the information for modify the second order.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.OrderPairReplaceMessage.#ctor">
@@ -3181,43 +3175,10 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.OrderPairReplaceMessage.Message1">
-            <summary>
-            The message containing the information for modify the first order.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderPairReplaceMessage.Message2">
-            <summary>
-            The message containing the information for modify the second order.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.OrderRegisterMessage">
             <summary>
             The message containing the information for the order registration.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.OrderRegisterMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.OrderRegisterMessage.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="M:StockSharp.Messages.OrderRegisterMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.OrderRegisterMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="P:StockSharp.Messages.OrderRegisterMessage.TransactionId">
             <summary>
@@ -3251,10 +3212,10 @@
         </member>
         <member name="P:StockSharp.Messages.OrderRegisterMessage.TillDate">
             <summary>
-            Order expiry time. The default is <see langword="null"/>, which mean (GTC).
+            Order expiry time. The default is <see langword="null" />, which mean (GTC).
             </summary>
             <remarks>
-            If the value is equal <see langword="null"/> or <see cref="F:System.DateTimeOffset.MaxValue"/>, order will be GTC (good til cancel). Or uses exact date.
+            If the value is equal <see langword="null" /> or <see cref="F:System.DateTimeOffset.MaxValue"/>, order will be GTC (good til cancel). Or uses exact date.
             </remarks>
         </member>
         <member name="P:StockSharp.Messages.OrderRegisterMessage.Condition">
@@ -3277,9 +3238,47 @@
             Information for Negotiate Deals Mode orders.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.OrderRegisterMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.OrderRegisterMessage.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>.
+            </summary>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:StockSharp.Messages.OrderRegisterMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.OrderRegisterMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.OrderRegisterMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
         <member name="T:StockSharp.Messages.OrderReplaceMessage">
             <summary>
             The message containing the information for modify order.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderReplaceMessage.OldOrderId">
+            <summary>
+            Modified order id.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderReplaceMessage.OldOrderStringId">
+            <summary>
+            Modified order id (as a string if the electronic board does not use a numeric representation of the identifiers).
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.OrderReplaceMessage.OldTransactionId">
+            <summary>
+            Modified order transaction id.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.OrderReplaceMessage.#ctor">
@@ -3298,21 +3297,6 @@
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.OrderReplaceMessage.OldOrderId">
-            <summary>
-            Modified order id.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderReplaceMessage.OldOrderStringId">
-            <summary>
-            Modified order id (as a string if the electronic board does not use a numeric representation of the identifiers).
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderReplaceMessage.OldTransactionId">
-            <summary>
-            Modified order transaction id.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.OrderStates">
             <summary>
@@ -3454,26 +3438,6 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.OrderStatusMessage.TransactionId">
-            <summary>
-            Transaction ID.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderStatusMessage.OrderId">
-            <summary>
-            The requested order id.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderStatusMessage.OrderStringId">
-            <summary>
-            The identifier of the requested order (as a string if the electronic board does not use a numeric representation of the identifiers).
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.OrderStatusMessage.OrderTransactionId">
-            <summary>
-            Transaction ID of the requested order.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.OrderTypes">
             <summary>
             Order types.
@@ -3519,6 +3483,16 @@
             Messages containing changes to the position.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.PortfolioChangeMessage.PortfolioName">
+            <summary>
+            Portfolio name.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.PortfolioChangeMessage.BoardCode">
+            <summary>
+            Electronic board code.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.PortfolioChangeMessage.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioChangeMessage"/>.
@@ -3536,54 +3510,79 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.PortfolioChangeMessage.PortfolioName">
-            <summary>
-            Portfolio name.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.PortfolioChangeMessage.BoardCode">
-            <summary>
-            Electronic board code.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.PortfolioLookupMessage">
             <summary>
             Message security lookup for specified criteria.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.PortfolioLookupMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.PortfolioLookupMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.PortfolioLookupMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:StockSharp.Messages.PortfolioLookupResultMessage">
+            <summary>
+            Portfolio lookup result message.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.PortfolioLookupResultMessage.OriginalTransactionId">
+            <summary>
+            ID of the original message <see cref="P:StockSharp.Messages.PortfolioMessage.TransactionId"/> for which this message is a response.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.PortfolioLookupResultMessage.Error">
+            <summary>
+            Portfolio lookup error info.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.PortfolioLookupResultMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioLookupResultMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.PortfolioLookupResultMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.PortfolioLookupResultMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.PortfolioLookupResultMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:StockSharp.Messages.PortfolioStates">
+            <summary>
+            Portfolio states.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Messages.PortfolioStates.Active">
+            <summary>
+            Active.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Messages.PortfolioStates.Blocked">
+            <summary>
+            Blocked.
             </summary>
         </member>
         <member name="T:StockSharp.Messages.PortfolioMessage">
             <summary>
             The message contains information about portfolio.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioMessage.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.PortfolioMessage"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.PortfolioMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioMessage.CopyTo(StockSharp.Messages.PortfolioMessage)">
-            <summary>
-            Copy the message into the <paramref name="destination" />.
-            </summary>
-            <param name="destination">The object, which copied information.</param>
         </member>
         <member name="P:StockSharp.Messages.PortfolioMessage.PortfolioName">
             <summary>
@@ -3620,69 +3619,34 @@
             Is the message subscription portfolio changes.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.PortfolioLookupMessage.#ctor">
+        <member name="M:StockSharp.Messages.PortfolioMessage.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/>.
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioMessage"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.PortfolioLookupMessage.Clone">
+        <member name="M:StockSharp.Messages.PortfolioMessage.#ctor(StockSharp.Messages.MessageTypes)">
             <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.PortfolioLookupMessage"/>.
+            Initialize <see cref="T:StockSharp.Messages.PortfolioMessage"/>.
             </summary>
-            <returns>Copy.</returns>
+            <param name="type">Message type.</param>
         </member>
-        <member name="M:StockSharp.Messages.PortfolioLookupMessage.ToString">
+        <member name="M:StockSharp.Messages.PortfolioMessage.ToString">
             <summary>
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="T:StockSharp.Messages.PortfolioLookupResultMessage">
+        <member name="M:StockSharp.Messages.PortfolioMessage.Clone">
             <summary>
-            Portfolio lookup result message.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioLookupResultMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.PortfolioLookupResultMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.PortfolioLookupResultMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.PortfolioLookupResultMessage"/>.
+            Create a copy of <see cref="T:StockSharp.Messages.PortfolioMessage"/>.
             </summary>
             <returns>Copy.</returns>
         </member>
-        <member name="M:StockSharp.Messages.PortfolioLookupResultMessage.ToString">
+        <member name="M:StockSharp.Messages.PortfolioMessage.CopyTo(StockSharp.Messages.PortfolioMessage)">
             <summary>
-            Returns a string that represents the current object.
+            Copy the message into the <paramref name="destination" />.
             </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.PortfolioLookupResultMessage.OriginalTransactionId">
-            <summary>
-            ID of the original message <see cref="P:StockSharp.Messages.PortfolioMessage.TransactionId"/> for which this message is a response.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.PortfolioLookupResultMessage.Error">
-            <summary>
-            Portfolio lookup error info.
-            </summary>
-        </member>
-        <member name="T:StockSharp.Messages.PortfolioStates">
-            <summary>
-            Portfolio states.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Messages.PortfolioStates.Active">
-            <summary>
-            Active.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Messages.PortfolioStates.Blocked">
-            <summary>
-            Blocked.
-            </summary>
+            <param name="destination">The object, which copied information.</param>
         </member>
         <member name="T:StockSharp.Messages.PositionChangeTypes">
             <summary>
@@ -3769,23 +3733,6 @@
             The message contains information about the position changes.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.PositionChangeMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.PositionChangeMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.PositionChangeMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.PositionChangeMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.PositionChangeMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
         <member name="P:StockSharp.Messages.PositionChangeMessage.SecurityId">
             <summary>
             Security ID.
@@ -3811,27 +3758,27 @@
             Text position description.
             </summary>
         </member>
-        <member name="T:StockSharp.Messages.PositionMessage">
+        <member name="M:StockSharp.Messages.PositionChangeMessage.#ctor">
             <summary>
-            The message contains information about the position.
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.PositionChangeMessage"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.PositionMessage.#ctor">
+        <member name="M:StockSharp.Messages.PositionChangeMessage.Clone">
             <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.PositionMessage"/>.
+            Create a copy of <see cref="T:StockSharp.Messages.PositionChangeMessage"/>.
             </summary>
+            <returns>Copy.</returns>
         </member>
-        <member name="M:StockSharp.Messages.PositionMessage.ToString">
+        <member name="M:StockSharp.Messages.PositionChangeMessage.ToString">
             <summary>
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:StockSharp.Messages.PositionMessage.Clone">
+        <member name="T:StockSharp.Messages.PositionMessage">
             <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.PositionMessage"/>.
+            The message contains information about the position.
             </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.PositionMessage.PortfolioName">
             <summary>
@@ -3863,6 +3810,23 @@
             ID of the original message <see cref="P:StockSharp.Messages.PortfolioMessage.TransactionId"/> for which this message is a response.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.PositionMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.PositionMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.PositionMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.PositionMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.PositionMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:StockSharp.Messages.QuoteChange">
             <summary>
             Market depth quote representing bid or ask.
@@ -3880,31 +3844,6 @@
             <param name="side">Direction (buy or sell).</param>
             <param name="price">Quote price.</param>
             <param name="volume">Quote volume.</param>
-        </member>
-        <member name="M:StockSharp.Messages.QuoteChange.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.QuoteChange"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.QuoteChange.OnEquals(StockSharp.Messages.QuoteChange)">
-            <summary>
-            Compare <see cref="T:StockSharp.Messages.QuoteChange"/> on the equivalence.
-            </summary>
-            <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.QuoteChange.GetHashCode">
-            <summary>
-            Get the hash code of the object <see cref="T:StockSharp.Messages.QuoteChange"/>.
-            </summary>
-            <returns>A hash code.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.QuoteChange.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="P:StockSharp.Messages.QuoteChange.Price">
             <summary>
@@ -3934,27 +3873,35 @@
             Uses in case of keep additional information associated with the quotation. For example, the number of contracts in its own order book, the amount of the best buying and selling.
             </remarks>
         </member>
-        <member name="T:StockSharp.Messages.QuoteChangeMessage">
+        <member name="M:StockSharp.Messages.QuoteChange.Clone">
             <summary>
-            Messages containing quotes.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.QuoteChangeMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.QuoteChangeMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.QuoteChangeMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.QuoteChangeMessage"/>.
+            Create a copy of <see cref="T:StockSharp.Messages.QuoteChange"/>.
             </summary>
             <returns>Copy.</returns>
         </member>
-        <member name="M:StockSharp.Messages.QuoteChangeMessage.ToString">
+        <member name="M:StockSharp.Messages.QuoteChange.OnEquals(StockSharp.Messages.QuoteChange)">
+            <summary>
+            Compare <see cref="T:StockSharp.Messages.QuoteChange"/> on the equivalence.
+            </summary>
+            <param name="other">Another value with which to compare.</param>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.QuoteChange.GetHashCode">
+            <summary>
+            Get the hash code of the object <see cref="T:StockSharp.Messages.QuoteChange"/>.
+            </summary>
+            <returns>A hash code.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.QuoteChange.ToString">
             <summary>
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:StockSharp.Messages.QuoteChangeMessage">
+            <summary>
+            Messages containing quotes.
+            </summary>
         </member>
         <member name="P:StockSharp.Messages.QuoteChangeMessage.SecurityId">
             <summary>
@@ -3985,6 +3932,23 @@
             <summary>
             Trading security currency.
             </summary>
+        </member>
+        <member name="M:StockSharp.Messages.QuoteChangeMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.QuoteChangeMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.QuoteChangeMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.QuoteChangeMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.QuoteChangeMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="T:StockSharp.Messages.Level1Fields">
             <summary>
@@ -4396,6 +4360,11 @@
             The message containing the level1 market data.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.Level1ChangeMessage.SecurityId">
+            <summary>
+            Security ID.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.Level1ChangeMessage.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.Level1ChangeMessage"/>.
@@ -4412,11 +4381,6 @@
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.Level1ChangeMessage.SecurityId">
-            <summary>
-            Security ID.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.MarketDataTypes">
             <summary>
@@ -4483,34 +4447,6 @@
             Market-data message (uses as a subscribe/unsubscribe in outgoing case, confirmation event in incoming case).
             </summary>
         </member>
-        <member name="F:StockSharp.Messages.MarketDataMessage.DefaultMaxDepth">
-            <summary>
-            The default depth of order book.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.MarketDataMessage.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StockSharp.Messages.MarketDataMessage"/>.
-            </summary>
-        </member>
-        <member name="M:StockSharp.Messages.MarketDataMessage.#ctor(StockSharp.Messages.MessageTypes)">
-            <summary>
-            Initialize <see cref="T:StockSharp.Messages.MarketDataMessage"/>.
-            </summary>
-            <param name="type">Message type.</param>
-        </member>
-        <member name="M:StockSharp.Messages.MarketDataMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.MarketDataMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.MarketDataMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
         <member name="P:StockSharp.Messages.MarketDataMessage.From">
             <summary>
             Start date, from which data needs to be retrieved.
@@ -4566,6 +4502,34 @@
             News id. Uses in case of request news text.
             </summary>
         </member>
+        <member name="F:StockSharp.Messages.MarketDataMessage.DefaultMaxDepth">
+            <summary>
+            The default depth of order book.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.MarketDataMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.MarketDataMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.MarketDataMessage.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.MarketDataMessage"/>.
+            </summary>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:StockSharp.Messages.MarketDataMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.MarketDataMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.MarketDataMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
         <member name="T:StockSharp.Messages.RepoOrderInfo">
             <summary>
             REPO info.
@@ -4575,12 +4539,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.RepoOrderInfo"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.RepoOrderInfo.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.RepoOrderInfo"/>.
-            </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.RepoOrderInfo.Partner">
             <summary>
@@ -4647,6 +4605,12 @@
             REPO-M volume.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.RepoOrderInfo.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.RepoOrderInfo"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:StockSharp.Messages.RpsOrderInfo">
             <summary>
             RPS order info.
@@ -4656,12 +4620,6 @@
             <summary>
             Initializes a new instance of the <see cref="T:StockSharp.Messages.RpsOrderInfo"/>.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.RpsOrderInfo.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.RpsOrderInfo"/>.
-            </summary>
-            <returns>Copy.</returns>
         </member>
         <member name="P:StockSharp.Messages.RpsOrderInfo.Partner">
             <summary>
@@ -4693,52 +4651,16 @@
             Currency code in ISO 4217 standard (OTC trade). Параметр внебиржевой сделки.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.RpsOrderInfo.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.RpsOrderInfo"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
         <member name="T:StockSharp.Messages.SecurityId">
             <summary>
             Security ID.
             </summary>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityId.GetHashCode">
-            <summary>
-            Get the hash code of the object.
-            </summary>
-            <returns>A hash code.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityId.Equals(System.Object)">
-            <summary>
-            Compare <see cref="T:StockSharp.Messages.Currency"/> on the equivalence.
-            </summary>
-            <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityId.Equals(StockSharp.Messages.SecurityId)">
-            <summary>
-            Compare <see cref="T:StockSharp.Messages.Currency"/> on the equivalence.
-            </summary>
-            <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityId.op_Inequality(StockSharp.Messages.SecurityId,StockSharp.Messages.SecurityId)">
-            <summary>
-            Compare the inequality of two identifiers.
-            </summary>
-            <param name="left">Left operand.</param>
-            <param name="right">Right operand.</param>
-            <returns><see langword="true" />, if identifiers are equal, otherwise, <see langword="false" />.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityId.op_Equality(StockSharp.Messages.SecurityId,StockSharp.Messages.SecurityId)">
-            <summary>
-            Compare two identifiers for equality.
-            </summary>
-            <param name="left">Left operand.</param>
-            <param name="right">Right operand.</param>
-            <returns><see langword="true" />, if the specified identifiers are equal, otherwise, <see langword="false" />.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.SecurityId.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="P:StockSharp.Messages.SecurityId.SecurityCode">
             <summary>
@@ -4800,9 +4722,61 @@
             ID in Plaza format.
             </summary>
         </member>
+        <member name="M:StockSharp.Messages.SecurityId.GetHashCode">
+            <summary>
+            Get the hash code of the object.
+            </summary>
+            <returns>A hash code.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityId.Equals(System.Object)">
+            <summary>
+            Compare <see cref="T:StockSharp.Messages.Currency"/> on the equivalence.
+            </summary>
+            <param name="other">Another value with which to compare.</param>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityId.Equals(StockSharp.Messages.SecurityId)">
+            <summary>
+            Compare <see cref="T:StockSharp.Messages.Currency"/> on the equivalence.
+            </summary>
+            <param name="other">Another value with which to compare.</param>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityId.op_Inequality(StockSharp.Messages.SecurityId,StockSharp.Messages.SecurityId)">
+            <summary>
+            Compare the inequality of two identifiers.
+            </summary>
+            <param name="left">Left operand.</param>
+            <param name="right">Right operand.</param>
+            <returns><see langword="true" />, if identifiers are equal, otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityId.op_Equality(StockSharp.Messages.SecurityId,StockSharp.Messages.SecurityId)">
+            <summary>
+            Compare two identifiers for equality.
+            </summary>
+            <param name="left">Left operand.</param>
+            <param name="right">Right operand.</param>
+            <returns><see langword="true" />, if the specified identifiers are equal, otherwise, <see langword="false" />.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityId.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
         <member name="T:StockSharp.Messages.SecurityLookupMessage">
             <summary>
             Message security lookup for specified criteria.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityLookupMessage.TransactionId">
+            <summary>
+            Transaction ID.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityLookupMessage.SecurityTypes">
+            <summary>
+            Securities types.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.SecurityLookupMessage.#ctor">
@@ -4829,19 +4803,19 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.SecurityLookupMessage.TransactionId">
-            <summary>
-            Transaction ID.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SecurityLookupMessage.SecurityTypes">
-            <summary>
-            Securities types.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.SecurityLookupResultMessage">
             <summary>
             Security lookup result message.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityLookupResultMessage.OriginalTransactionId">
+            <summary>
+            ID of the original message <see cref="P:StockSharp.Messages.SecurityLookupMessage.TransactionId"/> for which this message is a response.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityLookupResultMessage.Error">
+            <summary>
+            Error info.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.SecurityLookupResultMessage.#ctor">
@@ -4861,15 +4835,124 @@
             </summary>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="P:StockSharp.Messages.SecurityLookupResultMessage.OriginalTransactionId">
+        <member name="T:StockSharp.Messages.SecurityMessage">
+            <summary>
+            A message containing info about the security.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.SecurityId">
+            <summary>
+            Security ID.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.Name">
+            <summary>
+            Security name.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.ShortName">
+            <summary>
+            Short security name.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.VolumeStep">
+            <summary>
+            Minimum volume step.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.Multiplier">
+            <summary>
+            Lot multiplier.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.Decimals">
+            <summary>
+            Number of digits in price after coma.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.PriceStep">
+            <summary>
+            Minimum price step.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.SecurityType">
+            <summary>
+            Security type.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.ExpiryDate">
+            <summary>
+            Security expiration date (for derivatives - expiration, for bonds — redemption).
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.SettlementDate">
+            <summary>
+            Settlement date for security (for derivatives and bonds).
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.UnderlyingSecurityCode">
+            <summary>
+            Underlying asset code, on which the current security is based.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.Strike">
+            <summary>
+            Option strike price.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.OptionType">
+            <summary>
+            Option type.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.BinaryOptionType">
+            <summary>
+            Type of binary option.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.Currency">
+            <summary>
+            Trading security currency.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SecurityMessage.OriginalTransactionId">
             <summary>
             ID of the original message <see cref="P:StockSharp.Messages.SecurityLookupMessage.TransactionId"/> for which this message is a response.
             </summary>
         </member>
-        <member name="P:StockSharp.Messages.SecurityLookupResultMessage.Error">
+        <member name="P:StockSharp.Messages.SecurityMessage.Class">
             <summary>
-            Error info.
+            Security class.
             </summary>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Messages.SecurityMessage"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityMessage.#ctor(StockSharp.Messages.MessageTypes)">
+            <summary>
+            Initialize <see cref="T:StockSharp.Messages.SecurityMessage"/>.
+            </summary>
+            <param name="type">Message type.</param>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.SecurityMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityMessage.CopyTo(StockSharp.Messages.SecurityMessage)">
+            <summary>
+            Copy the message into the <paramref name="destination" />.
+            </summary>
+            <param name="destination">The object, which copied information.</param>
+        </member>
+        <member name="M:StockSharp.Messages.SecurityMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
         </member>
         <member name="T:StockSharp.Messages.SecurityStates">
             <summary>
@@ -5011,6 +5094,16 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.SessionMessage"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.SessionMessage.BoardCode">
+            <summary>
+            Board code.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.SessionMessage.State">
+            <summary>
+            Session state.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.SessionMessage.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.SessionMessage"/>.
@@ -5022,16 +5115,6 @@
             Returns a string that represents the current object.
             </summary>
             <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="P:StockSharp.Messages.SessionMessage.BoardCode">
-            <summary>
-            Board code.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.SessionMessage.State">
-            <summary>
-            Session state.
-            </summary>
         </member>
         <member name="T:StockSharp.Messages.Sides">
             <summary>
@@ -5078,18 +5161,6 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.TimeMessage"/>.
             </summary>
         </member>
-        <member name="M:StockSharp.Messages.TimeMessage.ToString">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:StockSharp.Messages.TimeMessage.Clone">
-            <summary>
-            Create a copy of <see cref="T:StockSharp.Messages.TimeMessage"/>.
-            </summary>
-            <returns>Copy.</returns>
-        </member>
         <member name="P:StockSharp.Messages.TimeMessage.TransactionId">
             <summary>
             Request identifier.
@@ -5104,6 +5175,18 @@
             <summary>
             Server time.
             </summary>
+        </member>
+        <member name="M:StockSharp.Messages.TimeMessage.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:StockSharp.Messages.TimeMessage.Clone">
+            <summary>
+            Create a copy of <see cref="T:StockSharp.Messages.TimeMessage"/>.
+            </summary>
+            <returns>Copy.</returns>
         </member>
         <member name="T:StockSharp.Messages.TPlusLimits">
             <summary>
@@ -5190,6 +5273,21 @@
             <param name="value">Value.</param>
             <param name="type">Mearure unit.</param>
             <param name="getTypeValue">The handler returns a value associated with <see cref="P:StockSharp.Messages.Unit.Type"/> (price or volume steps).</param>
+        </member>
+        <member name="P:StockSharp.Messages.Unit.Type">
+            <summary>
+            Mearure unit.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.Unit.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.Unit.GetTypeValue">
+            <summary>
+            The handler returns a value associated with <see cref="P:StockSharp.Messages.Unit.Type"/> (price or volume steps).
+            </summary>
         </member>
         <member name="M:StockSharp.Messages.Unit.Clone">
             <summary>
@@ -5282,14 +5380,14 @@
             Compare <see cref="T:StockSharp.Messages.Unit"/> on the equivalence.
             </summary>
             <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
         </member>
         <member name="M:StockSharp.Messages.Unit.Equals(System.Object)">
             <summary>
             Compare <see cref="T:StockSharp.Messages.Unit"/> on the equivalence.
             </summary>
             <param name="other">Another value with which to compare.</param>
-            <returns><see langword="true"/>, if the specified object is equal to the current object, otherwise, <see langword="false"/>.</returns>
+            <returns><see langword="true" />, if the specified object is equal to the current object, otherwise, <see langword="false" />.</returns>
         </member>
         <member name="M:StockSharp.Messages.Unit.op_Inequality(StockSharp.Messages.Unit,StockSharp.Messages.Unit)">
             <summary>
@@ -5367,21 +5465,6 @@
             <param name="u">Unit.</param>
             <returns>Opposite value.</returns>
         </member>
-        <member name="P:StockSharp.Messages.Unit.Type">
-            <summary>
-            Mearure unit.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.Unit.Value">
-            <summary>
-            Value.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.Unit.GetTypeValue">
-            <summary>
-            The handler returns a value associated with <see cref="P:StockSharp.Messages.Unit.Type"/> (price or volume steps).
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.UnitHelper">
             <summary>
             Extension class for <see cref="T:StockSharp.Messages.Unit"/>.
@@ -5426,6 +5509,21 @@
             Initializes a new instance of the <see cref="T:StockSharp.Messages.WorkingTime"/>.
             </summary>
         </member>
+        <member name="P:StockSharp.Messages.WorkingTime.Periods">
+            <summary>
+            Schedule validity periods.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.WorkingTime.SpecialWorkingDays">
+            <summary>
+            Working days, falling on Saturday and Sunday.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.WorkingTime.SpecialHolidays">
+            <summary>
+            Holidays that fall on workdays.
+            </summary>
+        </member>
         <member name="M:StockSharp.Messages.WorkingTime.Clone">
             <summary>
             Create a copy of <see cref="T:StockSharp.Messages.WorkingTime"/>.
@@ -5444,24 +5542,19 @@
             </summary>
             <param name="storage">Settings storage.</param>
         </member>
-        <member name="P:StockSharp.Messages.WorkingTime.Periods">
-            <summary>
-            Schedule validity periods.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.WorkingTime.SpecialWorkingDays">
-            <summary>
-            Working days, falling on Saturday and Sunday.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.WorkingTime.SpecialHolidays">
-            <summary>
-            Holidays that fall on workdays.
-            </summary>
-        </member>
         <member name="T:StockSharp.Messages.WorkingTimePeriod">
             <summary>
             Schedule validity period.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.WorkingTimePeriod.Till">
+            <summary>
+            Schedule expiration date.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Messages.WorkingTimePeriod.Times">
+            <summary>
+            Work schedule within day.
             </summary>
         </member>
         <member name="M:StockSharp.Messages.WorkingTimePeriod.Clone">
@@ -5481,16 +5574,6 @@
             Save settings.
             </summary>
             <param name="storage">Settings storage.</param>
-        </member>
-        <member name="P:StockSharp.Messages.WorkingTimePeriod.Till">
-            <summary>
-            Schedule expiration date.
-            </summary>
-        </member>
-        <member name="P:StockSharp.Messages.WorkingTimePeriod.Times">
-            <summary>
-            Work schedule within day.
-            </summary>
         </member>
     </members>
 </doc>
