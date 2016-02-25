@@ -57,7 +57,7 @@
                 xmlns:sys="clr-namespace:System;assembly=mscorlib">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="Вкл/выкл" Binding="{Binding IsActive}"/>
-                    <DataGridTextColumn Header="Тикер" Binding="{Binding SecurityCode}"/>
+                    <DataGridTextColumn Header="Тикер" IsReadOnly="True" Binding="{Binding Option.Code}"/>
                     <DataGridTextColumn Header="Объем" Binding="{Binding Volume}"/>
                 </DataGrid.Columns>
             </DataGrid>

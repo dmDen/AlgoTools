@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockSharp.BusinessEntities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -27,21 +28,13 @@ namespace OptionPosition
 			}		
 		}
 
-		private string _securityCode;
+		private Security _option;
 		/// <summary>
 		/// Тикер инструмента
 		/// </summary>
-		public string SecurityCode
+		public Security Option
 		{
-			get { return _securityCode; }
-			set
-			{
-				if (_securityCode != value)
-				{
-					_securityCode = value;
-					NotifyPropertyChanged();
-				}
-			}
+			get { return _option; }
 		}
 
 		private decimal _volume;
@@ -61,6 +54,11 @@ namespace OptionPosition
 			}
 		}
 
+		public SecurityPosition(Security option)
+		{
+			_option = option;
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void NotifyPropertyChanged(String propertyName = "")
 		{
@@ -68,20 +66,6 @@ namespace OptionPosition
 			{
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-
-	}
-
-	class MyCol : ObservableCollection<SecurityPosition>
-	{
-		public void TT()
-		{
-			this.PropertyChanged += MyCol_PropertyChanged;
-		}
-
-		private void MyCol_PropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

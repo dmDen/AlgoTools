@@ -245,15 +245,14 @@ namespace OptionPosition
 		{
 			if (security != _currentBaseActive && security.UnderlyingSecurityId != _currentBaseActive.Id)
 				return;
-			if (_currentOptionPosition.Where(sec => sec.SecurityCode == security.Code).Any())
+			if (_currentOptionPosition.Where(sec => sec.Option == security).Any())
 				return;
-			var x = new SecurityPosition()
+			var newPosition = new SecurityPosition(security)
 			{
 				IsActive = true,
-				SecurityCode = security.Code,
 				Volume = 0,
 			};
-			_currentOptionPosition.Add(x);
+			_currentOptionPosition.Add(newPosition);
 		}
 
 		private void Desk_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -293,7 +292,31 @@ namespace OptionPosition
 
 		private void BtnBuildPositionGraph_Click(object sender, RoutedEventArgs e)
 		{
-			//PosChart.
+			if (_currentBaseActive == null)
+				return;
+			PosChart.MarketDataProvider = Connector;
+			PosChart.SecurityProvider = Connector;
+			PosChart.AssetPosition = new Position
+			{
+				Security = _currentBaseActive,
+				CurrentValue = 0,
+			};
+
+			PosChart.Positions.Clear();
+			var expDate = _currentBaseActive.ExpiryDate ?? DateTimeOffset.Now;
+			if (_currentOptionPosition.Count > 0)
+			{
+				_currentOptionPosition
+					.Where(sp => sp.IsActive)
+					.ForEach((securityPosition) =>
+				{
+					PosChart.Positions.Add(new Position { Security = securityPosition.Option, CurrentValue = securityPosition.Volume, });
+				});
+				expDate = _currentOptionPosition.Select(pos => pos.Option.ExpiryDate.Value).Min();
+				
+			}
+			decimal lastPrice = _currentBaseActive.LastTrade?.Price ?? 0;
+			PosChart.Refresh(lastPrice, _currentBaseActive.PriceStep ?? 1, Connector.CurrentTime, expDate);
 		}
 	}
 }
