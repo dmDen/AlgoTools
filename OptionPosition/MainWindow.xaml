@@ -36,6 +36,7 @@
                 <ComboBoxItem Content="ALL"/>
             </ComboBox>
             <Button Margin="15 0 0 0" VerticalAlignment="Bottom" Name="BtnRefreshOptionDesk" Content="Обновить доску" Click="BtnRefreshOptionDesk_Click"/>
+            <Button Margin="15 0 0 0" VerticalAlignment="Bottom" Name="BtnBuildPositionGraph" Content="Построить позицию" Click="BtnBuildPositionGraph_Click"/>
         </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -43,19 +44,20 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="159*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="78*"/>
+                <ColumnDefinition Width="477*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="148*"/>
+                <ColumnDefinition Width="86*"/>
                 <ColumnDefinition Width="220"/>
             </Grid.ColumnDefinitions>
-            <xaml:OptionDesk x:Name="Desk" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" />
-            <xaml:OptionPositionChart x:Name="PosChart" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" />
-            <DataGrid Name="dataGridPosition" AutoGenerateColumns="False" Grid.Row="0" Grid.Column="3"
+            <xaml:OptionDesk x:Name="Desk" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" MouseDoubleClick="Desk_MouseDoubleClick" />
+            <xaml:OptionPositionChart x:Name="PosChart" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" />
+            <DataGrid Name="dataGridPosition" AutoGenerateColumns="False" Grid.Row="0" Grid.Column="4"
                 xmlns:local="clr-namespace:OptionPosition"
                 xmlns:sys="clr-namespace:System;assembly=mscorlib">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn Header="Вкл/выкл" Binding="{Binding IsActive}"/>
-                    <DataGridTextColumn Header="Тикер" Binding="{Binding OptionCode}"/>
+                    <DataGridTextColumn Header="Тикер" Binding="{Binding SecurityCode}"/>
                     <DataGridTextColumn Header="Объем" Binding="{Binding Volume}"/>
                 </DataGrid.Columns>
             </DataGrid>

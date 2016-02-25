@@ -25,6 +25,8 @@ using Ecng.Common;
 using StockSharp.BusinessEntities;
 using StockSharp.Messages;
 using MoreLinq;
+using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace OptionPosition
 {
@@ -37,6 +39,7 @@ namespace OptionPosition
 		private const string _settingsFile = "connection.xml";
 		private bool _isConnected;
 		private Security _currentBaseActive;
+		private ObservableCollection<SecurityPosition> _currentOptionPosition = new ObservableCollection<SecurityPosition>();
 
 		public MainWindow()
 		{
@@ -52,6 +55,8 @@ namespace OptionPosition
 			Desk.MarketDataProvider = Connector;
 			Desk.SecurityProvider = Connector;
 			StrikesCount.SelectedIndex = 0;
+			dataGridPosition.ItemsSource = _currentOptionPosition;
+			
 		}
 
 		private void InitConnector()
@@ -167,8 +172,8 @@ namespace OptionPosition
 		{
 			foreach(Security security in securities)
 			{
-				//if (Connector.RegisteredSecurities.Contains(security))
-					//continue;
+				if (Connector.RegisteredSecurities.Contains(security))
+					continue;
 				Connector.RegisterSecurity(security);
 				Connector.SubscribeMarketData(security, MarketDataTypes.Level1);
 			}
@@ -234,6 +239,61 @@ namespace OptionPosition
 		private void OptionDeskFiltersChanged(object sender, SelectionChangedEventArgs e)
 		{
 			SetOptionsToOptionDesk();
+		}
+
+		private void AddSecurityToPosition(Security security)
+		{
+			if (security != _currentBaseActive && security.UnderlyingSecurityId != _currentBaseActive.Id)
+				return;
+			if (_currentOptionPosition.Where(sec => sec.SecurityCode == security.Code).Any())
+				return;
+			var x = new SecurityPosition()
+			{
+				IsActive = true,
+				SecurityCode = security.Code,
+				Volume = 0,
+			};
+			_currentOptionPosition.Add(x);
+		}
+
+		private void Desk_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			DependencyObject dep = (DependencyObject)e.OriginalSource;
+			while ((dep != null) && !(dep is DataGridCell))
+			{
+				dep = VisualTreeHelper.GetParent(dep);
+			}
+			if (dep == null)
+				return;
+			DataGridCell cell = null;
+			if (dep is DataGridCell)
+			{
+				cell = dep as DataGridCell;
+			}
+			while ((dep != null) && !(dep is DataGridRow))
+			{
+				dep = VisualTreeHelper.GetParent(dep);
+			}
+			DataGridRow row = dep as DataGridRow;
+			Security sec;
+			if (cell.Column.DisplayIndex < 11)
+			{
+				var x = row.Item.GetPropValue("Call");
+				sec = (Security)x.GetPropValue("Option");
+			}
+			else if (cell.Column.DisplayIndex > 14)
+			{
+				var x = row.Item.GetPropValue("Put");
+				sec = (Security)x.GetPropValue("Option");
+			}
+			else
+				return;
+			AddSecurityToPosition(sec);
+		}
+
+		private void BtnBuildPositionGraph_Click(object sender, RoutedEventArgs e)
+		{
+			//PosChart.
 		}
 	}
 }
