@@ -38,8 +38,11 @@ namespace OptionPosition
 		public readonly Connector Connector;
 		private const string _settingsFile = "connection.xml";
 		private bool _isConnected;
-		private Security _currentBaseActive;
-		private ObservableCollection<SecurityPosition> _currentOptionPosition = new ObservableCollection<SecurityPosition>();
+		OptionPositionClass _optionPosition = new OptionPositionClass();
+		private Security Asset
+		{
+			get { return _optionPosition?.AssetPosition?.Security; }
+		}
 
 		public MainWindow()
 		{
@@ -55,8 +58,9 @@ namespace OptionPosition
 			Desk.MarketDataProvider = Connector;
 			Desk.SecurityProvider = Connector;
 			StrikesCount.SelectedIndex = 0;
-			dataGridPosition.ItemsSource = _currentOptionPosition;
-			
+			dataGridPosition.ItemsSource = _optionPosition.OptionsPosition;
+			AssetPositionVolume.DataContext = _optionPosition.AssetPosition;
+			AssetCode.DataContext = _optionPosition.AssetPosition;
 		}
 
 		private void InitConnector()
@@ -134,10 +138,10 @@ namespace OptionPosition
 
 		private void SetOptionsToOptionDesk()
 		{
-			if (_currentBaseActive == null)
+			if (Asset == null)
 				return;
 			var tmpOptions = Connector.Securities
-				.Where(opt => opt.Type == SecurityTypes.Option && opt.UnderlyingSecurityId == _currentBaseActive.Id)
+				.Where(opt => opt.Type == SecurityTypes.Option && opt.UnderlyingSecurityId == Asset.Id)
 				.ToList();
 			if (tmpOptions.Count >= 2)
 			{
@@ -154,7 +158,7 @@ namespace OptionPosition
 						.ToList();
 					decimal strikeStep = strikes.Join(strikes, s1 => s1.index, s2 => s2.index + 1, (s1, s2) => s1.strike - s2.strike).Min();
 					int multiplier = int.Parse((string)(((ComboBoxItem)StrikesCount.SelectedItem).Content)) / 2;
-					decimal currentBAPirce = _currentBaseActive.LastTrade != null ? _currentBaseActive.LastTrade.Price : 0;
+					decimal currentBAPirce = Asset.LastTrade != null ? Asset.LastTrade.Price : 0;
 					tmpOptions = tmpOptions
 						.Where(opt =>
 							(opt.Strike.Value >= (currentBAPirce - (strikeStep * multiplier))) &&
@@ -184,7 +188,7 @@ namespace OptionPosition
 			ExpirationDates.SelectionChanged -= OptionDeskFiltersChanged;
             ExpirationDates.Items.Clear();
 			Connector.Securities
-				.Where(opt => opt.Type == SecurityTypes.Option && opt.UnderlyingSecurityId == _currentBaseActive.Id && opt.ExpiryDate.HasValue)
+				.Where(opt => opt.Type == SecurityTypes.Option && opt.UnderlyingSecurityId == Asset.Id && opt.ExpiryDate.HasValue)
 				.Select(opt => opt.ExpiryDate.Value)
 				.Distinct()
 				.OrderBy(date => date)
@@ -194,35 +198,35 @@ namespace OptionPosition
 			ExpirationDates.SelectionChanged += OptionDeskFiltersChanged;
 		}
 
-		private void SelectBaseActive(Security security)
+		private void SetAsset(Security asset)
 		{
-			_currentBaseActive = security;
-			RegisterSecurities(Enumerable.Repeat(security, 1).Concat(GetOptions(Connector.Securities, security)));
+			_optionPosition.SetAsset(asset);
+			RegisterSecurities(Enumerable.Repeat(asset, 1).Concat(GetOptions(Connector.Securities, asset)));
 			FillExpirationDates();
 			SetOptionsToOptionDesk();
 		}
 
 		public void RefreshOptionDesk()
 		{
-			if (_currentBaseActive != null && _currentBaseActive.LastTrade != null)
+			if (Asset != null && Asset.LastTrade != null)
 			{
-				Desk.AssetPrice = _currentBaseActive.LastTrade.Price;
+				Desk.AssetPrice = Asset.LastTrade.Price;
 			}
 			Desk.CurrentTime = DateTime.Now;
 			Desk.RefreshOptions();
 		}
 
-		private IEnumerable<Security> GetOptions(IEnumerable<Security> securities, Security baseActive)
+		private IEnumerable<Security> GetOptions(IEnumerable<Security> securities, Security asset)
 		{
-			return securities.Where(sec => sec.Type == SecurityTypes.Option && sec.UnderlyingSecurityId == baseActive.Id);
+			return securities.Where(sec => sec.Type == SecurityTypes.Option && sec.UnderlyingSecurityId == asset.Id);
 		}
 
-		private void BtnSelectBaseActive_Click(object sender, RoutedEventArgs e)
+		private void BtnSelectAsset_Click(object sender, RoutedEventArgs e)
 		{
 			if (securityPicker.SelectedSecurity != null)
 			{
-				SelectBaseActive(securityPicker.SelectedSecurity);
-				ExpanderBaseActive.IsExpanded = false;
+				SetAsset(securityPicker.SelectedSecurity);
+				ExpanderAsset.IsExpanded = false;
 			}
 		}
 
@@ -243,16 +247,16 @@ namespace OptionPosition
 
 		private void AddSecurityToPosition(Security security)
 		{
-			if (security != _currentBaseActive && security.UnderlyingSecurityId != _currentBaseActive.Id)
+			if (security.UnderlyingSecurityId != Asset.Id)
 				return;
-			if (_currentOptionPosition.Where(sec => sec.Option == security).Any())
+			if (_optionPosition.OptionsPosition.Where(sec => sec.Security == security).Any())
 				return;
 			var newPosition = new SecurityPosition(security)
 			{
 				IsActive = true,
 				Volume = 0,
 			};
-			_currentOptionPosition.Add(newPosition);
+			_optionPosition.OptionsPosition.Add(newPosition);
 		}
 
 		private void Desk_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -292,31 +296,31 @@ namespace OptionPosition
 
 		private void BtnBuildPositionGraph_Click(object sender, RoutedEventArgs e)
 		{
-			if (_currentBaseActive == null)
+			if (Asset == null)
 				return;
 			PosChart.MarketDataProvider = Connector;
 			PosChart.SecurityProvider = Connector;
 			PosChart.AssetPosition = new Position
 			{
-				Security = _currentBaseActive,
-				CurrentValue = 0,
+				Security = Asset,
+				CurrentValue = _optionPosition.AssetPosition.Volume,
 			};
 
 			PosChart.Positions.Clear();
-			var expDate = _currentBaseActive.ExpiryDate ?? DateTimeOffset.Now;
-			if (_currentOptionPosition.Count > 0)
+			var expDate = Asset.ExpiryDate ?? DateTimeOffset.Now;
+			if (_optionPosition.OptionsPosition.Count > 0)
 			{
-				_currentOptionPosition
+				_optionPosition.OptionsPosition
 					.Where(sp => sp.IsActive)
 					.ForEach((securityPosition) =>
 				{
-					PosChart.Positions.Add(new Position { Security = securityPosition.Option, CurrentValue = securityPosition.Volume, });
+					PosChart.Positions.Add(new Position { Security = securityPosition.Security, CurrentValue = securityPosition.Volume, });
 				});
-				expDate = _currentOptionPosition.Select(pos => pos.Option.ExpiryDate.Value).Min();
+				expDate = _optionPosition.OptionsPosition.Select(pos => pos.Security.ExpiryDate.Value).Min();
 				
 			}
-			decimal lastPrice = _currentBaseActive.LastTrade?.Price ?? 0;
-			PosChart.Refresh(lastPrice, _currentBaseActive.PriceStep ?? 1, Connector.CurrentTime, expDate);
+			decimal lastPrice = Asset.LastTrade?.Price ?? 0;
+			PosChart.Refresh(lastPrice, Asset.PriceStep ?? 1, Connector.CurrentTime, expDate);
 		}
 	}
 }

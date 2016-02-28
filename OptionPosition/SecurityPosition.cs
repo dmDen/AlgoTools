@@ -28,13 +28,13 @@ namespace OptionPosition
 			}		
 		}
 
-		private Security _option;
+		private Security _security;
 		/// <summary>
-		/// Тикер инструмента
+		/// Инструмента
 		/// </summary>
-		public Security Option
+		public Security Security
 		{
-			get { return _option; }
+			get { return _security; }
 		}
 
 		private decimal _volume;
@@ -54,9 +54,9 @@ namespace OptionPosition
 			}
 		}
 
-		public SecurityPosition(Security option)
+		public SecurityPosition(Security security)
 		{
-			_option = option;
+			_security = security;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

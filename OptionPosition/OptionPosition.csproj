@@ -46,6 +46,9 @@
     <Reference Include="MoreLinq">
       <HintPath>..\References\MoreLinq.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="StockSharp.Algo">
       <HintPath>..\References\StockSharp.Algo.dll</HintPath>
     </Reference>
@@ -126,6 +129,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OptionPositionClass.cs" />
     <Compile Include="SecurityPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

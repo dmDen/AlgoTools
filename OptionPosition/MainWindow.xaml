@@ -20,9 +20,9 @@
             </MenuItem>
         </Menu>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Expander Name="ExpanderBaseActive" Header="Выбор Базового актива" >
+            <Expander Name="ExpanderAsset" Header="Выбор Базового актива" >
                 <StackPanel DockPanel.Dock="Top" Orientation="Vertical">
-                    <Button Name="BtnSelectBaseActive" Content="Выбрать Б.А." Click="BtnSelectBaseActive_Click"/>
+                    <Button Name="BtnSelectAsset" Content="Выбрать Б.А." Click="BtnSelectAsset_Click"/>
                     <xaml:SecurityPicker Name="securityPicker" Width="400" Height="500" />
                 </StackPanel>
             </Expander>
@@ -52,15 +52,22 @@
             </Grid.ColumnDefinitions>
             <xaml:OptionDesk x:Name="Desk" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" MouseDoubleClick="Desk_MouseDoubleClick" />
             <xaml:OptionPositionChart x:Name="PosChart" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" />
-            <DataGrid Name="dataGridPosition" AutoGenerateColumns="False" Grid.Row="0" Grid.Column="4"
-                xmlns:local="clr-namespace:OptionPosition"
-                xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="Вкл/выкл" Binding="{Binding IsActive}"/>
-                    <DataGridTextColumn Header="Тикер" IsReadOnly="True" Binding="{Binding Option.Code}"/>
-                    <DataGridTextColumn Header="Объем" Binding="{Binding Volume}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <DockPanel  Grid.Row="0" Grid.Column="4">
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                    <Label>Б.А. </Label>
+                    <Label Name="AssetCode" Content="{Binding Path=Security.Code}"></Label>
+                    <TextBox Name="AssetPositionVolume" Width="30" Text="{Binding Path=Volume}"></TextBox>
+                </StackPanel>
+                <DataGrid Name="dataGridPosition" AutoGenerateColumns="False"
+                    xmlns:local="clr-namespace:OptionPosition"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Вкл/выкл" Binding="{Binding IsActive}"/>
+                        <DataGridTextColumn Header="Тикер" IsReadOnly="True" Binding="{Binding Security.Code}"/>
+                        <DataGridTextColumn Header="Объем" Binding="{Binding Volume}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
         </Grid>
     </DockPanel>
 </Window>
