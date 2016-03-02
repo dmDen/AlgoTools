@@ -25,7 +25,7 @@ namespace OptionPosition
 					_isActive = value;
 					NotifyPropertyChanged();
 				}
-			}		
+			}
 		}
 
 		private Security _security;

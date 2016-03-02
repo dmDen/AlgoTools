@@ -29,10 +29,13 @@ namespace OptionPosition
 			get { return _optionsPosition; }
 		}
 
-		public OptionPositionClass()
-		{						
+		public OptionPositionClass(SecurityPosition AssetPosition)
+		{
 			_optionsPosition.CollectionChanged += (s, e) => PositionChanged(this, EventArgs.Empty);
 			_optionsPosition.PropertyChanged += (s, e) => PositionChanged(this, EventArgs.Empty);
+			_assetPosition = AssetPosition;
+			if (_assetPosition != null)
+				_assetPosition.PropertyChanged += (s, e) => PositionChanged(this, EventArgs.Empty);
 		}
 
 		public void SetAsset(Security asset)

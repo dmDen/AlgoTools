@@ -7,15 +7,15 @@
         xmlns:local="clr-namespace:OptionPosition"
         xmlns:xaml="http://schemas.stocksharp.com/xaml"        
         mc:Ignorable="d"
-        Title="MainWindow" Height="635.4" Width="954">
+        Title="MainWindow" Height="635.4" Width="954" Closing="Window_Closing">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
                 <MenuItem Header="Настройки" Click="MenuItem_Click"/>
                 <MenuItem Header="{x:Static loc:LocalizedStrings.Connect}" Name="ConnectMenuItem" Click="ConnectMenuItem_Click"/>
                 <MenuItem Header="Сохранить"/>
-                <MenuItem Header="Сохранить как"/>
-                <MenuItem Header="Загрузить"/>
+                <MenuItem Header="Сохранить как" Name="SaveAsMenuItem" Click="SaveAsMenuItem_Click"/>
+                <MenuItem Header="Загрузить" Name="LoadMenuItem" Click="LoadMenuItem_Click"/>
                 <MenuItem Header="Выход" Name="ExitMenuItem" Click="ExitMenuItem_Click"/>
             </MenuItem>
         </Menu>

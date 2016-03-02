@@ -38,29 +38,38 @@ namespace OptionPosition
 		public readonly Connector Connector;
 		private const string _settingsFile = "connection.xml";
 		private bool _isConnected;
-		OptionPositionClass _optionPosition = new OptionPositionClass();
+		OptionPositionClass _optionPosition;
 		private Security Asset
 		{
 			get { return _optionPosition?.AssetPosition?.Security; }
 		}
+		private bool _isPositionChanged;
 
 		public MainWindow()
 		{
 			InitializeComponent();
-
+			StrikesCount.SelectedIndex = 0;
 			var logManager = new LogManager();
 			logManager.Listeners.Add(new FileLogListener("OptionPosition.log"));
 			var entityRegistry = ConfigManager.GetService<IEntityRegistry>();
 			var storageRegistry = ConfigManager.GetService<IStorageRegistry>();
 			Connector = new Connector(entityRegistry, storageRegistry);
 			logManager.Sources.Add(Connector);			
-            InitConnector();
+            InitConnector();			
 			Desk.MarketDataProvider = Connector;
 			Desk.SecurityProvider = Connector;
-			StrikesCount.SelectedIndex = 0;
-			dataGridPosition.ItemsSource = _optionPosition.OptionsPosition;
-			AssetPositionVolume.DataContext = _optionPosition.AssetPosition;
-			AssetCode.DataContext = _optionPosition.AssetPosition;
+			LoadPositionFromFile();
+
+		}
+
+		private void AssetPosition_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+		{
+			int a = 1;
+		}
+
+		private void _optionPosition_PositionChanged(object sender, EventArgs e)
+		{
+			int a = 1;
 		}
 
 		private void InitConnector()
@@ -110,6 +119,29 @@ namespace OptionPosition
 
 			Connector.StorageAdapter.DaysLoad = TimeSpan.FromDays(3);
 			Connector.StorageAdapter.Load();
+		}
+
+		private void LoadPositionFromFile(string fileName = null)
+		{
+			if (fileName == null)
+				fileName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+					"/position.json";
+			_optionPosition = DeserializeFromFile<OptionPositionClass>(fileName);
+			if (_optionPosition == null)
+			{
+				_optionPosition = new OptionPositionClass(null);				
+			}
+			_optionPosition.PositionChanged += _optionPosition_PositionChanged;
+			dataGridPosition.ItemsSource = _optionPosition.OptionsPosition;
+			SetEnvToCurrentAsset();
+		}
+
+		private void SavePositionToFile(string fileName = null)
+		{
+			if (fileName == null)
+				fileName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+					"/position.json";
+			SerializeToFile(_optionPosition, fileName);
 		}
 
 		private void ChangeConnectStatus(bool isConnected)
@@ -178,6 +210,8 @@ namespace OptionPosition
 			{
 				if (Connector.RegisteredSecurities.Contains(security))
 					continue;
+				if (Connector.ConnectionState != ConnectionStates.Connected)
+					return;
 				Connector.RegisterSecurity(security);
 				Connector.SubscribeMarketData(security, MarketDataTypes.Level1);
 			}
@@ -198,10 +232,11 @@ namespace OptionPosition
 			ExpirationDates.SelectionChanged += OptionDeskFiltersChanged;
 		}
 
-		private void SetAsset(Security asset)
+		private void SetEnvToCurrentAsset()
 		{
-			_optionPosition.SetAsset(asset);
-			RegisterSecurities(Enumerable.Repeat(asset, 1).Concat(GetOptions(Connector.Securities, asset)));
+			AssetPositionVolume.DataContext = _optionPosition.AssetPosition;
+			AssetCode.DataContext = _optionPosition.AssetPosition;
+			RegisterSecurities(Enumerable.Repeat(Asset, 1).Concat(GetOptions(Connector.Securities, Asset)));
 			FillExpirationDates();
 			SetOptionsToOptionDesk();
 		}
@@ -225,7 +260,8 @@ namespace OptionPosition
 		{
 			if (securityPicker.SelectedSecurity != null)
 			{
-				SetAsset(securityPicker.SelectedSecurity);
+				_optionPosition.SetAsset(securityPicker.SelectedSecurity);
+				SetEnvToCurrentAsset();
 				ExpanderAsset.IsExpanded = false;
 			}
 		}
@@ -321,6 +357,73 @@ namespace OptionPosition
 			}
 			decimal lastPrice = Asset.LastTrade?.Price ?? 0;
 			PosChart.Refresh(lastPrice, Asset.PriceStep ?? 1, Connector.CurrentTime, expDate);
+		}
+
+		private void SerializeToFile(object objectSerialization, string fileName)
+		{
+			try
+			{
+				StreamWriter sw = new StreamWriter(fileName);
+				sw.Write(Newtonsoft.Json.JsonConvert.SerializeObject(objectSerialization));
+				sw.Flush();
+				sw.Close();
+			}
+			catch (Exception e)
+			{
+				MessageBox.Show("Ошибка при сохранении в файл! \nОшибка: " + e.Message);
+			}
+		}
+
+		private T DeserializeFromFile<T>(string fileName)
+		{
+			T result = default(T);
+			try
+			{
+				StreamReader sr = new StreamReader(fileName);
+				result = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(sr.ReadToEnd());
+				sr.Close();
+			}
+			catch (Exception)
+			{
+				return result;
+			}
+			return result;
+		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			SavePositionToFile();
+		}
+
+		private void PositionSaveAsDialog()
+		{
+			var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+			saveFileDialog.Filter = "Position file (*.json)|*.json";
+			if (saveFileDialog.ShowDialog() == true)
+			{
+				SavePositionToFile(saveFileDialog.FileName);
+			}
+
+		}
+
+		private void PositionLoadDialog()
+		{
+			var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+			openFileDialog.Filter = "Position file (*.json)|*.json";
+			if (openFileDialog.ShowDialog() == true)
+			{
+				LoadPositionFromFile(openFileDialog.FileName);
+			}
+		}
+
+		private void SaveAsMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			PositionSaveAsDialog();
+		}
+
+		private void LoadMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			PositionLoadDialog();
 		}
 	}
 }
