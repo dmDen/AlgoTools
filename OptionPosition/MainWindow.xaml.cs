@@ -78,6 +78,8 @@ namespace OptionPosition
 			Connector.Connected += () =>
 			{
 				this.GuiAsync(() => ChangeConnectStatus(true));
+				if (Asset != null)
+					RegisterSecurities(Enumerable.Repeat(Asset, 1).Concat(GetOptions(Connector.Securities, Asset)));
 			};
 
 			// subscribe on connection error event
@@ -97,7 +99,10 @@ namespace OptionPosition
 			Connector.MarketDataSubscriptionFailed += (security, type, error) =>
 				this.GuiAsync(() => MessageBox.Show(this, error.ToString(), LocalizedStrings.Str2956Params.Put(type, security)));
 
-			Connector.NewSecurities += securities => securityPicker.Securities.AddRange(securities);
+			Connector.NewSecurities += securities =>
+			{
+				securityPicker.Securities.AddRange(securities);
+			};
 			
 			// set market data provider
 			securityPicker.MarketDataProvider = Connector;
@@ -355,7 +360,7 @@ namespace OptionPosition
 				expDate = _optionPosition.OptionsPosition.Select(pos => pos.Security.ExpiryDate.Value).Min();
 				
 			}
-			decimal lastPrice = Asset.LastTrade?.Price ?? 0;
+			decimal lastPrice = Asset.LastTrade?.Price ?? 0.01m;
 			PosChart.Refresh(lastPrice, Asset.PriceStep ?? 1, Connector.CurrentTime, expDate);
 		}
 
