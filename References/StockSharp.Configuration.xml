@@ -154,7 +154,7 @@
             </summary>
             <returns>All candles.</returns>
         </member>
-        <member name="M:StockSharp.Configuration.Extensions.FirstTimeInit(StockSharp.Algo.Storages.EntityRegistry,System.Byte[],System.Action{Ecng.Data.Database})">
+        <member name="M:StockSharp.Configuration.Extensions.FirstTimeInit(StockSharp.Algo.Storages.IEntityRegistry,System.Byte[],System.Action{Ecng.Data.Database})">
             <summary>
             First time database initialization.
             </summary>

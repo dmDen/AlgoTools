@@ -197,7 +197,7 @@
             </summary>
             <returns>Строковое представление.</returns>
         </member>
-        <member name="M:StockSharp.Quik.Lua.QuikLuaDialect.OnWrite(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.Message)">
+        <member name="M:StockSharp.Quik.Lua.LuaDialect.OnWrite(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.Message)">
             <summary>
             Write the specified message into FIX protocol.
             </summary>
@@ -205,16 +205,16 @@
             <param name="message">The message.</param>
             <returns><see cref="T:StockSharp.Fix.Native.FixMessages"/> value.</returns>
         </member>
-        <member name="M:StockSharp.Quik.Lua.QuikLuaDialect.WriteOrderCondition(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.OrderRegisterMessage)">
+        <member name="M:StockSharp.Quik.Lua.LuaDialect.WriteOrderCondition(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.OrderRegisterMessage)">
             <summary>
             Записать данные по условию заявки.
             </summary>
             <param name="writer">Писатель FIX данных.</param>
             <param name="regMsg">Сообщение, содержащее информацию для регистрации заявки.</param>
         </member>
-        <member name="M:StockSharp.Quik.Lua.QuikLuaDialect.ReadOrderCondition(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.FixTags,System.Func{StockSharp.Messages.OrderCondition})">
+        <member name="M:StockSharp.Quik.Lua.LuaDialect.ReadOrderCondition(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.FixTags,System.Func{StockSharp.Messages.OrderCondition})">
             <summary>
-            Прочитать условие регистрации заявки <see cref="P:StockSharp.Messages.OrderRegisterMessage.Condition"/>.
+            Прочитать условие заявки <see cref="T:StockSharp.Messages.OrderCondition"/>.
             </summary>
             <param name="reader">Читатель данных.</param>
             <param name="tag">Тэг.</param>

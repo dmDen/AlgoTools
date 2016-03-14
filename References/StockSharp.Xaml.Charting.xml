@@ -463,6 +463,11 @@
             Chart area name.
             </summary>
     </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartArea.ShowPerfStats">
+      <summary>
+            Show FPS.
+            </summary>
+    </member>
     <member name="P:StockSharp.Xaml.Charting.ChartArea.Height">
       <summary>
             The height of the area.
@@ -687,6 +692,26 @@
             Bars.
             </summary>
     </member>
+    <member name="F:StockSharp.Xaml.Charting.ChartCandleDrawStyles.LineOpen">
+      <summary>
+            Line (open).
+            </summary>
+    </member>
+    <member name="F:StockSharp.Xaml.Charting.ChartCandleDrawStyles.LineHigh">
+      <summary>
+            Line (high).
+            </summary>
+    </member>
+    <member name="F:StockSharp.Xaml.Charting.ChartCandleDrawStyles.LineLow">
+      <summary>
+            Line (low).
+            </summary>
+    </member>
+    <member name="F:StockSharp.Xaml.Charting.ChartCandleDrawStyles.LineClose">
+      <summary>
+            Line (close).
+            </summary>
+    </member>
     <member name="F:StockSharp.Xaml.Charting.ChartCandleDrawStyles.BoxVolume">
       <summary>
             Box volumes.
@@ -755,6 +780,11 @@
     <member name="P:StockSharp.Xaml.Charting.ChartCandleElement.Antialiasing">
       <summary>
             Candles rendering smothing (enabled by default).
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartCandleElement.LineColor">
+      <summary>
+            Line color for DrawStyle Line*.
             </summary>
     </member>
     <member name="P:StockSharp.Xaml.Charting.ChartCandleElement.ShowAxisMarker">
@@ -1328,6 +1358,16 @@
             The name of the graphic theme.
             </summary>
     </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanel.OrderSettings">
+      <summary>
+            Chart order registering settings.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanel.ShareSettings">
+      <summary>
+            Chart share (upload image to web) settings.
+            </summary>
+    </member>
     <member name="M:StockSharp.Xaml.Charting.ChartPanel.AddArea(StockSharp.Xaml.Charting.ChartArea)">
       <summary>
             To add an area to the chart.
@@ -1440,13 +1480,13 @@
       <summary>
             Save settings.
             </summary>
-      <param name="settings">Settings storage.</param>
+      <param name="storage">Settings storage.</param>
     </member>
     <member name="M:StockSharp.Xaml.Charting.ChartPanel.Load(Ecng.Serialization.SettingsStorage)">
       <summary>
             Load settings.
             </summary>
-      <param name="settings">Settings storage.</param>
+      <param name="storage">Settings storage.</param>
     </member>
     <member name="P:StockSharp.Xaml.Charting.ChartPanel.Areas">
       <summary>
@@ -1480,6 +1520,75 @@
       <summary>
             InitializeComponent
             </summary>
+    </member>
+    <member name="T:StockSharp.Xaml.Charting.ChartPanelOrderSettings">
+      <summary>
+            Chart order registering settings.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelOrderSettings.Security">
+      <summary>
+            The security.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelOrderSettings.Portfolio">
+      <summary>
+            The portfolio.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelOrderSettings.Volume">
+      <summary>
+            Number of contracts in an order.
+            </summary>
+    </member>
+    <member name="M:StockSharp.Xaml.Charting.ChartPanelOrderSettings.Load(Ecng.Serialization.SettingsStorage)">
+      <summary>
+            Load settings.
+            </summary>
+      <param name="storage">Settings storage.</param>
+    </member>
+    <member name="M:StockSharp.Xaml.Charting.ChartPanelOrderSettings.Save(Ecng.Serialization.SettingsStorage)">
+      <summary>
+            Save settings.
+            </summary>
+      <param name="storage">Settings storage.</param>
+    </member>
+    <member name="T:StockSharp.Xaml.Charting.ChartPanelShareSettings">
+      <summary>
+            Chart share (upload image to web) settings.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelShareSettings.IsEnabled">
+      <summary>
+            Is sharing enable.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelShareSettings.Period">
+      <summary>
+            Incremental period to refresh prev upload image.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelShareSettings.FileName">
+      <summary>
+            Name of uploaded image.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Xaml.Charting.ChartPanelShareSettings.Published">
+      <summary>
+            Is published.
+            </summary>
+    </member>
+    <member name="M:StockSharp.Xaml.Charting.ChartPanelShareSettings.Load(Ecng.Serialization.SettingsStorage)">
+      <summary>
+            Load settings.
+            </summary>
+      <param name="storage">Settings storage.</param>
+    </member>
+    <member name="M:StockSharp.Xaml.Charting.ChartPanelShareSettings.Save(Ecng.Serialization.SettingsStorage)">
+      <summary>
+            Save settings.
+            </summary>
+      <param name="storage">Settings storage.</param>
     </member>
     <member name="T:StockSharp.Xaml.Charting.ChartPart`1">
       <summary>
@@ -1560,7 +1669,7 @@
       <param name="field">Field to update.</param>
       <param name="value">New value.</param>
       <param name="name">Name of the field to update.</param>
-      <typeparam name="TFLD">The field type.</typeparam>
+      <typeparam name="TField">The field type.</typeparam>
       <returns>True if the field was updated. False otherwise.</returns>
     </member>
     <member name="T:StockSharp.Xaml.Charting.ChartTradeElement">

@@ -41845,6 +41845,96 @@
             Best pair quotes
             </summary>
         </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.ReadTimeOutKey">
+            <summary>
+            Timeout (get)
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.ReadTimeOut">
+            <summary>
+            Timeout (get)
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.WriteTimeOutKey">
+            <summary>
+            Timeout (send)
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.WriteTimeOut">
+            <summary>
+            Timeout (send)
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.ReadTimeOutDescKey">
+            <summary>
+            The timeout of getting data from the server.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.ReadTimeOutDesc">
+            <summary>
+            The timeout of getting data from the server.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.WriteTimeOutDescKey">
+            <summary>
+            The timeout of sending data to the server.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.WriteTimeOutDesc">
+            <summary>
+            The timeout of sending data to the server.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.ThemesKey">
+            <summary>
+            Themes.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.Themes">
+            <summary>
+            Themes.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.LoadingVariableErrorParamsKey">
+            <summary>
+            Loading variable parameter error.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.LoadingVariableErrorParams">
+            <summary>
+            Loading variable parameter error.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.CancelOnDisconnectKey">
+            <summary>
+            Cancel On Disconnect
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.CancelOnDisconnect">
+            <summary>
+            Cancel On Disconnect
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.CancelOnDisconnectDescKey">
+            <summary>
+            Heartbeat interval. Uses in Cancel On Disconnect mode.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.CancelOnDisconnectDesc">
+            <summary>
+            Heartbeat interval. Uses in Cancel On Disconnect mode.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Localization.LocalizedStrings.LoadHistoryDataQuestionKey">
+            <summary>
+            Open the window to get historical data from Finam website.
+            </summary>
+        </member>
+        <member name="P:StockSharp.Localization.LocalizedStrings.LoadHistoryDataQuestion">
+            <summary>
+            Open the window to get historical data from Finam website.
+            </summary>
+        </member>
         <member name="T:StockSharp.Localization.ProjectDescriptions">
             <summary>
             Information for an assembly manifest.

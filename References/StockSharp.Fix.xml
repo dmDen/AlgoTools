@@ -70,6 +70,11 @@
             Supports <see cref="T:StockSharp.Messages.OrderStatusMessage" /> for mass orders.
             </summary>
     </member>
+    <member name="P:StockSharp.Fix.Dialects.BaseDialect.OrderCancelVolumeRequired">
+      <summary>
+        <see cref="P:StockSharp.Messages.OrderCancelMessage.Volume" /> required to cancel orders.
+            </summary>
+    </member>
     <member name="M:StockSharp.Fix.Dialects.BaseDialect.OnRead(StockSharp.Fix.Native.IFixReader,System.String,Ecng.Common.AllocationArray{StockSharp.Messages.Message})">
       <summary>
             Read next message from FIX protocol.
@@ -124,7 +129,7 @@
       <returns>
         <see cref="T:StockSharp.Fix.Native.FixMessages" /> value.</returns>
     </member>
-    <member name="M:StockSharp.Fix.Dialects.BaseDialect.WriteChangePasswordRequest(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.ChangePasswordMessage,System.String,System.String)">
+    <member name="M:StockSharp.Fix.Dialects.BaseDialect.WriteUserRequestChangePassword(StockSharp.Fix.Native.IFixWriter,StockSharp.Messages.ChangePasswordMessage,System.String,System.String)">
       <summary>
             To record the <see cref="F:StockSharp.Fix.Native.FixMessages.UserRequest" /> message.
             </summary>
@@ -143,6 +148,16 @@
       <param name="timeMsg">Heartbeat message.</param>
       <returns>
         <see cref="T:StockSharp.Fix.Native.FixMessages" /> value.</returns>
+    </member>
+    <member name="M:StockSharp.Fix.Dialects.BaseDialect.DisposeManaged">
+      <summary>
+            Release resources.
+            </summary>
+    </member>
+    <member name="P:StockSharp.Fix.Dialects.BaseDialect.SecuritiesSinglePacket">
+      <summary>
+            Security message contain information for all requested securities.
+            </summary>
     </member>
     <member name="M:StockSharp.Fix.Dialects.BaseDialect.ReadExecutionReport(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.ExecutionReport,System.String,System.Func{StockSharp.Fix.Native.FixTags,System.Boolean})">
       <summary>
@@ -206,7 +221,7 @@
     </member>
     <member name="M:StockSharp.Fix.Dialects.DefaultDialect.ReadOrderCondition(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.FixTags,System.Func{StockSharp.Messages.OrderCondition})">
       <summary>
-            To read the order registration condition <see cref="P:StockSharp.Messages.OrderRegisterMessage.Condition" />.
+            To read the order condition <see cref="T:StockSharp.Messages.OrderCondition" />.
             </summary>
       <param name="reader">Data reader.</param>
       <param name="tag">Tag.</param>
@@ -253,6 +268,11 @@
             Supports <see cref="T:StockSharp.Messages.OrderStatusMessage" /> for mass orders.
             </summary>
     </member>
+    <member name="P:StockSharp.Fix.Dialects.IFixDialect.OrderCancelVolumeRequired">
+      <summary>
+        <see cref="P:StockSharp.Messages.OrderCancelMessage.Volume" /> required to cancel orders.
+            </summary>
+    </member>
     <member name="M:StockSharp.Fix.Dialects.IFixDialect.Write(StockSharp.Messages.Message)">
       <summary>
             Write the specified message into FIX protocol.
@@ -294,7 +314,7 @@
     </member>
     <member name="M:StockSharp.Fix.FixServer.ReadOrderCondition(StockSharp.Fix.Native.IFixReader,StockSharp.Fix.Native.FixTags,System.Func{StockSharp.Messages.OrderCondition})">
       <summary>
-            To read the order registration condition <see cref="P:StockSharp.Messages.OrderRegisterMessage.Condition" />.
+            To read the order condition <see cref="T:StockSharp.Messages.OrderCondition" />.
             </summary>
       <param name="reader">Data reader.</param>
       <param name="tag">Tag.</param>
@@ -390,6 +410,14 @@
             </summary>
       <param name="transactionId">Transaction ID.</param>
       <returns>Request identifier.</returns>
+    </member>
+    <member name="M:StockSharp.Fix.FixServer.GetTransactionId(StockSharp.Fix.FixSession,System.String)">
+      <summary>
+            Get the transaction ID.
+            </summary>
+      <param name="session">The session.</param>
+      <param name="requestId">The request identifier.</param>
+      <returns>Transaction ID.</returns>
     </member>
     <member name="M:StockSharp.Fix.FixServer.CreateTransactionId(StockSharp.Fix.FixSession,System.String)">
       <summary>
@@ -507,12 +535,12 @@
     </member>
     <member name="P:StockSharp.Fix.FixSession.ReadTimeout">
       <summary>
-            The timeout of getting data from the server. The default value is <see cref="F:Ecng.Common.SyncObject.InfiniteTimeSpan" />.
+            The timeout of getting data from the server. The default value is <see cref="F:System.TimeSpan.Zero" />.
             </summary>
     </member>
     <member name="P:StockSharp.Fix.FixSession.WriteTimeout">
       <summary>
-            The timeout of sending data to the server. The default value is <see cref="F:Ecng.Common.SyncObject.InfiniteTimeSpan" />.
+            The timeout of sending data to the server. The default value is <see cref="F:System.TimeSpan.Zero" />.
             </summary>
     </member>
     <member name="M:StockSharp.Fix.FixSession.Load(Ecng.Serialization.SettingsStorage)">
@@ -3431,6 +3459,98 @@
       <summary>
       </summary>
     </member>
+    <member name="T:StockSharp.Fix.Native.SecurityIDSource">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Cusip">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Sedol">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Quik">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.IsinNumber">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.RicCode">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.IsoCurrencyCode">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.IsoCountryCode">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.ExchangeSymbol">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.ConsolidatedTapeAssociation">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.BloombergSymbol">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Wertpapier">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Dutch">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Valoren">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Sicovam">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Belgian">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.Common">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.ClearingHouse">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.IsdaFpmlProductSpecification">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.OptionPriceReportingAuthority">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.LetterOfCredit">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.IsdaFpmlProductUrl">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:StockSharp.Fix.Native.SecurityIDSource.MarketplaceAssignedIdentifier">
+      <summary>
+      </summary>
+    </member>
     <member name="T:StockSharp.Fix.Native.ExecutionReport">
       <summary>
             Execution report.
@@ -4918,6 +5038,11 @@
         <see cref="T:StockSharp.Messages.PortfolioLookupMessage" /> required to get portfolios and positions.
             </summary>
     </member>
+    <member name="P:StockSharp.Fix.FixMessageAdapter.OrderCancelVolumeRequired">
+      <summary>
+        <see cref="P:StockSharp.Messages.OrderCancelMessage.Volume" /> required to cancel orders.
+            </summary>
+    </member>
     <member name="M:StockSharp.Fix.FixMessageAdapter.OnSendInMessage(StockSharp.Messages.Message)">
       <summary>
             Send message.
@@ -4931,6 +5056,11 @@
       <param name="stream">Stream.</param>
       <param name="idGenerator">Sequence id generator.</param>
       <returns>The dialect.</returns>
+    </member>
+    <member name="P:StockSharp.Fix.FixMessageAdapter.Address">
+      <summary>
+            Server address.
+            </summary>
     </member>
     <member name="P:StockSharp.Fix.FixMessageAdapter.Dialect">
       <summary>
@@ -4957,11 +5087,6 @@
             Password.
             </summary>
     </member>
-    <member name="P:StockSharp.Fix.FixMessageAdapter.Address">
-      <summary>
-            Server address.
-            </summary>
-    </member>
     <member name="P:StockSharp.Fix.FixMessageAdapter.RequestAllPortfolios">
       <summary>
             Request all portfolios on start.
@@ -4979,12 +5104,12 @@
     </member>
     <member name="P:StockSharp.Fix.FixMessageAdapter.ReadTimeout">
       <summary>
-            The timeout of getting data from the server. The default value is <see cref="F:Ecng.Common.SyncObject.InfiniteTimeSpan" />.
+            The timeout of getting data from the server. The default value is <see cref="F:System.TimeSpan.Zero" />.
             </summary>
     </member>
     <member name="P:StockSharp.Fix.FixMessageAdapter.WriteTimeout">
       <summary>
-            The timeout of sending data to the server. The default value is <see cref="F:Ecng.Common.SyncObject.InfiniteTimeSpan" />.
+            The timeout of sending data to the server. The default value is <see cref="F:System.TimeSpan.Zero" />.
             </summary>
     </member>
     <member name="P:StockSharp.Fix.FixMessageAdapter.IsValid">
@@ -5053,6 +5178,11 @@
     <member name="F:StockSharp.Fix.FixDialects.Otkritie">
       <summary>
             Otkritie.
+            </summary>
+    </member>
+    <member name="F:StockSharp.Fix.FixDialects.QuikServer">
+      <summary>
+            Quik (server).
             </summary>
     </member>
     <member name="T:StockSharp.Fix.FixTrader">

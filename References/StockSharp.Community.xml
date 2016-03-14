@@ -339,36 +339,6 @@
             <param name="sessionId">Session ID.</param>
             <returns>User id.</returns>
         </member>
-        <member name="T:StockSharp.Community.Products">
-            <summary>
-            Products.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Community.Products.Api">
-            <summary>
-            S#.API.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Community.Products.Hydra">
-            <summary>
-            S#.Data.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Community.Products.Studio">
-            <summary>
-            S#.Studio.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Community.Products.Server">
-            <summary>
-            S#.Server.
-            </summary>
-        </member>
-        <member name="F:StockSharp.Community.Products.StrategyRunner">
-            <summary>
-            S#.StrategyRunner.
-            </summary>
-        </member>
         <member name="T:StockSharp.Community.IDocService">
             <summary>
             The interface describing the documentation service.
@@ -1012,6 +982,93 @@
         <member name="P:StockSharp.Community.User.CreationDate">
             <summary>
             Registration date.
+            </summary>
+        </member>
+        <member name="T:StockSharp.Community.Products">
+            <summary>
+            Products.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Community.Products.Api">
+            <summary>
+            S#.API.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Community.Products.Hydra">
+            <summary>
+            S#.Data.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Community.Products.Studio">
+            <summary>
+            S#.Studio.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Community.Products.Designer">
+            <summary>
+            S#.Designer.
+            </summary>
+        </member>
+        <member name="F:StockSharp.Community.Products.Terminal">
+            <summary>
+            S#.Designer.
+            </summary>
+        </member>
+        <member name="T:StockSharp.Community.ISessionService">
+            <summary>
+            The interface describing the registration service.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.ISessionService.CreateSession(StockSharp.Community.Products,System.Guid)">
+            <summary>
+            Create a new activity session.
+            </summary>
+            <param name="product">The product.</param>
+            <param name="sessionId">Session ID (authentication).</param>
+            <returns>Session ID (activity).</returns>
+        </member>
+        <member name="M:StockSharp.Community.ISessionService.Ping(System.Int64)">
+            <summary>
+            Track the session is alive.
+            </summary>
+            <param name="sessionId">Session ID (activity).</param>
+        </member>
+        <member name="M:StockSharp.Community.ISessionService.CloseSession(System.Int64)">
+            <summary>
+            Close the session.
+            </summary>
+            <param name="sessionId">Session ID (activity).</param>
+        </member>
+        <member name="T:StockSharp.Community.SessionClient">
+            <summary>
+            The client for access to <see cref="T:StockSharp.Community.ISessionService"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.SessionClient.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Community.SessionClient"/>.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.SessionClient.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StockSharp.Community.SessionClient"/>.
+            </summary>
+            <param name="address">Server address.</param>
+        </member>
+        <member name="M:StockSharp.Community.SessionClient.CreateSession(StockSharp.Community.Products)">
+            <summary>
+            TCreate a new activity session.
+            </summary>
+            <param name="product">Product type.</param>
+        </member>
+        <member name="M:StockSharp.Community.SessionClient.CloseSession">
+            <summary>
+            Close the session.
+            </summary>
+        </member>
+        <member name="M:StockSharp.Community.SessionClient.DisposeManaged">
+            <summary>
+            Release resources.
             </summary>
         </member>
     </members>

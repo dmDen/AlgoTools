@@ -1540,6 +1540,21 @@
             Connection error (for example, the connection was aborted by server).
             </summary>
         </member>
+        <member name="E:StockSharp.BusinessEntities.IConnector.ConnectedEx">
+            <summary>
+            Connected.
+            </summary>
+        </member>
+        <member name="E:StockSharp.BusinessEntities.IConnector.DisconnectedEx">
+            <summary>
+            Disconnected.
+            </summary>
+        </member>
+        <member name="E:StockSharp.BusinessEntities.IConnector.ConnectionErrorEx">
+            <summary>
+            Connection error (for example, the connection was aborted by server).
+            </summary>
+        </member>
         <member name="E:StockSharp.BusinessEntities.IConnector.Error">
             <summary>
             Dats process error.
@@ -2025,11 +2040,6 @@
         <member name="P:StockSharp.BusinessEntities.MarketDepth.Security">
             <summary>
             Security.
-            </summary>
-        </member>
-        <member name="P:StockSharp.BusinessEntities.MarketDepth.Connector">
-            <summary>
-            Connection to the trading system.
             </summary>
         </member>
         <member name="P:StockSharp.BusinessEntities.MarketDepth.AutoVerify">
@@ -2652,11 +2662,6 @@
             Comission (broker, exchange etc.).
             </summary>
         </member>
-        <member name="P:StockSharp.BusinessEntities.Order.Connector">
-            <summary>
-            Connection to the trading system, through which this order has been registered.
-            </summary>
-        </member>
         <member name="P:StockSharp.BusinessEntities.Order.UserOrderId">
             <summary>
             User's order ID.
@@ -2757,11 +2762,6 @@
         <member name="P:StockSharp.BusinessEntities.Portfolio.Currency">
             <summary>
             Portfolio currency.
-            </summary>
-        </member>
-        <member name="P:StockSharp.BusinessEntities.Portfolio.Connector">
-            <summary>
-            Connection to the trading system, through which this portfolio has been loaded.
             </summary>
         </member>
         <member name="P:StockSharp.BusinessEntities.Portfolio.Board">
@@ -3085,11 +3085,6 @@
         <member name="P:StockSharp.BusinessEntities.Security.MarginSell">
             <summary>
             Initial margin to sell.
-            </summary>
-        </member>
-        <member name="P:StockSharp.BusinessEntities.Security.Connector">
-            <summary>
-            Connection to the trading system, through which this instrument has been downloaded.
             </summary>
         </member>
         <member name="P:StockSharp.BusinessEntities.Security.ImpliedVolatility">
