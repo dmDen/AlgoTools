@@ -53,6 +53,7 @@ namespace OptionPosition
 			logManager.Listeners.Add(new FileLogListener("OptionPosition.log"));
 			var entityRegistry = ConfigManager.GetService<IEntityRegistry>();
 			var storageRegistry = ConfigManager.GetService<IStorageRegistry>();
+			SerializationContext.DelayAction = entityRegistry.DelayAction = new DelayAction(entityRegistry.Storage, ex => ex.LogError());
 			Connector = new Connector(entityRegistry, storageRegistry);
 			logManager.Sources.Add(Connector);			
             InitConnector();			
@@ -398,6 +399,11 @@ namespace OptionPosition
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			SavePositionToFile();
+			if (Connector != null)
+			{
+				Connector.Dispose();
+			}
+			ConfigManager.GetService<IEntityRegistry>().DelayAction.WaitFlush();
 		}
 
 		private void PositionSaveAsDialog()
